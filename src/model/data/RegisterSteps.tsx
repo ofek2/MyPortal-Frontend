@@ -2,6 +2,7 @@ import React from 'react';
 import Fingerprint from '@material-ui/icons/Fingerprint';
 import PhoneAndroid from '@material-ui/icons/PhoneAndroid';
 import Info from '@material-ui/icons/Info';
+import IdForm from '../../components/Forms/IdForm/IdForm';
 
 interface IRegisterStep {
 	title: string,
@@ -13,7 +14,7 @@ const registerSteps: IRegisterStep[] = [
 	{
 		title: "הזדאות משתמש",
 		icon: <Fingerprint />,
-		component: <span> a</span>
+		component: <IdForm/>
 	},
 	{
 		title: "הסבר התהליך",
