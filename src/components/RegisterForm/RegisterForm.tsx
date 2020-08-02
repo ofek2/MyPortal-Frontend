@@ -4,7 +4,6 @@ import { Grid, Container, Hidden, StepLabel, StepIconProps } from '@material-ui/
 import registerSteps from '../../model/data/RegisterSteps';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
-import StepButton from '@material-ui/core/StepButton';
 import MobileStepper from '@material-ui/core/MobileStepper';
 import withWidth, { WithWidth } from '@material-ui/core/withWidth';
 import Check from '@material-ui/icons/Check';
@@ -26,19 +25,27 @@ function RegisterForm(props: WithWidth) {
 	// State & props
 	const steps = registerSteps;
 	const [currentStep, setCurrentStep] = useState(0);
+	let currentPayload = {};
+
+	// Handlers
+
+	const handleNextStep = (payload: any) => {
+		setCurrentStep(oldVal => oldVal += 1);
+		currentPayload = payload;
+	}
 
 	// Rendering
 	return (
 		<Grid container xs={12} md={10} xl={8}>
 			<Container>
 				<Paper elevation={3} style={{ padding: "10px 0px" }} >
-					<Grid item>
+					<Grid style={{ padding: "10px" }} item>
 						{
-							steps[currentStep].component
+							React.cloneElement(steps[currentStep].component, { onResolve: handleNextStep })
 						}
 					</Grid>
 					<Grid container justify="center" alignItems="center" md={12} >
-						<Grid xs={3} sm={8} md={6}>
+						<Grid item xs={3} sm={8} md={6}>
 							{/* Mobile steps */}
 							<Hidden smUp>
 								<MobileStepper variant="dots" steps={steps.length} style={{ background: 'white', display: 'flex', justifyContent: 'center' }} position="static"
@@ -52,7 +59,7 @@ function RegisterForm(props: WithWidth) {
 								<Stepper style={{ padding: "5px 0px" }} alternativeLabel activeStep={currentStep}>
 									{steps.map((step, index) => (
 										<Step key={index}>
-											<StepLabel onClick={() => setCurrentStep(index)} StepIconComponent={StepIcon} icon={step.icon}>{step.title}</StepLabel>
+											<StepLabel StepIconComponent={StepIcon} icon={step.icon}>{step.title}</StepLabel>
 										</Step>
 									))}
 								</Stepper>

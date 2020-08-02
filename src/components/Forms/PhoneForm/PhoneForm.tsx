@@ -1,8 +1,13 @@
 import React from 'react';
 import './PhoneForm.css';
 import { Typography, Button } from '@material-ui/core';
+import IFormProps from '../IForm';
 
-function PhoneForm() {
+function PhoneForm(props: IFormProps) {
+	// State & props
+	const { onResolve } = props;
+
+	// Rendering
 	return (
 		<React.Fragment>
 			<Typography >שלחנו סיסמת כניסה חד-פעמית למספר הבא:</Typography>
