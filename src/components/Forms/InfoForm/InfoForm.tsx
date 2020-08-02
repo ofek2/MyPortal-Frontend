@@ -4,7 +4,6 @@ import { Typography, Button } from '@material-ui/core';
 import Favorite from '@material-ui/icons/Favorite';
 import IFormProps from '../IForm';
 
-
 function InfoForm(props: IFormProps) {
 	// State & props
 	const { onResolve } = props;

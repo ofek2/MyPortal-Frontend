@@ -9,6 +9,16 @@ class RestService {
 			throw e;
 		}
 	}
+
+	public static async resetUserPassword(idNumber) {
+		try {
+			const res = await axiosInstance.put(`/users/${idNumber}/resetPassword`);
+
+			return res.data;
+		} catch (e) {
+			throw e;
+		}
+	}
 }
 
 export default RestService;

@@ -14,7 +14,7 @@ interface IRegisterStep {
 
 const registerSteps: IRegisterStep[] = [
 	{
-		title: "הזדאות משתמש",
+		title: "הזדהות משתמש",
 		icon: <Fingerprint />,
 		component: <IdForm/>
 	},
