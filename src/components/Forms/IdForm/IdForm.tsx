@@ -1,6 +1,6 @@
 import React from 'react';
 import './IdForm.css';
-import { Typography, TextField, InputAdornment, Grid, IconButton, Icon } from '@material-ui/core';
+import { Typography, InputAdornment, Grid, IconButton } from '@material-ui/core';
 import { ClkInput } from '../../ClkInput/ClkInput';
 import Send from '@material-ui/icons/Send';
 
@@ -8,7 +8,7 @@ import Send from '@material-ui/icons/Send';
 function IdForm() {
 	return (
 		<React.Fragment>
-			<Typography variant="h5" style={{fontWeight: "bold"}}>ברוכים הבאים</Typography>
+			<Typography variant="h4" style={{fontWeight: "bold"}}>ברוכים הבאים</Typography>
 			<Typography>בכדי ליצור משתמש יש להכניס את תעודת זהות (כולל ספרת הביקורת)</Typography>
 			<Grid container justify="center" alignItems="center" style={{margin: "10px 0px"}}>
 				<Grid md={3}>
