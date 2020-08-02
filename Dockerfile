@@ -25,6 +25,6 @@ RUN rm -rf /usr/share/nginx/html/*
 # Copy from the stahg 1
 COPY --from=builder /app/build /usr/share/nginx/html
 
-EXPOSE 8080 443
+EXPOSE 3000 80 8080 443
 
 ENTRYPOINT ["nginx", "-g", "daemon off;"]
