@@ -29,8 +29,6 @@ function PhoneForm(props: IFormProps) {
 
 		try {
 			await RestService.resetUserPassword(id);
-
-			onResolve(payload);
 		} catch (err) {
 			setError({ msg: 'לא הצלחנו לשלוח לך סיסמה ב-SMS' })
 		}
