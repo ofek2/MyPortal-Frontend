@@ -9,7 +9,7 @@ import { Alert } from '@material-ui/lab';
 function InfoForm(props: IFormProps) {
 	// State & props
 	const { onResolve, payload } = props;
-	const [error, setError] = useState({ msg: '' });
+	const [error, setError] = useState<any>({ msg: '' });
 
 	// Handlers
 	const onClick = async () => {
@@ -21,7 +21,12 @@ function InfoForm(props: IFormProps) {
 			onResolve(payload);
 		} catch (err) {
 			setError({
-				msg: "הרתה תקלה בשליחת ה-SMS, אנה פנה למוקד התמיכה ב-1111 שלוחה מספר 4"
+				msg:
+					<React.Fragment>
+						<Typography>צור קשר עם מוקד התמיכה:</Typography>
+						<Typography>משרתי מילואים – טלפון מס' 1111 ß שלוחה 4</Typography>
+						<Typography>משרתים פעילים – באמצעות הודעת WhatsApp למס': <a href="https://api.whatsapp.com/send?phone=9720529436631">052-9436631</a>052-9436631</Typography>
+					</React.Fragment>
 			});
 		}
 	}

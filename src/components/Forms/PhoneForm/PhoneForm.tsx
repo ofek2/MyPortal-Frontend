@@ -53,8 +53,10 @@ function PhoneForm(props: IFormProps) {
 				</Grid>
 			</Grid>
 
-			<Typography>זהו אינו מספר הפלאפון שלך?</Typography>
-			<Typography>צור קשר עם מוקד התמיכה במספר 1111, שלוחה 4</Typography>
+			<Typography style={{fontWeight: "bold"}}>זהו אינו מספר הטלפון הנייד שלך?</Typography>
+			<Typography>צור קשר עם מוקד התמיכה:</Typography>
+			<Typography>משרתי מילואים – טלפון מס' 1111 ß שלוחה 4</Typography>
+			<Typography>משרתים פעילים – יש לעדכן את הטלפון אצל גורמי המשא"ן ביחידה ולנסות לאחר 24 שעות</Typography>
 		</React.Fragment>
 	);
 }
