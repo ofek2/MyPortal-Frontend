@@ -6,20 +6,8 @@ import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import MobileStepper from '@material-ui/core/MobileStepper';
 import withWidth, { WithWidth } from '@material-ui/core/withWidth';
-import Check from '@material-ui/icons/Check';
 import './RegisterForm.css';
-
-function StepIcon(props: StepIconProps) {
-	// State & props
-	const { completed, active } = props;
-
-	// Rendering
-	return (
-		<div style={{ color: completed ? "#81C784" : active ? "#fde85e" : "#ccc" }}>
-			{completed ? <Check /> : props.icon}
-		</div>
-	);
-}
+import StepIcon from '../StepIcon/StepIcon';
 
 let currentPayload = {};
 

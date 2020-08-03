@@ -1,6 +1,8 @@
 import React from 'react';
 import Fingerprint from '@material-ui/icons/Fingerprint';
 import PhoneAndroid from '@material-ui/icons/PhoneAndroid';
+import Create from '@material-ui/icons/Create';
+import CheckCircle from '@material-ui/icons/CheckCircle'; 
 import Info from '@material-ui/icons/Info';
 import IdForm from '../../components/Forms/IdForm/IdForm';
 import InfoForm from '../../components/Forms/InfoForm/InfoForm';
@@ -27,6 +29,16 @@ const registerSteps: IRegisterStep[] = [
 		title: "אישור הקבלה",
 		icon: <PhoneAndroid />,
 		component: <PhoneForm/>
+	},
+	{
+		title: "השלמת הרישום",
+		icon: <Create/>,
+		component: <React.Fragment/>
+	},
+	{
+		title: "סיום",
+		icon: <CheckCircle />,
+		component: <React.Fragment />
 	},
 ];
 

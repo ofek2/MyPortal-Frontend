@@ -1,13 +1,16 @@
-import React from 'react';
-import { Grid, Paper, Typography } from '@material-ui/core';
-
+import React, { useState } from 'react';
+import { Grid, Paper, Typography, Hidden, MobileStepper, Stepper, Step, StepLabel } from '@material-ui/core';
+import registerSteps from '../../model/data/RegisterSteps';
+import StepIcon from '../StepIcon/StepIcon';
 interface ICallbackMsgProps {
 	account: string
 }
 
 function CallbackMsg(props: ICallbackMsgProps) {
-	// Props
+	// Props & state
 	const { account } = props;
+	const steps = registerSteps;
+	const [currentStep, setCurrentStep] = useState(registerSteps.length - 1);
 
 	// Rendering
 	return (
@@ -18,6 +21,28 @@ function CallbackMsg(props: ICallbackMsgProps) {
 				<Typography dir="ltr" className="english-font" style={{ color: "#2196f3" }}>{account}</Typography>
 				<Typography>סיסמה:</Typography>
 				<Typography>כפי שבחרת בתהליך הרישום</Typography>
+			</Grid>
+			<Grid container item justify="center" alignItems="center" md={12} >
+				<Grid item xs={3} sm={8} md={6}>
+					{/* Mobile steps */}
+					<Hidden smUp>
+						<MobileStepper variant="dots" steps={steps.length} style={{ background: 'white', display: 'flex', justifyContent: 'center' }} position="static"
+							activeStep={currentStep}
+							nextButton={<React.Fragment />}
+							backButton={<React.Fragment />}
+						/>
+					</Hidden>
+					{/* Desktop steps */}
+					<Hidden xsDown>
+						<Stepper style={{ padding: "5px 0px" }} alternativeLabel activeStep={currentStep}>
+							{steps.map((step, index) => (
+								<Step key={index}>
+									<StepLabel StepIconComponent={StepIcon} icon={step.icon}>{step.title}</StepLabel>
+								</Step>
+							))}
+						</Stepper>
+					</Hidden>
+				</Grid>
 			</Grid>
 		</Paper>
 	);
