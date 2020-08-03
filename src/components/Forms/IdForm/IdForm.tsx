@@ -27,6 +27,7 @@ function IdForm(props: IFormProps) {
 		try {
 			const { isRegistered, mobilePhone } = await RestService.checkUser(currentId, false);
 
+			setIsLoading(false);
 			if (isRegistered) {
 				setError({
 					msg: "תעודת הזהות שהזנת כבר רשומה במערכת"
@@ -35,6 +36,8 @@ function IdForm(props: IFormProps) {
 				onResolve({ mobilePhone, id: currentId });
 			}
 		} catch (err) {
+			setIsLoading(false);
+
 			setError({
 				msg: "הרתה תקלה, אנה נסה שנית במועד מאוחר יותר"
 			});
@@ -49,12 +52,13 @@ function IdForm(props: IFormProps) {
 		currentId = idFromInput;
 	}
 
-	const onClick = async () => {
+	const onClick = async (event) => {
+		event.preventDefault();
+
 		if (!isLoading) {
 			if (isValidId) {
 				setIsLoading(true);
 				await checkIsUserExist();
-				setIsLoading(false);
 			}
 			else {
 				setError({
@@ -71,18 +75,20 @@ function IdForm(props: IFormProps) {
 			<Typography>בכדי ליצור משתמש יש להכניס את תעודת זהות (כולל ספרת הביקורת)</Typography>
 			<Grid container direction="column" justify="center" alignItems="center" style={{ margin: "10px 0px" }}>
 				<Grid item md={3}>
-					<ClkInput onChange={onChange} disabled={false} value={undefined} endAdornment={
-						<InputAdornment position="end" onClick={onClick}>
-							{
-								isLoading ?
-									<CircularProgress color="primary" size={18} thickness={7} style={{ marginLeft: "6px", cursor: "default" }} />
-									:
-									<IconButton size="small">
-										<Send className="login-send-icon" />
-									</IconButton>
-							}
-						</InputAdornment>
-					} placeholder={"הכנס תעודת זהות"} autoFocus={false} fullWidth />
+					<form noValidate onSubmit={onClick}>
+						<ClkInput onChange={onChange} disabled={false} value={undefined} endAdornment={
+							<InputAdornment position="end" onClick={onClick}>
+								{
+									isLoading ?
+										<CircularProgress color="primary" size={18} thickness={7} style={{ marginLeft: "6px", cursor: "default" }} />
+										:
+										<IconButton size="small">
+											<Send className="login-send-icon" />
+										</IconButton>
+								}
+							</InputAdornment>
+						} placeholder={"הכנס תעודת זהות"} autoFocus={false} fullWidth />
+					</form>
 				</Grid>
 				<Grid item xs={12}>
 					{

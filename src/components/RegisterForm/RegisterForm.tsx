@@ -38,7 +38,7 @@ function RegisterForm(props: WithWidth) {
 	// Rendering
 	return (
 		<Paper elevation={3} style={{ padding: "10px 0px" }} >
-			<Grid style={{ padding: "10px" }} item>
+			<Grid container style={{ padding: "10px" }} justify="center" alignItems="center" direction="column">
 				{
 					React.cloneElement(steps[currentStep].component, { onResolve: handleNextStep, payload: currentPayload })
 				}

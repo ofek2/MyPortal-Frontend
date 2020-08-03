@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './PhoneForm.css';
-import { Typography, Button } from '@material-ui/core';
+import { Typography, Button, Grid } from '@material-ui/core';
 import IFormProps from '../IForm';
 import CensorPhone from '../../CensorPhone/CensorPhone';
 import MsService from '../../../services/microsoft/MsService';
 import { CLICK_DOMAIN } from '../../../model/data/Constants';
 import RestService from '../../../services/rest/RestService';
+import { Alert } from '@material-ui/lab';
 
 function PhoneForm(props: IFormProps) {
 	// State & props
 	const { onResolve, payload } = props;
+	const [error, setError] = useState({ msg: '' });
 
 	// Handlers
 	const onContinueClick = async () => {
@@ -18,7 +20,7 @@ function PhoneForm(props: IFormProps) {
 		try {
 			await MsService.login(`${id}@${CLICK_DOMAIN}`);
 		} catch(err) {
-			console.log(err);
+			setError({msg: 'הרתה תקלה, אנה נסה שנית במועד מאוחר יותר'})
 		}
 	}
 
@@ -30,7 +32,7 @@ function PhoneForm(props: IFormProps) {
 
 			onResolve(payload);
 		} catch (err) {
-			console.log(err);
+			setError({msg: 'לא הצלחנו לשלוח לך סיסמה ב-SMS'})
 		}
 	}
 
@@ -41,6 +43,18 @@ function PhoneForm(props: IFormProps) {
 			<CensorPhone phone={payload.mobilePhone} stringToReplace="X"/>
 			<Button variant="contained" onClick={onContinueClick} disableElevation={true} color="primary" className="idf-button" style={{ margin: "10px 0px", marginLeft: "20px" }}>קיבלתי, בואו נמשיך</Button>
 			<Button variant="contained" onClick={onSendAgainClick} disableElevation={true} className="idf-button-secondary" style={{ margin: "10px 0px", backgroundColor: "#333", color: "white !important" }}>שלחו לי שוב</Button>
+			<Grid container direction="column" justify="center" alignItems="center" style={{ margin: "10px 0px" }}>
+				<Grid item xs={12}>
+					{
+						error && error.msg !== '' ?
+							<Alert severity="error" >
+								{error.msg}
+							</Alert> :
+							<React.Fragment />
+					}
+				</Grid>
+			</Grid>
+			
 			<Typography>זהו אינו מספר הפלאפון שלך?</Typography>
 			<Typography>צור קשר עם מוקד התמיכה במספר 1111, שלוחה 4</Typography>
 		</React.Fragment>
