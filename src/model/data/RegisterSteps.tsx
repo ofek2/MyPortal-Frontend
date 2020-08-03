@@ -1,8 +1,12 @@
 import React from 'react';
 import Fingerprint from '@material-ui/icons/Fingerprint';
 import PhoneAndroid from '@material-ui/icons/PhoneAndroid';
+import Create from '@material-ui/icons/Create';
+import CheckCircle from '@material-ui/icons/CheckCircle'; 
 import Info from '@material-ui/icons/Info';
 import IdForm from '../../components/Forms/IdForm/IdForm';
+import InfoForm from '../../components/Forms/InfoForm/InfoForm';
+import PhoneForm from '../../components/Forms/PhoneForm/PhoneForm';
 
 interface IRegisterStep {
 	title: string,
@@ -12,19 +16,29 @@ interface IRegisterStep {
 
 const registerSteps: IRegisterStep[] = [
 	{
-		title: "הזדאות משתמש",
+		title: "הזדהות משתמש",
 		icon: <Fingerprint />,
 		component: <IdForm/>
 	},
 	{
 		title: "הסבר התהליך",
 		icon: <Info />,
-		component: <span> b</span>
+		component: <InfoForm/>
 	},
 	{
-		title: "קבלת סיסמא",
+		title: "קבלת סיסמה",
 		icon: <PhoneAndroid />,
-		component: <span> c</span>
+		component: <PhoneForm/>
+	},
+	{
+		title: "השלמת הרישום",
+		icon: <Create/>,
+		component: <React.Fragment/>
+	},
+	{
+		title: "סיום",
+		icon: <CheckCircle />,
+		component: <React.Fragment />
 	},
 ];
 

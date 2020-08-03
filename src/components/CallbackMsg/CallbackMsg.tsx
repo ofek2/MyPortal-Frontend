@@ -1,35 +1,28 @@
 import React, { useState } from 'react';
-import Paper from '@material-ui/core/Paper';
-import { Grid, Container, Hidden, StepLabel, StepIconProps } from '@material-ui/core';
+import { Grid, Paper, Typography, Hidden, MobileStepper, Stepper, Step, StepLabel } from '@material-ui/core';
 import registerSteps from '../../model/data/RegisterSteps';
-import Stepper from '@material-ui/core/Stepper';
-import Step from '@material-ui/core/Step';
-import MobileStepper from '@material-ui/core/MobileStepper';
-import withWidth, { WithWidth } from '@material-ui/core/withWidth';
-import './RegisterForm.css';
 import StepIcon from '../StepIcon/StepIcon';
+interface ICallbackMsgProps {
+	account: string
+}
 
-let currentPayload = {};
-
-function RegisterForm(props: WithWidth) {
-	// State & props
+function CallbackMsg(props: ICallbackMsgProps) {
+	// Props & state
+	const { account } = props;
 	const steps = registerSteps;
-	const [currentStep, setCurrentStep] = useState(0);
-
-	// Handlers
-
-	const handleNextStep = (payload: any) => {
-		currentPayload = payload;
-		setCurrentStep(oldVal => oldVal += 1);
-	}
+	const [currentStep, setCurrentStep] = useState(registerSteps.length - 1);
 
 	// Rendering
 	return (
 		<Paper elevation={3} style={{ padding: "10px 0px" }} >
-			<Grid container style={{ padding: "10px" }} justify="center" alignItems="center" direction="column">
-				{
-					React.cloneElement(steps[currentStep].component, { onResolve: handleNextStep, payload: currentPayload })
-				}
+			<Grid style={{ padding: "10px" }} item>
+				<Typography variant="h4">המשתמש נוצר בהצלחה!</Typography>
+				<Typography variant="h6" style={{fontWeight: "bold"}}>שם המשתמש האישי שלך הינו:</Typography>
+				<Typography dir="ltr" className="english-font" style={{ color: "#2196f3" }}>{account}</Typography>
+				<Typography variant="h6" style={{fontWeight: "bold", marginTop: "10px"}}>סיסמה:</Typography>
+				<Typography>כפי שנקבעה בתהליך הרישום</Typography>
+				<Typography style={{fontWeight: "bold", marginTop: "10px"}}>ניתן לחזור לאתר ולבצע התחברות באמצעות המשתמש.</Typography>
+				
 			</Grid>
 			<Grid container item justify="center" alignItems="center" md={12} >
 				<Grid item xs={3} sm={8} md={6}>
@@ -57,4 +50,4 @@ function RegisterForm(props: WithWidth) {
 	);
 }
 
-export default withWidth()(RegisterForm);
+export default CallbackMsg;

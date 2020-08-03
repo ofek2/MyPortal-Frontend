@@ -13,7 +13,7 @@
   }
 }
 
-.App-header {
+.App-content {
   background-color: #fde85e;
   min-height: 100vh;
   display: flex;
@@ -35,4 +35,8 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.english-font {
+  font-family: Arimo !important;
 }

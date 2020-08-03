@@ -5,15 +5,27 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { ThemeProvider, createMuiTheme, StylesProvider, jssPreset } from '@material-ui/core';
 import { create } from 'jss';
+import './assets/fonts/NarkisBlock-Condensed_MFW_medium.ttf';
+import './assets/fonts/Arimo-Bold.ttf';
+import './assets/fonts/Arimo-Regular.ttf';
 import rtl from 'jss-rtl';
+
 
 // Creating app theme
 const theme = createMuiTheme({
   direction: 'rtl',
+  typography: {
+
+    fontFamily: 'NarkisBlock',
+    fontSize: 17
+  },
   palette: {
     primary: {
       main: "#fde85e",
     },
+    text: {
+      primary: "#333"
+    }
   }
 });
 
