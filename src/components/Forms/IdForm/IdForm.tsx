@@ -13,7 +13,7 @@ let currentId: string;
 function IdForm(props: IFormProps) {
 	// State & props
 	const { onResolve } = props;
-	const [error, setError] = useState({ msg: '' });
+	const [error, setError] = useState<any>({ msg: '' });
 	const [isLoading, setIsLoading] = useState(false);
 
 	// Methodes
@@ -25,10 +25,19 @@ function IdForm(props: IFormProps) {
 
 	const checkIsUserExist = async () => {
 		try {
-			const { isRegistered, mobilePhone } = await RestService.checkUser(currentId, false);
+			const { isRegistered, mobilePhone, isUserNotExists } = await RestService.checkUser(currentId);
 
 			setIsLoading(false);
-			if (isRegistered) {
+			if (isUserNotExists) {
+				setError({
+					msg: <React.Fragment>
+							<Typography style={{fontWeight: "bold"}}>לא הצלחנו לאמת את זהותך</Typography>
+							<Typography>צור קשר עם מוקד התמיכה במס' 1111 ובחר את השלוחה המתאימה עבורך –</Typography>
+							<Typography>מתגייסים – שלוחה 1, משרתים – שלוחה 0, מילואים – שלוחה 4</Typography>
+						</React.Fragment>
+				});
+			} 
+			else if (isRegistered) {
 				setError({
 					msg: "תעודת הזהות שהזנת כבר רשומה במערכת"
 				});
@@ -71,8 +80,9 @@ function IdForm(props: IFormProps) {
 	// Rendering
 	return (
 		<React.Fragment>
-			<Typography variant="h4" style={{ fontWeight: "bold" }}>ברוכים הבאים</Typography>
-			<Typography>בכדי ליצור משתמש יש להכניס את תעודת זהות (כולל ספרת הביקורת)</Typography>
+			<Typography variant="h4" style={{ fontWeight: "bold" , marginBottom: "10px"}}>ברוכים הבאים</Typography>
+			<Typography>לצורך אימות הנתונים אל מול מערכות צה"ל,</Typography>
+			<Typography>נא להזין מספר תעודת זהות (כולל ספרת ביקורת):</Typography>
 			<Grid container direction="column" justify="center" alignItems="center" style={{ margin: "10px 0px" }}>
 				<Grid item md={3}>
 					<form noValidate onSubmit={onClick}>

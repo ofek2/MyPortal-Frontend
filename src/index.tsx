@@ -15,6 +15,7 @@ import rtl from 'jss-rtl';
 const theme = createMuiTheme({
   direction: 'rtl',
   typography: {
+
     fontFamily: 'NarkisBlock',
     fontSize: 17
   },
@@ -22,6 +23,9 @@ const theme = createMuiTheme({
     primary: {
       main: "#fde85e",
     },
+    text: {
+      primary: "#333"
+    }
   }
 });
 

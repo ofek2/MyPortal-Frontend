@@ -1,9 +1,9 @@
 import axiosInstance from "../../clients/axiosClient";
 
 class RestService {
-	public static async checkUser(idNumber: string, isOnlyLogin?: boolean) {
+	public static async checkUser(idNumber: string) {
 		try {
-			const res = await axiosInstance.post(`/users`, { idNumber, isOnlyLogin });
+			const res = await axiosInstance.post(`/users`, { idNumber });
 			return res.data;
 		} catch (e) {
 			throw e;
