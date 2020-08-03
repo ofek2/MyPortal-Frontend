@@ -1,28 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './InfoForm.css';
-import { Typography, Button } from '@material-ui/core';
+import { Typography, Button, Grid } from '@material-ui/core';
 import Favorite from '@material-ui/icons/Favorite';
 import IFormProps from '../IForm';
 import RestService from '../../../services/rest/RestService';
+import { Alert } from '@material-ui/lab';
 
 function InfoForm(props: IFormProps) {
 	// State & props
 	const { onResolve, payload } = props;
-	console.log(payload);
+	const [error, setError] = useState({ msg: '' });
 
 	// Handlers
 	const onClick = async () => {
-		const { id, mobilePhone } = payload;
+		const { id } = payload;
 
-		console.log('from second form');
-		console.log(id);
-		console.log(mobilePhone);
 		try {
 			await RestService.resetUserPassword(id);
 
 			onResolve(payload);
 		} catch (err) {
-			console.log(err);
+			setError({
+				msg: "הרתה תקלה בשליחת ה-SMS, אנה פנה למוקד התמיכה ב-1111 שלוחה מספר 4"
+			});
 		}
 	}
 
@@ -35,6 +35,18 @@ function InfoForm(props: IFormProps) {
 			<Typography>3) בחירת סיסמה קבועה לשירות</Typography>
 			<Typography style={{ marginTop: "10px" }}>לאחר מכן, בעזרת שם המשתמש והסיסמה האישיים שלך ניתן להתחבר לכל שירותי הדיגיטל של צהל בקליק</Typography>
 			<Button variant="contained" onClick={onClick} disableElevation={true} color="primary" className="idf-button" style={{ margin: "10px 0px" }}>קבל סיסמה</Button>
+			<Grid container direction="column" justify="center" alignItems="center" style={{ margin: "10px 0px" }}>
+				<Grid item xs={12}>
+					{
+						error && error.msg !== '' ?
+							<Alert severity="error" >
+								{error.msg}
+							</Alert> :
+							<React.Fragment />
+					}
+				</Grid>
+			</Grid>
+
 		</React.Fragment>
 	);
 }
