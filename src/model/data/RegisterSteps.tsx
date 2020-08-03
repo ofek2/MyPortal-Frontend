@@ -26,7 +26,7 @@ const registerSteps: IRegisterStep[] = [
 		component: <InfoForm/>
 	},
 	{
-		title: "אישור הקבלה",
+		title: "קבלת סיסמה",
 		icon: <PhoneAndroid />,
 		component: <PhoneForm/>
 	},
