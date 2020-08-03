@@ -15,12 +15,12 @@ function PhoneForm(props: IFormProps) {
 
 	// Handlers
 	const onContinueClick = async () => {
-		const {id} = payload;
+		const { id } = payload;
 
 		try {
 			await MsService.login(`${id}@${CLICK_DOMAIN}`);
-		} catch(err) {
-			setError({msg: 'הרתה תקלה, אנה נסה שנית במועד מאוחר יותר'})
+		} catch (err) {
+			setError({ msg: 'הרתה תקלה, אנה נסה שנית במועד מאוחר יותר' })
 		}
 	}
 
@@ -32,7 +32,7 @@ function PhoneForm(props: IFormProps) {
 
 			onResolve(payload);
 		} catch (err) {
-			setError({msg: 'לא הצלחנו לשלוח לך סיסמה ב-SMS'})
+			setError({ msg: 'לא הצלחנו לשלוח לך סיסמה ב-SMS' })
 		}
 	}
 
@@ -40,7 +40,7 @@ function PhoneForm(props: IFormProps) {
 	return (
 		<React.Fragment>
 			<Typography >שלחנו סיסמת כניסה חד-פעמית למספר הבא:</Typography>
-			<CensorPhone phone={payload.mobilePhone} stringToReplace="X"/>
+			<CensorPhone phone={payload.mobilePhone} stringToReplace="X" />
 			<Button variant="contained" onClick={onContinueClick} disableElevation={true} color="primary" className="idf-button" style={{ margin: "10px 0px", marginLeft: "20px" }}>קיבלתי, בואו נמשיך</Button>
 			<Button variant="contained" onClick={onSendAgainClick} disableElevation={true} className="idf-button-secondary" style={{ margin: "10px 0px", backgroundColor: "#333", color: "white !important" }}>שלחו לי שוב</Button>
 			<Grid container direction="column" justify="center" alignItems="center" style={{ margin: "10px 0px" }}>
@@ -54,7 +54,7 @@ function PhoneForm(props: IFormProps) {
 					}
 				</Grid>
 			</Grid>
-			
+
 			<Typography>זהו אינו מספר הפלאפון שלך?</Typography>
 			<Typography>צור קשר עם מוקד התמיכה במספר 1111, שלוחה 4</Typography>
 		</React.Fragment>
