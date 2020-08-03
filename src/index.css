@@ -36,6 +36,16 @@ code {
   src: local('NarkisBlock'), url(./assets/fonts/NarkisBlock-Condensed_MFW_medium.ttf) format('truetype');
 }
 
+@font-face {
+  font-family: 'ArimoBold';
+  src: local('ArimoBold'), url(./assets/fonts/Arimo-Bold.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Arimo';
+  src: local('Arimo'), url(./assets/fonts/Arimo-Regular.ttf) format('truetype');
+}
+
 .MuiAlert-root {
   padding: 0px 10px !important;
   margin-top: 10px;

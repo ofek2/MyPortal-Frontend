@@ -1,19 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './IdForm.css';
-import { Typography, InputAdornment, Grid, IconButton } from '@material-ui/core';
+import { Typography, InputAdornment, Grid, IconButton, CircularProgress } from '@material-ui/core';
 import { ClkInput } from '../../ClkInput/ClkInput';
 import Send from '@material-ui/icons/Send';
 import IFormProps from '../IForm';
 import RestService from '../../../services/rest/RestService';
 import { Alert } from '@material-ui/lab';
 
+let isValidId: boolean = false;
+let currentId: string;
 
 function IdForm(props: IFormProps) {
 	// State & props
 	const { onResolve } = props;
 	const [error, setError] = useState({ msg: '' });
-	let currentId: string;
-	let isValidId: boolean = false;
+	const [isLoading, setIsLoading] = useState(false);
 
 	// Methodes
 	const validatePhone = (id: string) => {
@@ -24,14 +25,14 @@ function IdForm(props: IFormProps) {
 
 	const checkIsUserExist = async () => {
 		try {
-			const response = await RestService.checkUser(currentId, false);
+			const { isRegistered, mobilePhone } = await RestService.checkUser(currentId, false);
 
-			if (response.isRegistered) {
+			if (isRegistered) {
 				setError({
 					msg: "תעודת הזהות שהזנת כבר רשומה במערכת"
 				});
 			} else {
-				onResolve();
+				onResolve({ mobilePhone, id: currentId });
 			}
 		} catch (err) {
 			setError({
@@ -49,13 +50,17 @@ function IdForm(props: IFormProps) {
 	}
 
 	const onClick = async () => {
-		if (isValidId) {
-			checkIsUserExist();
-		}
-		else {
-			setError({
-				msg: "מספר תעודת זהות אינו תקין"
-			});
+		if (!isLoading) {
+			if (isValidId) {
+				setIsLoading(true);
+				await checkIsUserExist();
+				setIsLoading(false);
+			}
+			else {
+				setError({
+					msg: "מספר תעודת זהות אינו תקין"
+				});
+			}
 		}
 	}
 
@@ -67,7 +72,16 @@ function IdForm(props: IFormProps) {
 			<Grid container direction="column" justify="center" alignItems="center" style={{ margin: "10px 0px" }}>
 				<Grid item md={3}>
 					<ClkInput onChange={onChange} disabled={false} value={undefined} endAdornment={
-						<InputAdornment position="end" onClick={onClick}><IconButton size="small"><Send className="login-send-icon" /></IconButton></InputAdornment>
+						<InputAdornment position="end" onClick={onClick}>
+							{
+								isLoading ?
+									<CircularProgress color="primary" size={18} thickness={7} style={{ marginLeft: "6px", cursor: "default" }} />
+									:
+									<IconButton size="small">
+										<Send className="login-send-icon" />
+									</IconButton>
+							}
+						</InputAdornment>
 					} placeholder={"הכנס תעודת זהות"} autoFocus={false} fullWidth />
 				</Grid>
 				<Grid item xs={12}>
@@ -80,7 +94,6 @@ function IdForm(props: IFormProps) {
 					}
 				</Grid>
 			</Grid>
-
 		</React.Fragment>
 	);
 }
