@@ -45,8 +45,7 @@ function InfoForm(props: IFormProps) {
 			{
 				error && error.msg !== '' ?
 					<Grid container direction="column" justify="center" alignItems="center" style={{ margin: "10px 0px" }}>
-						<Grid item xs={12}>
-
+						<Grid item sm={6} xs={12}>
 							<Alert severity="error" >
 								{error.msg}
 							</Alert>

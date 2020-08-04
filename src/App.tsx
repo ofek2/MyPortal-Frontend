@@ -15,17 +15,17 @@ import ErrorContainer from './containers/ErrorContainer';
 function App() {
   return (
     <div className="App">
+      <Header />
       <div className="App-content">
-        <Header/>
         <Router>
           <Switch>
-            <Route exact path="/" component={RegisterContainer}/>
-            <Route exact path="/error" component={ErrorContainer}/>
-            <Route exact path="/auth/callback" component={CallbackContainer}/>
-            <Redirect to="/"/>
+            <Route exact path="/" component={RegisterContainer} />
+            <Route exact path="/error" component={ErrorContainer} />
+            <Route exact path="/auth/callback" component={CallbackContainer} />
+            <Redirect to="/" />
           </Switch>
         </Router>
-        <Footer/>
+        <Footer />
       </div>
     </div>
   );
