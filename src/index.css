@@ -1,36 +1,3 @@
-body {
-  margin: 0;
-  font-family: ArimoRegular !important;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
-
-.idf-button {
-  color: #333 !important;
-  font-weight: bold !important;
-}
-
-.idf-button:hover {
-  background-color: #FFC24B !important;
-  color: #000 !important;
-}
-
-.idf-button-secondary {
-  background-color: #333 !important;
-  font-weight: bold !important;
-  color: white !important;
-}
-
-.idf-button-secondary:hover {
-  background-color: black !important;
-  color: whitesmoke !important;
-}
-
 @font-face {
   font-family: 'NarkisBlock';
   src: local('NarkisBlock'), url(./assets/fonts/NarkisBlock-Condensed_MFW_medium.ttf) format('truetype');
@@ -44,6 +11,46 @@ code {
 @font-face {
   font-family: 'Arimo';
   src: local('Arimo'), url(./assets/fonts/Arimo-Regular.ttf) format('truetype');
+}
+
+
+body {
+  margin: 0;
+  font-family: ArimoRegular !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.idf-button {
+  color: #333 ;
+}
+
+.idf-button:hover {
+  background-color: #FFC24B ;
+  color: #000 ;
+}
+
+.idf-button-secondary {
+  background-color: #333 ;
+  color: white;
+}
+
+.idf-button-secondary:hover {
+  background-color: black;
+  color: whitesmoke;
+}
+
+.english-font {
+  font-family: Arimo !important;
+}
+
+.bold {
+  font-weight: bold;
 }
 
 .MuiAlert-root {
