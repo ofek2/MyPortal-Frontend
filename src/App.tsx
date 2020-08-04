@@ -10,6 +10,7 @@ import RegisterContainer from './containers/RegisterContainer';
 import CallbackContainer from './containers/CallbackContainer';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
+import ErrorContainer from './containers/ErrorContainer';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Router>
           <Switch>
             <Route exact path="/" component={RegisterContainer}/>
+            <Route exact path="/error" component={ErrorContainer}/>
             <Route exact path="/auth/callback" component={CallbackContainer}/>
             <Redirect to="/"/>
           </Switch>

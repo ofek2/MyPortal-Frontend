@@ -2,8 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { Grid, Container } from '@material-ui/core';
 import CallbackMsg from '../components/CallbackMsg/CallbackMsg';
 import MsService from '../services/microsoft/MsService';
+import { withRouter } from 'react-router-dom'
 
-function CallbackContainer() {
+function CallbackContainer(props) {
 	// State & props
 	const [account, setAccount] = useState('');
 
@@ -14,22 +15,20 @@ function CallbackContainer() {
 
 	// Methodes
 	const onInit = async () => {
+		const { history } = props;
+
 		try {
 			await MsService.handleRedirect();
 
 			try {
 				const currentAccount = await MsService.getAccount();
 
-				console.log(currentAccount);
 				setAccount(currentAccount.userName)
-
 			} catch (err) {
-				console.log(err);
-
+				history.push('/error');
 			}
 		} catch (err) {
-			console.log(err);
-
+			history.push('/');
 		}
 	}
 
@@ -43,4 +42,4 @@ function CallbackContainer() {
 	);
 }
 
-export default CallbackContainer;
+export default withRouter(CallbackContainer);

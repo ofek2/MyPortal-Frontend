@@ -7,7 +7,7 @@ function Header() {
 	return (
 		<AppBar position="fixed" style={{backgroundColor: "white"}}>
 			<Toolbar>
-				<img src={Logo} className="header-logo" />
+				<img alt="לוגו" src={Logo} className="header-logo" />
 			</Toolbar>
 		</AppBar>
 	);

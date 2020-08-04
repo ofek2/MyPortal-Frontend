@@ -10,7 +10,7 @@ import { Alert } from '@material-ui/lab';
 
 function PhoneForm(props: IFormProps) {
 	// State & props
-	const { onResolve, payload } = props;
+	const { payload } = props;
 	const [error, setError] = useState({ msg: '' });
 
 	// Handlers

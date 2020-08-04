@@ -10,7 +10,7 @@ function CallbackMsg(props: ICallbackMsgProps) {
 	// Props & state
 	const { account } = props;
 	const steps = registerSteps;
-	const [currentStep, setCurrentStep] = useState(registerSteps.length - 1);
+	const [currentStep] = useState(registerSteps.length - 1);
 
 	// Rendering
 	return (
