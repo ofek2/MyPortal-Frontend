@@ -8,8 +8,8 @@ function ErrorMsg(props) {
 			<Grid style={{ padding: "10px" }} item>
 				<Typography variant="h4">תקלה ביצירת משתמש!</Typography>
 				<Typography>צור קשר עם מוקד התמיכה:</Typography>
-				<Typography>משרתי מילואים – טלפון מס' 1111 ß שלוחה 4</Typography>
-				<Typography>משרתים פעילים – באמצעות הודעת WhatsApp למס': <a href="https://api.whatsapp.com/send?phone=9720529436631">052-9436631</a>052-9436631</Typography>
+				<Typography>משרתי מילואים – טלפון מס' 1111 שלוחה 4</Typography>
+				<Typography>משרתים פעילים – באמצעות הודעת WhatsApp למס': <a href="https://api.whatsapp.com/send?phone=9720529436631">052-9436631</a></Typography>
 			</Grid>
 		</Paper>
 	);
