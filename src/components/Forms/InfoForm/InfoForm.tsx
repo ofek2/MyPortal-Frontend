@@ -35,7 +35,7 @@ function InfoForm(props: IFormProps) {
 	return (
 		<React.Fragment>
 			<Typography variant="h6">שים <Favorite style={{ color: "red", position: "relative", top: "5px" }} />, <span style={{ fontWeight: "bold" }}>תהליך הרישום מורכב מכמה שלבים פשוטים:</span></Typography>
-			<Grid item xs={6}>
+			<Grid item sm={6} xs={12}>
 				<Typography align="left">1) קבלת סיסמה חד-פעמית לכניסה ב-SMS</Typography>
 				<Typography align="left">2) רישום לתהליך האימות הדו-שלבי</Typography>
 				<Typography align="left">3) בחירת סיסמה קבועה לשירות</Typography>
@@ -45,7 +45,7 @@ function InfoForm(props: IFormProps) {
 			{
 				error && error.msg !== '' ?
 					<Grid container direction="column" justify="center" alignItems="center" style={{ margin: "10px 0px" }}>
-						<Grid item md={6} xs={12}>
+						<Grid item xs={12}>
 							<Alert severity="error" >
 								{error.msg}
 							</Alert>
