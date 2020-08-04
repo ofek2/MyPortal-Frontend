@@ -37,7 +37,7 @@ function PhoneForm(props: IFormProps) {
 	// Rendering
 	return (
 		<React.Fragment>
-			<Typography >שלחנו סיסמת כניסה חד-פעמית למספר הבא:</Typography>
+			<Typography>נשלחה אליך סיסמה חד-פעמית לכניסה למספר הבא:</Typography>
 			<CensorPhone phone={payload.mobilePhone} stringToReplace="X" />
 			<Button variant="contained" onClick={onContinueClick} disableElevation={true} color="primary" className="idf-button" style={{ margin: "10px 0px", marginLeft: "20px" }}>קיבלתי, בואו נמשיך</Button>
 			<Button variant="contained" onClick={onSendAgainClick} disableElevation={true} className="idf-button-secondary" style={{ margin: "10px 0px", backgroundColor: "#333", color: "white !important" }}>שלחו לי שוב</Button>

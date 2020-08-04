@@ -24,14 +24,25 @@
 		"clickDomain": "idf.il",
 		"isInMaintenance": 0
 	},
-	"production": {
+	"test": {
 		"authService": {
-			"baseURL": "https://clickauth.azurewebsites.net/api"
+			"baseURL": "https://devmyportal.azurewebsites.net/api"
 		},
 		"msalConfig": {
 			"auth": {
-				"redirectUri": "https://clickportal.idf.il/auth/callback",
-				"postLogoutRedirectUri": "https://clickportal.idf.il"
+				"redirectUri": "https://devmyportal.azurewebsites.net/auth/callback",
+				"postLogoutRedirectUri": "https://devmyportal.azurewebsites.net"
+			}
+		}
+	},
+	"production": {
+		"authService": {
+			"baseURL": "https://mybe.azurewebsites.net/api"
+		},
+		"msalConfig": {
+			"auth": {
+				"redirectUri": "https://my.idf.il/auth/callback",
+				"postLogoutRedirectUri": "https://my.idf.il"
 			}
 		}
 	}

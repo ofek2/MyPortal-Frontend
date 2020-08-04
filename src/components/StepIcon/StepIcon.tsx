@@ -6,9 +6,6 @@ function StepIcon(props: StepIconProps) {
 	// State & props
 	const { completed, active } = props;
 
-	console.log(completed);
-	console.log(active);
-
 	// Rendering
 	return (
 		<div style={{ color: completed ? "#81C784" : active ? "#fde85e" : "#ccc" }}>

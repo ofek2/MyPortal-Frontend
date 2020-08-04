@@ -40,7 +40,7 @@ function InfoForm(props: IFormProps) {
 				<Typography align="left">2) רישום לתהליך האימות הדו-שלבי</Typography>
 				<Typography align="left">3) בחירת סיסמה קבועה לשירות</Typography>
 			</Grid>
-			<Typography style={{ marginTop: "10px" }}>לאחר מכן, בעזרת שם המשתמש והסיסמה האישיים שלך ניתן להתחבר לכל שירותי הדיגיטל של צהל בקליק</Typography>
+			<Typography style={{ marginTop: "10px" }}>לאחר מכן, בעזרת שם המשתמש והסיסמה האישיים שלך ניתן להתחבר לכל שירותי הדיגיטל של צה"ל בקליק.</Typography>
 			<Button variant="contained" onClick={onClick} disableElevation={true} color="primary" className="idf-button" style={{ margin: "10px 0px" }}>קבל סיסמה</Button>
 			{
 				error && error.msg !== '' ?
