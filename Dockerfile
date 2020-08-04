@@ -13,7 +13,7 @@ COPY . .
 # Build the project and copy the files
 RUN npm run build
 
-# CMD ["npm", "run", "start:prod"]
+CMD ["npm", "run", "start:prod"]
 
 
 #FROM nginx:alpine
