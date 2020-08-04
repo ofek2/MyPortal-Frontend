@@ -6,6 +6,7 @@ import Send from '@material-ui/icons/Send';
 import IFormProps from '../IForm';
 import RestService from '../../../services/rest/RestService';
 import { Alert } from '@material-ui/lab';
+import { ERRORS } from '../../../model/data/Constants';
 
 let isValidId: boolean = false;
 let currentId: string;
@@ -17,7 +18,7 @@ function IdForm(props: IFormProps) {
 	const [isLoading, setIsLoading] = useState(false);
 
 	// Methodes
-	const validatePhone = (id: string) => {
+	const validateId = (id: string) => {
 		const isLengthValid = id.length === 9;
 
 		return isLengthValid;
@@ -30,16 +31,12 @@ function IdForm(props: IFormProps) {
 			setIsLoading(false);
 			if (isUserNotExists) {
 				setError({
-					msg: <React.Fragment>
-							<Typography style={{fontWeight: "bold"}}>לא הצלחנו לאמת את זהותך</Typography>
-							<Typography>צור קשר עם מוקד התמיכה במס' 1111 ובחר את השלוחה המתאימה עבורך –</Typography>
-							<Typography>מתגייסים – שלוחה 1, משרתים – שלוחה 0, מילואים – שלוחה 4</Typography>
-						</React.Fragment>
+					msg: ERRORS.userNotExists
 				});
 			} 
 			else if (isRegistered) {
 				setError({
-					msg: "תעודת הזהות שהזנת כבר רשומה במערכת"
+					msg: ERRORS.userAlreadyRegistered(`${currentId}@idf.il`)
 				});
 			} else {
 				onResolve({ mobilePhone, id: currentId });
@@ -48,7 +45,7 @@ function IdForm(props: IFormProps) {
 			setIsLoading(false);
 
 			setError({
-				msg: "הרתה תקלה, אנה נסה שנית במועד מאוחר יותר"
+				msg: ERRORS.general
 			});
 		}
 	}
@@ -57,7 +54,7 @@ function IdForm(props: IFormProps) {
 	const onChange = (value: any) => {
 		const idFromInput = value.target.value;
 
-		isValidId = validatePhone(idFromInput);
+		isValidId = validateId(idFromInput);
 		currentId = idFromInput;
 	}
 
@@ -71,7 +68,7 @@ function IdForm(props: IFormProps) {
 			}
 			else {
 				setError({
-					msg: "מספר תעודת זהות אינו תקין"
+					msg: ERRORS.invalidId
 				});
 			}
 		}

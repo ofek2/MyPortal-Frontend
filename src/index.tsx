@@ -10,6 +10,9 @@ import './assets/fonts/Arimo-Bold.ttf';
 import './assets/fonts/Arimo-Regular.ttf';
 import rtl from 'jss-rtl';
 
+// jss rtl workaround
+const styleNode = document.createComment('jss-insertion-point');
+document.head.insertBefore(styleNode, document.head.firstChild);
 
 // Creating app theme
 const theme = createMuiTheme({
@@ -29,8 +32,12 @@ const theme = createMuiTheme({
   }
 });
 
+
 // Creating jss
-const jss = create({ plugins: [...jssPreset().plugins, rtl()] });
+const jss = create({
+   plugins: [...jssPreset().plugins, rtl()],
+   insertionPoint: "jss-insertion-point"
+});
 
 // Render the root component
 ReactDOM.render(
