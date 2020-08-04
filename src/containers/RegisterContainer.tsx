@@ -4,7 +4,7 @@ import { Grid, Container } from '@material-ui/core';
 
 function RegisterContainer() {
 	return (
-		<Grid container item xs={12} md={10} xl={8}>
+		<Grid container item xs={12} md={10} xl={8} style={{zIndex: 5}}>
 			<Container>
 				<RegisterForm />
 			</Container>

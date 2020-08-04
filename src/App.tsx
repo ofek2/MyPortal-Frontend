@@ -8,18 +8,24 @@ import {
 import './App.css';
 import RegisterContainer from './containers/RegisterContainer';
 import CallbackContainer from './containers/CallbackContainer';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
+import ErrorContainer from './containers/ErrorContainer';
 
 function App() {
   return (
     <div className="App">
       <div className="App-content">
+        <Header/>
         <Router>
           <Switch>
             <Route exact path="/" component={RegisterContainer}/>
+            <Route exact path="/error" component={ErrorContainer}/>
             <Route exact path="/auth/callback" component={CallbackContainer}/>
             <Redirect to="/"/>
           </Switch>
         </Router>
+        <Footer/>
       </div>
     </div>
   );

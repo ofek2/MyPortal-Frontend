@@ -1,0 +1,10 @@
+.footer-container {
+	width: 100vw;
+	position: fixed;
+	bottom: 0;
+	background-repeat: repeat-x;
+	height: 155px;
+	background-position-x: 10px;
+	z-index: 1;
+	opacity: 0.5;
+}

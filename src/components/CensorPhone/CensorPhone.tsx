@@ -16,7 +16,7 @@ function CensorPhone(props: ICensorPhoneProps) {
 	return (
 		<Typography variant="h5" style={{ direction: "ltr" }}>
 			{
-				phone.split('').map(char => char.toLocaleLowerCase() === stringToReplace.toLowerCase() ? <img className="censor-phone-img" src={Star} /> : char)
+				phone.split('').map(char => char.toLocaleLowerCase() === stringToReplace.toLowerCase() ? <img alt="star" className="censor-phone-img" src={Star} /> : char)
 			}
 		</Typography>
 	);

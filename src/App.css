@@ -40,3 +40,9 @@
 .english-font {
   font-family: Arimo !important;
 }
+
+.MuiAlert-icon {
+  display: flex;
+  align-items: center;
+  margin-left: 5px !important;
+}
