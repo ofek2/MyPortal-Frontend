@@ -3,7 +3,7 @@ import config from "../model/data/Configuration";
 import jwt from 'jsonwebtoken';
 
 const axiosInstance = axios.create({
-	baseURL: '/api'
+	baseURL: config.authService.baseURL 
 });
 
 axiosInstance.interceptors.request.use((options) => {
