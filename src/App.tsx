@@ -8,11 +8,14 @@ import {
 import './App.css';
 import RegisterContainer from './containers/RegisterContainer';
 import CallbackContainer from './containers/CallbackContainer';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
 
 function App() {
   return (
     <div className="App">
       <div className="App-content">
+        <Header/>
         <Router>
           <Switch>
             <Route exact path="/" component={RegisterContainer}/>
@@ -20,6 +23,7 @@ function App() {
             <Redirect to="/"/>
           </Switch>
         </Router>
+        <Footer/>
       </div>
     </div>
   );

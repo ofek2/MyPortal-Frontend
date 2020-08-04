@@ -35,7 +35,7 @@ function CallbackContainer() {
 
 	// Rendering
 	return (
-		<Grid container item xs={12} md={10} xl={8}>
+		<Grid container item xs={12} md={10} xl={8} style={{ zIndex: 5 }}>
 			<Container>
 				<CallbackMsg account={account} />
 			</Container>
