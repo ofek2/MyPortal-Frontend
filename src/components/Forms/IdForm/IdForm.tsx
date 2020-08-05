@@ -14,7 +14,7 @@ let currentId: string;
 function IdForm(props: IFormProps) {
 	// State & props
 	const { onResolve } = props;
-	const [error, setError] = useState<any>({ msg: '' });
+	const [error, setError] = useState<any>({ msg: '', severity: 'error' });
 	const [isLoading, setIsLoading] = useState(false);
 
 	// Methodes
@@ -31,12 +31,14 @@ function IdForm(props: IFormProps) {
 			setIsLoading(false);
 			if (isUserNotExists) {
 				setError({
-					msg: ERRORS.userNotExists
+					msg: ERRORS.userNotExists,
+					severity: 'error'
 				});
-			} 
+			}
 			else if (isRegistered) {
 				setError({
-					msg: ERRORS.userAlreadyRegistered(`${currentId}@idf.il`)
+					msg: ERRORS.userAlreadyRegistered(`${currentId}@idf.il`),
+					severity: 'info'
 				});
 			} else {
 				onResolve({ mobilePhone, id: currentId });
@@ -45,7 +47,8 @@ function IdForm(props: IFormProps) {
 			setIsLoading(false);
 
 			setError({
-				msg: ERRORS.general
+				msg: ERRORS.general,
+				severity: 'error'
 			});
 		}
 	}
@@ -68,7 +71,8 @@ function IdForm(props: IFormProps) {
 			}
 			else {
 				setError({
-					msg: ERRORS.invalidId
+					msg: ERRORS.invalidId,
+					severity: 'error'
 				});
 			}
 		}
@@ -77,7 +81,7 @@ function IdForm(props: IFormProps) {
 	// Rendering
 	return (
 		<React.Fragment>
-			<Typography variant="h4" style={{ fontWeight: "bold" , marginBottom: "10px"}}>ברוכים הבאים</Typography>
+			<Typography variant="h4" style={{ fontWeight: "bold", marginBottom: "10px" }}>ברוכים הבאים</Typography>
 			<Typography>לצורך אימות הנתונים אל מול מערכות צה"ל,</Typography>
 			<Typography>נא להזין מספר תעודת זהות (כולל ספרת ביקורת):</Typography>
 			<Grid container direction="column" justify="center" alignItems="center" style={{ margin: "10px 0px" }}>
@@ -100,7 +104,7 @@ function IdForm(props: IFormProps) {
 				<Grid item xs={12}>
 					{
 						error && error.msg !== '' ?
-							<Alert severity="error" >
+							<Alert severity={error.severity} >
 								{error.msg}
 							</Alert> :
 							<React.Fragment />
