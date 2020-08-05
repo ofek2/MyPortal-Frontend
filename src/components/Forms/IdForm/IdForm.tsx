@@ -8,65 +8,73 @@ import RestService from '../../../services/rest/RestService';
 import { Alert } from '@material-ui/lab';
 import { ERRORS, CLICK_DOMAIN } from '../../../model/data/Constants';
 
-let isValidId: boolean = false;
-let currentId: string;
-
 function IdForm(props: IFormProps) {
 	// State & props
 	const { onResolve } = props;
 	const [error, setError] = useState<any>({ msg: '', severity: 'error' });
 	const [isLoading, setIsLoading] = useState(false);
+	const [idInput, setIdInput] = useState('');
 
 	// Methodes
-	const validateId = (id: string) => {
-		const isLengthValid = id.length === 9;
+	const isFormValid = (id: string) => {
+		const isLengthValid = id.length === 9 && isValidIdInput(id);
 
 		return isLengthValid;
 	}
 
+	const isValidIdInput = (id: string) => {
+		const isInputNumber = /^\d*$/.test(id);
+
+		return isInputNumber;
+	}
+
 	const checkIsUserExist = async () => {
-		setIsLoading(true)
-		// try {
-		// 	const { isRegistered, mobilePhone, isUserNotExists } = await RestService.checkUser(currentId);
+		setError({msg: '', severity: 'error'});
+		setIsLoading(true);
 
-		// 	setIsLoading(false);
-		// 	if (isUserNotExists) {
-		// 		setError({
-		// 			msg: ERRORS.userNotExists,
-		// 			severity: 'error'
-		// 		});
-		// 	}
-		// 	else if (isRegistered) {
-		// 		setError({
-		// 			msg: ERRORS.userAlreadyRegistered(`${currentId}@${CLICK_DOMAIN}`),
-		// 			severity: 'info'
-		// 		});
-		// 	} else {
-		// 		onResolve({ mobilePhone, id: currentId });
-		// 	}
-		// } catch (err) {
-		// 	setIsLoading(false);
+		try {
+			const { isRegistered, mobilePhone, isUserNotExists } = await RestService.checkUser(idInput);
 
-		// 	setError({
-		// 		msg: ERRORS.general,
-		// 		severity: 'error'
-		// 	});
-		// }
+			setIsLoading(false);
+
+			if (isUserNotExists) {
+				setError({
+					msg: ERRORS.userNotExists,
+					severity: 'error'
+				});
+			}
+			else if (isRegistered) {
+				setError({
+					msg: ERRORS.userAlreadyRegistered(`${idInput}@${CLICK_DOMAIN}`),
+					severity: 'info'
+				});
+			} else {
+				onResolve({ mobilePhone, id: idInput });
+			}
+		} catch (err) {
+			setIsLoading(false);
+
+			setError({
+				msg: ERRORS.general,
+				severity: 'error'
+			});
+		}
 	}
 
 	// Handlers
 	const onChange = (value: any) => {
 		const idFromInput = value.target.value;
-
-		isValidId = validateId(idFromInput);
-		currentId = idFromInput;
+		
+		if (isValidIdInput(idFromInput)) {
+			setIdInput(idFromInput);
+		}
 	}
 
 	const onClick = async (event) => {
 		event.preventDefault();
 
 		if (!isLoading) {
-			if (isValidId) {
+			if (isFormValid(idInput)) {
 				setIsLoading(true);
 				await checkIsUserExist();
 			}
@@ -88,7 +96,7 @@ function IdForm(props: IFormProps) {
 			<Grid container direction="column" justify="center" alignItems="center" style={{ margin: "10px 0px" }}>
 				<Grid item md={3}>
 					<form noValidate onSubmit={onClick}>
-						<ClkInput onChange={onChange} disabled={false} value={undefined} endAdornment={
+						<ClkInput onChange={onChange} value={idInput} endAdornment={
 							<InputAdornment position="end" onClick={onClick}>
 								{
 									isLoading ?
