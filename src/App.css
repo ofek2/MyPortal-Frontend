@@ -14,7 +14,7 @@
 }
 
 .App-content {
-  background-color: #fde85e;
+  background-color: #f5e36e;
   min-height: calc(100vh - 170px);
   display: flex;
   flex-direction: column;

@@ -30,8 +30,8 @@
 		},
 		"msalConfig": {
 			"auth": {
-				"redirectUri": "https://devmyportal.azurewebsites.net/auth/callback",
-				"postLogoutRedirectUri": "https://devmyportal.azurewebsites.net"
+				"redirectUri": "https://devfe.azurewebsites.net/auth/callback",
+				"postLogoutRedirectUri": "https://devfe.azurewebsites.net"
 			}
 		}
 	},

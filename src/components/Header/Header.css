@@ -1,12 +1,9 @@
 .header-logo {
 	height: 75px;
-	padding: 0px 60px;
-	border-left: 1px solid #d8e1ec;
 }
 
 @media screen and (max-width: 600px) {
   .header-logo {
-	  padding: 0px 10px;
-	  border-left: none;
+	  height: 48px;
 	}
 }

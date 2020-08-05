@@ -5,10 +5,6 @@ import { PublicClientApplication } from '@azure/msal-browser';
 
 let msalObj = new PublicClientApplication(config.msalConfig);
 
-function initialize() {
-	msalObj = new PublicClientApplication(config.msalConfig);
-}
-
 async function handleRedirect() {
 	const tokenResponse = await msalObj.handleRedirectPromise();
 	const accountObj = tokenResponse ? tokenResponse.account : msalObj.getAccount();

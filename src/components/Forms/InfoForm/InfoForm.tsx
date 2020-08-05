@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './InfoForm.css';
-import { Typography, Button, Grid, CircularProgress } from '@material-ui/core';
+import { Typography, Grid } from '@material-ui/core';
 import Favorite from '@material-ui/icons/Favorite';
 import IFormProps from '../IForm';
 import RestService from '../../../services/rest/RestService';
