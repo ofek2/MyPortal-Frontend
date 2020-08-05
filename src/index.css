@@ -45,6 +45,15 @@ code {
   color: whitesmoke;
 }
 
+.container-progress {
+  color: #FFC24B;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-top: -12px;
+  margin-left: -12px;
+}
+
 .english-font {
   font-family: Arimo !important;
 }

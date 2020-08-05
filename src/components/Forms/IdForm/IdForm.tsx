@@ -6,7 +6,7 @@ import Send from '@material-ui/icons/Send';
 import IFormProps from '../IForm';
 import RestService from '../../../services/rest/RestService';
 import { Alert } from '@material-ui/lab';
-import { ERRORS } from '../../../model/data/Constants';
+import { ERRORS, CLICK_DOMAIN } from '../../../model/data/Constants';
 
 let isValidId: boolean = false;
 let currentId: string;
@@ -25,32 +25,33 @@ function IdForm(props: IFormProps) {
 	}
 
 	const checkIsUserExist = async () => {
-		try {
-			const { isRegistered, mobilePhone, isUserNotExists } = await RestService.checkUser(currentId);
+		setIsLoading(true)
+		// try {
+		// 	const { isRegistered, mobilePhone, isUserNotExists } = await RestService.checkUser(currentId);
 
-			setIsLoading(false);
-			if (isUserNotExists) {
-				setError({
-					msg: ERRORS.userNotExists,
-					severity: 'error'
-				});
-			}
-			else if (isRegistered) {
-				setError({
-					msg: ERRORS.userAlreadyRegistered(`${currentId}@idf.il`),
-					severity: 'info'
-				});
-			} else {
-				onResolve({ mobilePhone, id: currentId });
-			}
-		} catch (err) {
-			setIsLoading(false);
+		// 	setIsLoading(false);
+		// 	if (isUserNotExists) {
+		// 		setError({
+		// 			msg: ERRORS.userNotExists,
+		// 			severity: 'error'
+		// 		});
+		// 	}
+		// 	else if (isRegistered) {
+		// 		setError({
+		// 			msg: ERRORS.userAlreadyRegistered(`${currentId}@${CLICK_DOMAIN}`),
+		// 			severity: 'info'
+		// 		});
+		// 	} else {
+		// 		onResolve({ mobilePhone, id: currentId });
+		// 	}
+		// } catch (err) {
+		// 	setIsLoading(false);
 
-			setError({
-				msg: ERRORS.general,
-				severity: 'error'
-			});
-		}
+		// 	setError({
+		// 		msg: ERRORS.general,
+		// 		severity: 'error'
+		// 	});
+		// }
 	}
 
 	// Handlers
@@ -91,7 +92,7 @@ function IdForm(props: IFormProps) {
 							<InputAdornment position="end" onClick={onClick}>
 								{
 									isLoading ?
-										<CircularProgress color="primary" size={18} thickness={7} style={{ marginLeft: "6px", cursor: "default" }} />
+										<CircularProgress color="primary" size={23} thickness={7} style={{ marginLeft: "10px", cursor: "default" }} />
 										:
 										<IconButton size="small">
 											<Send className="login-send-icon" />
