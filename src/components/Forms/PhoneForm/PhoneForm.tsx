@@ -12,7 +12,7 @@ import LoadingButton from '../../Buttons/LoadingButton';
 function PhoneForm(props: IFormProps) {
 	// State & props
 	const { payload } = props;
-	const [error, setError] = useState({ msg: '' });
+	const [error, setError] = useState<any>({ msg: '' });
 	const [isResettingPassword, setIsResettingPassword] = useState(false);
 
 
@@ -32,8 +32,12 @@ function PhoneForm(props: IFormProps) {
 
 		setIsResettingPassword(true);
 		try {
-			await RestService.resetUserPassword(id);
+			const {succeeded} = await RestService.resetUserPassword(id);
 			setIsResettingPassword(false);
+
+			if (!succeeded) {
+				setError({msg: ERRORS.passwordResetsExceededLimit});
+			}
 		} catch (err) {
 			setError({ msg: ERRORS.smsError })
 			setIsResettingPassword(false);

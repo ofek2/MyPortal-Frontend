@@ -14,9 +14,21 @@ export const LOGIN_REQUEST = {
 // Click Domain
 export const CLICK_DOMAIN = "idf.il";
 
+
+export const SUPPORT_INFO = 
+<React.Fragment>
+	<Typography>צור קשר עם מוקד התמיכה:</Typography>
+	<Typography>משרתי מילואים – טלפון מס' 1111 שלוחה 4</Typography>
+	<Typography>משרתים פעילים – באמצעות הודעת <span className="english-font">Whatsapp</span> למס': <a className="no-wrap" href="https://api.whatsapp.com/send?phone=9720529436631">052-9436631</a></Typography>
+</React.Fragment>
+
 // Errors
 export const ERRORS = {
-	general: "הרתה תקלה, אנה נסה שנית במועד מאוחר יותר",
+	general: 
+	<React.Fragment>
+		<Typography className="bold">הרתה תקלה בביצוע הפעולה</Typography>
+		{SUPPORT_INFO}
+	</React.Fragment>,
 
 	invalidId: "מספר תעודת זהות אינו תקין",
 
@@ -39,16 +51,10 @@ export const ERRORS = {
 		)
 	},
 
-	smsError: "לא הצלחנו לשלוח לך סיסמה ב-SMS"
+	smsError: "לא הצלחנו לשלוח לך סיסמה ב-SMS",
+	passwordResetsExceededLimit: "ניצלת את כל נסיונות איפוס הסיסמה שלך, אנא פנה למוקד התמיכה לקבלת עזרה"
 	
 }
-
-export const SUPPORT_INFO = 
-<React.Fragment>
-	<Typography>צור קשר עם מוקד התמיכה:</Typography>
-	<Typography>משרתי מילואים – טלפון מס' 1111 שלוחה 4</Typography>
-	<Typography>משרתים פעילים – באמצעות הודעת WhatsApp למס': <a href="https://api.whatsapp.com/send?phone=9720529436631">052-9436631</a></Typography>
-</React.Fragment>
 
 
 
