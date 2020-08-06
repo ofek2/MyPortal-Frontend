@@ -18,7 +18,7 @@ variables:
   dockerRegistryServiceConnection: '615829c9-3fda-4c2d-9f7a-aaa62cf6c080'
 
   # Digital tags
-  digitalacr: 'digitalacr'
+  digitalacr: 'sharedacr'
   Digital-imageRepository: 'myportal/client'
   
   # Agent VM image name
