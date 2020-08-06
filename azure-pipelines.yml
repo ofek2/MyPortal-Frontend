@@ -9,13 +9,12 @@ resources:
 - repo: self
 
 variables:
-  # Shared tags
-  imageRepository: 'front'
-  dockerfilePath: '$(Build.SourcesDirectory)/test.Dockerfile'
-  tag: '$(Build.BuildId)'
-  
-  # TEST environment tags
+  # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: '615829c9-3fda-4c2d-9f7a-aaa62cf6c080'
+  imageRepository: 'front'
+  containerRegistry: 'myprofilecontainer.azurecr.io'
+  dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
+  tag: '$(Build.BuildId)'
   
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
@@ -30,7 +29,7 @@ stages:
       vmImage: $(vmImageName)
     steps:
     - task: Docker@2
-      displayName: Build and push an image to container registry - 
+      displayName: Build and push an image to container registry
       inputs:
         command: buildAndPush
         repository: $(imageRepository)
