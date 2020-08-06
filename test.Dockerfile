@@ -1,5 +1,5 @@
 # stage1 as builder
-FROM node as builder
+FROM node:12 as builder
 
 WORKDIR /app
 # copy the package.json to install dependencies
