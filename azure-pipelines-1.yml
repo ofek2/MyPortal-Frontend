@@ -18,6 +18,7 @@ variables:
   dockerRegistryServiceConnection: '615829c9-3fda-4c2d-9f7a-aaa62cf6c080'
 
   # Digital tags
+  digitalacr: 'digitalacr'
   Digital-imageRepository: 'myportal/client'
   
   # Agent VM image name
@@ -43,7 +44,7 @@ stages:
           $(tag)
     - task: CmdLine@2
       inputs:
-        script: docker login -u $(clickuser) -p $(password) $(DigitalACR)
+        script: docker login -u $(clickuser) -p $(password) $(digitalacr)
         
 
 # Deploy to Digital
@@ -53,6 +54,6 @@ stages:
         command: buildAndPush
         repository: $(Digital-imageRepository)
         dockerfile: $(dockerfilePath)
-        containerRegistry: $(DigitalACR)
+        containerRegistry: $(digitalacr)
         tags: |
           $(tag)
