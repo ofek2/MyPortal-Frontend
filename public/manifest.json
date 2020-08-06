@@ -6,6 +6,11 @@
       "src": "icon32x32.png",
       "type": "image/png",
       "sizes": "32x32"
+    },
+    {
+      "src": "idficon.png",
+      "type": "image/png",
+      "sizes": "100x100"
     }
   ],
   "start_url": ".",
