@@ -3,7 +3,7 @@ FROM node as builder
 
 WORKDIR /app
 # copy the package.json to install dependencies
-COPY package*.json ./
+COPY package.json ./
 
 # Install the dependencies
 RUN npm install
