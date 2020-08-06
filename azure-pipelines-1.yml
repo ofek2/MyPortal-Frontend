@@ -42,12 +42,14 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
-    - task: CmdLine@2
-      inputs:
-        script: docker login -u $(clickuser) -p $(password) $(digitalacr)
-        
 
-# Deploy to Digital
+    # Login Deploy to Digital
+    - task: Docker@2
+      displayName: Login to Digital ACR
+      inputs:
+        command: login
+        containerRegistry: $(digitalacr)
+
     - task: Docker@2
       displayName: Digital ACR - Build and push an image to container registry - 
       inputs:
