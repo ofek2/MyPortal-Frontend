@@ -70,4 +70,4 @@ stages:
       displayName: Logout of ACR ACR
       inputs:
         command: logout
-        containerRegistry: $(dockerRegistryServiceConnection)
+        containerRegistry: $(digitalacr)
