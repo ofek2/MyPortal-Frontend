@@ -11,7 +11,7 @@ resources:
 variables:
   # Shared tags
   imageRepository: 'front'
-  dockerfilePath: '$(Build.SourcesDirectory)/test.Dockerfile'
+  dockerfilePath: '$(Build.SourcesDirectory)/prod.Dockerfile'
   tag: '$(Build.BuildId)'
   
   # TEST environment tags
