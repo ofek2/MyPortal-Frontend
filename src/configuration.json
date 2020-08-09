@@ -37,7 +37,7 @@
 	},
 	"production": {
 		"authService": {
-			"baseURL": "https://mybe.azurewebsites.net/api"
+			"baseURL": "https://myportal-backend.svc-shared-ase.appserviceenvironment.net"
 		},
 		"msalConfig": {
 			"auth": {
