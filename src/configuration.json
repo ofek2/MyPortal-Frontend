@@ -41,8 +41,8 @@
 		},
 		"msalConfig": {
 			"auth": {
-				"redirectUri": "https://my.idf.il/auth/callback",
-				"postLogoutRedirectUri": "https://my.idf.il"
+				"redirectUri": "https://myportal-frontend.svc-shared-ase.appserviceenvironment.net/auth/callback",
+				"postLogoutRedirectUri": "https://myportal-frontend.svc-shared-ase.appserviceenvironment.net"
 			}
 		}
 	}
