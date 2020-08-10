@@ -37,7 +37,7 @@
 	},
 	"production": {
 		"authService": {
-			"baseURL": "https://myportal-backend.svc-shared-ase.appserviceenvironment.net/api"
+			"baseURL": "https://my.idf.il/api/api"
 		},
 		"msalConfig": {
 			"auth": {
