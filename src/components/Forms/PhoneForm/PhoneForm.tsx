@@ -50,7 +50,7 @@ function PhoneForm(props: IFormProps) {
 			<Typography>נשלחה אליך סיסמה חד-פעמית לכניסה למספר הבא:</Typography>
 			<CensorPhone phone={payload.mobilePhone} stringToReplace="X" />
 			<Grid container item xs={12} justify="center" alignItems="center">
-				<Button variant="contained" onClick={onContinueClick} disableElevation={true} color="primary" className="idf-button" style={{ margin: "10px 0px", marginLeft: "20px" }}>קיבלתי, בואו נמשיך</Button>
+				<Button variant="contained" onClick={onContinueClick} disableElevation={true} color="primary" className="idf-button" style={{ margin: "10px 0px", marginLeft: "20px" }}>קיבלתי, אפשר להמשיך</Button>
 				<LoadingButton isLoading={isResettingPassword} variant="contained" onClick={onSendAgainClick} disableElevation={true} className="idf-button-secondary" style={{ margin: "10px 0px", backgroundColor: "#333", color: "white !important" }}>שלחו לי שוב</LoadingButton>
 			</Grid>
 				<Grid container direction="column" justify="center" alignItems="center" style={{ margin: "10px 0px" }}>
@@ -66,9 +66,8 @@ function PhoneForm(props: IFormProps) {
 			</Grid>
 
 			<Typography variant="h6" className="bold">זהו אינו מספר הטלפון הנייד שלך?</Typography>
-			<Typography>צור קשר עם מוקד התמיכה:</Typography>
-			<Typography>משרתי מילואים – טלפון מס' 1111  שלוחה 4</Typography>
-			<Typography>משרתים פעילים – יש לעדכן את הטלפון אצל גורמי המשא"ן ביחידה ולנסות לאחר 24 שעות</Typography>
+			<Typography>צור קשר עם מוקד התמיכה במס' 1111 ובחר את השלוחה המתאימה עבורך</Typography>
+			<Typography>מתגייסים - שלוחה 1, משרתים - שלוחה 0, מילואים - שלוחה 4</Typography>
 		</React.Fragment>
 	);
 }
