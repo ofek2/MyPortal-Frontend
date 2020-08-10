@@ -37,7 +37,7 @@
 	},
 	"production": {
 		"authService": {
-			"baseURL": "https://my.idf.il/api/api"
+			"baseURL": "https://my.idf.il/api"
 		},
 		"msalConfig": {
 			"auth": {
