@@ -19,7 +19,7 @@ export const SUPPORT_INFO =
 <React.Fragment>
 	<Typography>צור קשר עם מוקד התמיכה:</Typography>
 	<Typography>משרתי מילואים – טלפון מס' 1111 שלוחה 4</Typography>
-	<Typography>משרתים פעילים – באמצעות הודעת <span className="english-font">Whatsapp</span> למס': <a className="no-wrap" href="https://api.whatsapp.com/send?phone=9720529436631">052-9436631</a></Typography>
+	<Typography>משרתים סדירים – באמצעות הודעת <span className="english-font">Whatsapp</span> למס': <a className="no-wrap" href="https://api.whatsapp.com/send?phone=9720529436631">052-9436631</a></Typography>
 </React.Fragment>
 
 // Errors
