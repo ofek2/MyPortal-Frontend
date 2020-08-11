@@ -12,7 +12,7 @@ function CallbackContainer(props) {
 	// Side effects
 	useEffect(() => {
 		onInit();
-	});
+	}, []);
 
 	// Methodes
 	const onInit = async () => {
