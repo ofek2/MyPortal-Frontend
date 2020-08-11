@@ -39,7 +39,7 @@ function IdForm(props: IFormProps) {
 
 			if (isUserNotExists) {
 				setError({
-					msg: ERRORS.userNotExists,
+					msg: ERRORS.generalWithoutWhatsapp,
 					severity: 'error'
 				});
 			}

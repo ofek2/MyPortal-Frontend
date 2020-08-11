@@ -32,9 +32,9 @@ export const ERRORS = {
 
 	invalidId: "מספר תעודת זהות אינו תקין",
 
-	userNotExists: 
+	generalWithoutWhatsapp: 
 	<React.Fragment>
-		<Typography className="bold">לא הצלחנו לאמת את זהותך</Typography>
+			<Typography className="bold">הרתה תקלה בביצוע הפעולה</Typography>
 		<Typography>צור קשר עם מוקד התמיכה במס' 1111 ובחר את השלוחה המתאימה עבורך –</Typography>
 		<Typography>מתגייסים – שלוחה 1, משרתים – שלוחה 0, מילואים – שלוחה 4</Typography>
 	</React.Fragment>,
