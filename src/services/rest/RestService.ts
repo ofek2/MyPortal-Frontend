@@ -19,6 +19,16 @@ class RestService {
 			throw e;
 		}
 	}
+
+	public static async validateOtp(idNumber, otp) {
+		try {
+			const res = await axiosInstance.post(`/users/${idNumber}/validateOtp`, {otp});
+
+			return res.data;
+		} catch (e) {
+			throw e;
+		}
+	}
 }
 
 export default RestService;
