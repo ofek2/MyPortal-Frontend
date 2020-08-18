@@ -50,8 +50,12 @@ export const ERRORS = {
 		</React.Fragment>
 		)
 	},
-
-	smsError: "לא הצלחנו לשלוח לך סיסמה ב-SMS",
+	smsError: 
+	<React.Fragment>
+		<Typography className="bold">לא הצלחנו לשלוח לך סיסמה ב-SMS</Typography>
+		{SUPPORT_INFO}
+	</React.Fragment>,
+	
 	passwordResetsExceededLimit: "ניצלת את כל נסיונות איפוס הסיסמה שלך, אנא פנה למוקד התמיכה לקבלת עזרה"
 	
 }
