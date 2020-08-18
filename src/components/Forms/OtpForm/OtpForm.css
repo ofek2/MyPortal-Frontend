@@ -1,0 +1,9 @@
+.login-send-icon {
+    transform: rotate(180deg);
+	color: #757575;
+	font-size: 1.2em !important;
+}
+
+.MuiIconButton-root:hover {
+	background-color: transparent !important;
+}
