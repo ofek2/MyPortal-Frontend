@@ -35,12 +35,12 @@ function OtpForm(props: IFormProps) {
 		setIsLoading(true);
 
 		try {
-			const { isValid, password } = await RestService.validateOtp(id, otpInput);
+			const { isValid } = await RestService.validateOtp(id, otpInput);
 
 			setIsLoading(false);
 
 			if (isValid) {
-				onResolve({ password, id });
+				onResolve({ id });
 			} else {
 				setError({
 					msg: ERRORS.invalidOtp,

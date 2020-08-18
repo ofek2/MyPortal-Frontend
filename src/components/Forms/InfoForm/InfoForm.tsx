@@ -5,7 +5,7 @@ import Favorite from '@material-ui/icons/Favorite';
 import IFormProps from '../IForm';
 import RestService from '../../../services/rest/RestService';
 import { Alert } from '@material-ui/lab';
-import { SUPPORT_INFO } from '../../../model/data/Constants';
+import { SUPPORT_INFO, ERRORS } from '../../../model/data/Constants';
 import LoadingButton from '../../Buttons/LoadingButton';
 
 function InfoForm(props: IFormProps) {
@@ -21,9 +21,17 @@ function InfoForm(props: IFormProps) {
 		setIsResettingPassword(true);
 		
 		try {
-			await RestService.resetUserPassword(id);
+			const { succeeded, password } = await RestService.resetUserPassword(id);
 			setIsResettingPassword(false);
-			onResolve(payload);
+
+			if (succeeded) {
+				onResolve({...payload, password});
+			} else {
+				setError({
+					msg: ERRORS.general
+				});
+			}
+			
 		} catch (err) {
 			setIsResettingPassword(false);
 
