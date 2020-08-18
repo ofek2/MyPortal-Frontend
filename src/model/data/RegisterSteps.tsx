@@ -7,7 +7,7 @@ import CheckCircle from '@material-ui/icons/CheckCircle';
 import Info from '@material-ui/icons/Info';
 import IdForm from '../../components/Forms/IdForm/IdForm';
 import InfoForm from '../../components/Forms/InfoForm/InfoForm';
-import PhoneForm from '../../components/Forms/PhoneForm/PhoneForm';
+import PasswordForm from '../../components/Forms/PasswordForm/PasswordForm';
 import OtpForm from '../../components/Forms/OtpForm/OtpForm';
 
 interface IRegisterStep {
@@ -35,7 +35,7 @@ const registerSteps: IRegisterStep[] = [
 	{
 		title: "קבלת סיסמה",
 		icon: <Lock />,
-		component: <PhoneForm/>
+		component: <PasswordForm/>
 	},
 	{
 		title: "השלמת הרישום",
