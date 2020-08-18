@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './InfoForm.css';
-import { Typography, Grid } from '@material-ui/core';
+import { Typography, Grid, Button } from '@material-ui/core';
 import Favorite from '@material-ui/icons/Favorite';
 import IFormProps from '../IForm';
 import RestService from '../../../services/rest/RestService';
@@ -12,25 +12,10 @@ function InfoForm(props: IFormProps) {
 	// State & props
 	const { onResolve, payload } = props;
 	const [error, setError] = useState<any>({ msg: '' });
-	const [isResettingPassword, setIsResettingPassword] = useState(false);
 
 	// Handlers
 	const onClick = async () => {
-		const { id } = payload;
-
-		setIsResettingPassword(true);
-		
-		try {
-			await RestService.resetUserPassword(id);
-			setIsResettingPassword(false);
-			onResolve(payload);
-		} catch (err) {
-			setIsResettingPassword(false);
-
-			setError({
-				msg: ERRORS.general
-			});
-		}
+		onResolve(payload);
 	}
 
 	// Rendering
@@ -44,7 +29,7 @@ function InfoForm(props: IFormProps) {
 			</Grid>
 			<Typography style={{ marginTop: "10px" }}>לאחר מכן, בעזרת שם המשתמש והסיסמה האישיים שלך ניתן להתחבר לכל שירותי הדיגיטל של צה"ל בקליק.</Typography>
 			
-			<LoadingButton isLoading={isResettingPassword} variant="contained" onClick={onClick} disabled={isResettingPassword} disableElevation={true} color="primary" className="idf-button" style={{ margin: "10px 0px" }}>קבל סיסמה</LoadingButton>
+			<Button variant="contained" onClick={onClick} disableElevation={true} color="primary" className="idf-button" style={{ margin: "10px 0px" }}>קבל סיסמה</Button>
 			{
 				error && error.msg !== '' ?
 					<Grid container direction="column" justify="center" alignItems="center" style={{ margin: "10px 0px" }}>

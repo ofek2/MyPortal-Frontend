@@ -26,7 +26,7 @@ export const SUPPORT_INFO =
 export const ERRORS = {
 	general: 
 	<React.Fragment>
-		<Typography className="bold">הרתה תקלה בביצוע הפעולה</Typography>
+		<Typography className="bold">נתקלנו בשגיאה לא צפויה</Typography>
 		{SUPPORT_INFO}
 	</React.Fragment>,
 
@@ -34,7 +34,7 @@ export const ERRORS = {
 
 	generalWithoutWhatsapp: 
 	<React.Fragment>
-			<Typography className="bold">הרתה תקלה בביצוע הפעולה</Typography>
+			<Typography className="bold">נתקלנו בשגיאה לא צפויה</Typography>
 		<Typography>צור קשר עם מוקד התמיכה במס' 1111 ובחר את השלוחה המתאימה עבורך –</Typography>
 		<Typography>מתגייסים – שלוחה 1, משרתים – שלוחה 0, מילואים – שלוחה 4</Typography>
 	</React.Fragment>,
@@ -55,7 +55,7 @@ export const ERRORS = {
 		<Typography className="bold">לא הצלחנו לשלוח לך סיסמה ב-SMS</Typography>
 		{SUPPORT_INFO}
 	</React.Fragment>,
-	
+
 	passwordResetsExceededLimit: "ניצלת את כל נסיונות איפוס הסיסמה שלך, אנא פנה למוקד התמיכה לקבלת עזרה"
 	
 }
