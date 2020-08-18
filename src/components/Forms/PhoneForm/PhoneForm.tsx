@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './PhoneForm.css';
 import { Typography, Button, Grid } from '@material-ui/core';
 import IFormProps from '../IForm';
@@ -16,6 +16,13 @@ function PhoneForm(props: IFormProps) {
 	const [isResettingPassword, setIsResettingPassword] = useState(false);
 
 
+	useEffect(() => {
+		onInit();
+	}, [])
+
+	const onInit = async () => {
+		await onSendAgainClick();
+	}
 	// Handlers
 	const onContinueClick = async () => {
 		const { id } = payload;
@@ -30,6 +37,7 @@ function PhoneForm(props: IFormProps) {
 	const onSendAgainClick = async () => {
 		const { id } = payload;
 
+		setError({msg: ''})
 		setIsResettingPassword(true);
 		try {
 			const {succeeded} = await RestService.resetUserPassword(id);
@@ -51,7 +59,7 @@ function PhoneForm(props: IFormProps) {
 			<CensorPhone phone={payload.mobilePhone} stringToReplace="X" />
 			<Grid container item xs={12} justify="center" alignItems="center">
 				<Button variant="contained" onClick={onContinueClick} disableElevation={true} color="primary" className="idf-button" style={{ margin: "10px 0px", marginLeft: "20px" }}>קיבלתי, אפשר להמשיך</Button>
-				<LoadingButton isLoading={isResettingPassword} variant="contained" onClick={onSendAgainClick} disableElevation={true} className="idf-button-secondary" style={{ margin: "10px 0px", backgroundColor: "#333", color: "white !important" }}>שלחו לי שוב</LoadingButton>
+				<LoadingButton isLoading={isResettingPassword} variant="contained" onClick={onSendAgainClick} disableElevation={true} className="idf-button-secondary" style={{ margin: "10px 0px", backgroundColor: "#333" }}>שלחו לי שוב</LoadingButton>
 			</Grid>
 				<Grid container direction="column" justify="center" alignItems="center" style={{ margin: "10px 0px" }}>
 				<Grid item xs={12}>

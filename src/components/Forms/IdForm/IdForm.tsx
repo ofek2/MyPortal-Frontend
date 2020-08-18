@@ -37,7 +37,7 @@ function IdForm(props: IFormProps) {
 
 			setIsLoading(false);
 
-			if (isUserNotExists) {
+			if (isUserNotExists || !mobilePhone) {
 				setError({
 					msg: ERRORS.generalWithoutWhatsapp,
 					severity: 'error'
