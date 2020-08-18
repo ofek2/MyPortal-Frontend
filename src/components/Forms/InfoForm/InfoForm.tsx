@@ -7,6 +7,7 @@ import RestService from '../../../services/rest/RestService';
 import { Alert } from '@material-ui/lab';
 import { SUPPORT_INFO } from '../../../model/data/Constants';
 import LoadingButton from '../../Buttons/LoadingButton';
+import jwt from 'jsonwebtoken';
 
 function InfoForm(props: IFormProps) {
 	// State & props
@@ -16,12 +17,14 @@ function InfoForm(props: IFormProps) {
 
 	// Handlers
 	const onClick = async () => {
-		const { id } = payload;
+		const { id, otp } = payload;
 
 		setIsResettingPassword(true);
-		
+
 		try {
-			await RestService.resetUserPassword(id);
+			const requestToken = jwt.sign({ secret: payload.secret }, otp);
+
+			await RestService.resetUserPassword(id, requestToken);
 			setIsResettingPassword(false);
 			onResolve(payload);
 		} catch (err) {
@@ -43,7 +46,7 @@ function InfoForm(props: IFormProps) {
 				<Typography align="left">3) בחירת סיסמה קבועה לשירות</Typography>
 			</Grid>
 			<Typography style={{ marginTop: "10px" }}>לאחר מכן, בעזרת שם המשתמש והסיסמה האישיים שלך ניתן להתחבר לכל שירותי הדיגיטל של צה"ל בקליק.</Typography>
-			
+
 			<LoadingButton isLoading={isResettingPassword} variant="contained" onClick={onClick} disabled={isResettingPassword} disableElevation={true} color="primary" className="idf-button" style={{ margin: "10px 0px" }}>קבל סיסמה</LoadingButton>
 			{
 				error && error.msg !== '' ?

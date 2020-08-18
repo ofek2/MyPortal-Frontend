@@ -7,6 +7,7 @@ import IFormProps from '../IForm';
 import RestService from '../../../services/rest/RestService';
 import { Alert } from '@material-ui/lab';
 import { ERRORS, CLICK_DOMAIN } from '../../../model/data/Constants';
+import jwt from 'jsonwebtoken';
 
 function OtpForm(props: IFormProps) {
 	// State & props
@@ -31,16 +32,17 @@ function OtpForm(props: IFormProps) {
 	const isOtpMatch = async () => {
 		const { id } = payload;
 
-		setError({msg: '', severity: 'error'});
+		setError({ msg: '', severity: 'error' });
 		setIsLoading(true);
 
 		try {
-			const { isValid, password } = await RestService.validateOtp(id, otpInput);
+			const requestToken = jwt.sign({ secret: payload.secret }, otpInput);
+			const { isValid, password, secret } = await RestService.validateOtp(id, otpInput, requestToken);
 
 			setIsLoading(false);
 
 			if (isValid) {
-				onResolve({ password, id });
+				onResolve({ password, id, secret, opt: otpInput });
 			} else {
 				setError({
 					msg: ERRORS.invalidOtp,
@@ -60,7 +62,7 @@ function OtpForm(props: IFormProps) {
 	// Handlers
 	const onChange = (value: any) => {
 		const inputVal = value.target.value;
-		
+
 		if (isValidInput(inputVal)) {
 			setOtpInput(inputVal);
 		}
@@ -88,9 +90,9 @@ function OtpForm(props: IFormProps) {
 		<React.Fragment>
 			<Typography variant="h6">במידה ומס' הטלפון הנייד שלך קיים במערכות צה"ל,</Typography>
 			<Typography variant="h6">ישלח אליך מסרון עם קוד בדקות הקרובות.</Typography>
-			
+
 			<Grid container direction="column" justify="center" alignItems="center" style={{ margin: "10px 0px" }}>
-			<Typography>נא להזין את הקוד שנשלח:​</Typography>
+				<Typography>נא להזין את הקוד שנשלח:​</Typography>
 				<Grid item md={3}>
 					<form noValidate onSubmit={onClick}>
 						<ClkInput onChange={onChange} value={otpInput} endAdornment={

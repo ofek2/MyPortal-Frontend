@@ -43,7 +43,7 @@ function IdForm(props: IFormProps) {
 					severity: 'error'
 				});
 			}
-			else if (isRegistered) {
+			else if (isRegistered && false) {
 				setError({
 					msg: ERRORS.userAlreadyRegistered(`${idInput}@${CLICK_DOMAIN}`),
 					severity: 'info'

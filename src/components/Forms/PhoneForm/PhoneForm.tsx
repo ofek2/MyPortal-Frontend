@@ -28,20 +28,6 @@ function PhoneForm(props: IFormProps) {
 	}
 
 	const onSendAgainClick = async () => {
-		const { id } = payload;
-
-		setIsResettingPassword(true);
-		try {
-			const {succeeded} = await RestService.resetUserPassword(id);
-			setIsResettingPassword(false);
-
-			if (!succeeded) {
-				setError({msg: ERRORS.passwordResetsExceededLimit});
-			}
-		} catch (err) {
-			setError({ msg: ERRORS.smsError })
-			setIsResettingPassword(false);
-		}
 	}
 
 	// Rendering
