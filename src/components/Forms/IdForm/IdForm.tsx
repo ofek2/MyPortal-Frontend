@@ -33,7 +33,7 @@ function IdForm(props: IFormProps) {
 		setIsLoading(true);
 
 		try {
-			const { isRegistered, mobilePhone, isUserNotExists } = await RestService.checkUser(idInput);
+			const { isRegistered, isUserNotExists } = await RestService.checkUser(idInput);
 
 			setIsLoading(false);
 
@@ -49,7 +49,7 @@ function IdForm(props: IFormProps) {
 					severity: 'info'
 				});
 			} else {
-				onResolve({ mobilePhone, id: idInput });
+				onResolve({ id: idInput });
 			}
 		} catch (err) {
 			setIsLoading(false);
