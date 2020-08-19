@@ -40,7 +40,7 @@ function OtpForm(props: IFormProps) {
 			setIsLoading(false);
 
 			if (isValid) {
-				onResolve({ id });
+				onResolve(payload);
 			} else {
 				setError({
 					msg: ERRORS.invalidOtp,
