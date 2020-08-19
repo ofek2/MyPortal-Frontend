@@ -37,16 +37,15 @@ function IdForm(props: IFormProps) {
 
 			setIsLoading(false);
 
-			if (isUserNotExists) {
-				setError({
-					msg: ERRORS.generalWithoutWhatsapp,
-					severity: 'error'
-				});
-			}
-			else if (isRegistered) {
+			if (isRegistered) {
 				setError({
 					msg: ERRORS.userAlreadyRegistered(`${idInput}@${CLICK_DOMAIN}`),
 					severity: 'info'
+				});
+			} else if (isUserNotExists || !mobilePhone) {
+				setError({
+					msg: ERRORS.generalWithoutWhatsapp,
+					severity: 'error'
 				});
 			} else {
 				onResolve({ id: idInput });
