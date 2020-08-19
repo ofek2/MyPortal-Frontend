@@ -8,6 +8,7 @@ import { CLICK_DOMAIN, ERRORS } from '../../../model/data/Constants';
 import RestService from '../../../services/rest/RestService';
 import { Alert } from '@material-ui/lab';
 import LoadingButton from '../../Buttons/LoadingButton';
+import jwt from 'jsonwebtoken';
 
 function PhoneForm(props: IFormProps) {
 	// State & props
@@ -35,12 +36,14 @@ function PhoneForm(props: IFormProps) {
 	}
 
 	const onSendAgainClick = async () => {
-		const { id } = payload;
+		const { id, otp } = payload;
 
 		setError({msg: ''})
 		setIsResettingPassword(true);
 		try {
-			const {succeeded} = await RestService.resetUserPassword(id);
+			const requestToken = jwt.sign({ secret: payload.secret }, otp);
+
+			const {succeeded} = await RestService.resetUserPassword(id, requestToken);
 			setIsResettingPassword(false);
 
 			if (!succeeded) {

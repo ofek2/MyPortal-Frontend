@@ -29,11 +29,11 @@ function IdForm(props: IFormProps) {
 	}
 
 	const checkIsUserExist = async () => {
-		setError({msg: '', severity: 'error'});
+		setError({ msg: '', severity: 'error' });
 		setIsLoading(true);
 
 		try {
-			let { isRegistered, isUserNotExists, mobilePhone } = await RestService.checkUser(idInput);
+			let { isRegistered, isUserNotExists, mobilePhone, secret } = await RestService.checkUser(idInput);
 
 			setIsLoading(false);
 			isRegistered = false;
@@ -49,7 +49,7 @@ function IdForm(props: IFormProps) {
 					severity: 'error'
 				});
 			} else {
-				onResolve({ id: idInput, mobilePhone });
+				onResolve({ id: idInput, mobilePhone, secret });
 			}
 		} catch (err) {
 			setIsLoading(false);
@@ -64,7 +64,7 @@ function IdForm(props: IFormProps) {
 	// Handlers
 	const onChange = (value: any) => {
 		const idFromInput = value.target.value;
-		
+
 		if (isValidIdInput(idFromInput)) {
 			setIdInput(idFromInput);
 		}
