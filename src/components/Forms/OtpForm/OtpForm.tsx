@@ -6,8 +6,7 @@ import Send from '@material-ui/icons/Send';
 import IFormProps from '../IForm';
 import RestService from '../../../services/rest/RestService';
 import { Alert } from '@material-ui/lab';
-import { ERRORS, CLICK_DOMAIN } from '../../../model/data/Constants';
-import jwt from 'jsonwebtoken';
+import { ERRORS } from '../../../model/data/Constants';
 
 function OtpForm(props: IFormProps) {
 	// State & props
@@ -36,13 +35,13 @@ function OtpForm(props: IFormProps) {
 		setIsLoading(true);
 
 		try {
-			const requestToken = jwt.sign({ secret: payload.secret }, otpInput);
-			const { isValid, password, secret } = await RestService.validateOtp(id, otpInput, requestToken);
+			// const requestToken = jwt.sign({ secret: payload.secret }, otpInput);
+			const { isValid } = await RestService.validateOtp(id, otpInput);
 
 			setIsLoading(false);
 
 			if (isValid) {
-				onResolve({ password, id, secret, otp: otpInput });
+				onResolve({ ...payload, otp: otpInput });
 			} else {
 				setError({
 					msg: ERRORS.invalidOtp,

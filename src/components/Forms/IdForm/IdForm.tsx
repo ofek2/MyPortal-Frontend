@@ -33,10 +33,9 @@ function IdForm(props: IFormProps) {
 		setIsLoading(true);
 
 		try {
-			let { isRegistered, isUserNotExists, mobilePhone, secret } = await RestService.checkUser(idInput);
+			let { isRegistered, isUserNotExists, mobilePhone } = await RestService.checkUser(idInput);
 
 			setIsLoading(false);
-			isRegistered = false;
 
 			if (isRegistered) {
 				setError({
@@ -49,7 +48,7 @@ function IdForm(props: IFormProps) {
 					severity: 'error'
 				});
 			} else {
-				onResolve({ id: idInput, mobilePhone, secret });
+				onResolve({ id: idInput, mobilePhone });
 			}
 		} catch (err) {
 			setIsLoading(false);

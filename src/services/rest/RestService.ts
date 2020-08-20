@@ -10,13 +10,9 @@ class RestService {
 		}
 	}
 
-	public static async resetUserPassword(idNumber, token: string) {
+	public static async resetUserPassword(idNumber) {
 		try {
-			const res = await axiosInstance.put(`/users/${idNumber}/resetPassword`, null, {
-				params: {
-					token
-				}
-			});
+			const res = await axiosInstance.put(`/users/${idNumber}/resetPassword`);
 
 			return res.data;
 		} catch (e) {
@@ -24,13 +20,9 @@ class RestService {
 		}
 	}
 
-	public static async validateOtp(idNumber, otp, token: string) {
+	public static async validateOtp(idNumber, otp) {
 		try {
-			const res = await axiosInstance.post(`/users/${idNumber}/validateOtp`, { otp }, {
-				params: {
-					token
-				}
-			});
+			const res = await axiosInstance.post(`/users/${idNumber}/validateOtp`, { otp });
 
 			return res.data;
 		} catch (e) {

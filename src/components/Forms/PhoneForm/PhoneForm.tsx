@@ -8,15 +8,13 @@ import { CLICK_DOMAIN, ERRORS } from '../../../model/data/Constants';
 import RestService from '../../../services/rest/RestService';
 import { Alert } from '@material-ui/lab';
 import LoadingButton from '../../Buttons/LoadingButton';
-import jwt from 'jsonwebtoken';
 
 function PhoneForm(props: IFormProps) {
 	// State & props
 	const { payload } = props;
 	const [error, setError] = useState<any>({ msg: '' });
 	const [isResettingPassword, setIsResettingPassword] = useState(false);
-
-
+	
 	useEffect(() => {
 		onInit();
 	}, [])
@@ -36,21 +34,21 @@ function PhoneForm(props: IFormProps) {
 	}
 
 	const onSendAgainClick = async () => {
-		const { id, otp } = payload;
+		const { id } = payload;
 
 		setError({msg: ''})
 		setIsResettingPassword(true);
 		try {
-			const requestToken = jwt.sign({ secret: payload.secret }, otp);
+			// const requestToken = jwt.sign({ secret: payload.secret }, otp);
 
-			const {succeeded} = await RestService.resetUserPassword(id, requestToken);
+			const {succeeded} = await RestService.resetUserPassword(id);
 			setIsResettingPassword(false);
 
 			if (!succeeded) {
 				setError({msg: ERRORS.passwordResetsExceededLimit});
 			}
 		} catch (err) {
-			setError({ msg: ERRORS.smsError })
+			setError({ msg: ERRORS.smsError });
 			setIsResettingPassword(false);
 		}
 	}
