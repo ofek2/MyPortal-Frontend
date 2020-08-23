@@ -6,7 +6,7 @@ import Send from '@material-ui/icons/Send';
 import IFormProps from '../IForm';
 import RestService from '../../../services/rest/RestService';
 import { Alert } from '@material-ui/lab';
-import { ERRORS, idToUpn } from '../../../model/data/Constants';
+import { ERRORS } from '../../../model/data/Constants';
 
 function IdForm(props: IFormProps) {
 	// State & props

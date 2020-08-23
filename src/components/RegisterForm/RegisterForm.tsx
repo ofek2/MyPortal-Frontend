@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Paper from '@material-ui/core/Paper';
-import { Grid, Hidden, StepLabel, Tooltip, IconButton, Typography } from '@material-ui/core';
+import { Grid, Hidden, StepLabel, Tooltip, IconButton } from '@material-ui/core';
 import registerSteps from '../../model/data/RegisterSteps';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
