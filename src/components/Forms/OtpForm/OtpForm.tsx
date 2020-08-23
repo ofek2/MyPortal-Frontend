@@ -104,7 +104,7 @@ function OtpForm(props: IFormProps) {
 	// Rendering
 	return (
 		<React.Fragment>
-			{!isRegistered && (
+			{!isRegistered && 
 				<React.Fragment>
 					<Typography variant="h6" className="bold">תעודת הזהות שהוכנסה: {id}</Typography>
 					<Typography>במידה ומס' הטלפון הנייד שלך קיים במערכות צה"ל,</Typography>
@@ -131,7 +131,7 @@ function OtpForm(props: IFormProps) {
 						
 					</Grid>
 				</React.Fragment>
-			)}
+			}
 			<Grid item xs={12}>
 				{
 					error && error.msg !== '' ?
@@ -141,11 +141,13 @@ function OtpForm(props: IFormProps) {
 						<React.Fragment />
 				}
 			</Grid>
+			{!isRegistered && 
 			<Grid item xs={12}>
 				<Typography variant="subtitle1" className="bold support-section">לא קיבלת את הקוד?</Typography>
 				<Typography variant="body2">צור קשר עם מוקד התמיכה במס' 1111 ובחר את השלוחה המתאימה עבורך</Typography>
 				<Typography variant="body2">מתגייסים - שלוחה 1, משרתים - שלוחה 0, מילואים - שלוחה 4</Typography>
 			</Grid> 
+			}
 			
 		</React.Fragment>
 	);

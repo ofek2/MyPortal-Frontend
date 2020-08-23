@@ -58,6 +58,11 @@ code {
   margin-top: 20px;
 }
 
+.important-text {
+  color: #f44336;
+  font-weight: bold;
+}
+
 .english-font {
   font-family: Arimo !important;
 }
