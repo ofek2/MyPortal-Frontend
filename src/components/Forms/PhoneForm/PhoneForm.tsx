@@ -14,8 +14,7 @@ function PhoneForm(props: IFormProps) {
 	const { payload } = props;
 	const [error, setError] = useState<any>({ msg: '' });
 	const [isResettingPassword, setIsResettingPassword] = useState(false);
-
-
+	
 	useEffect(() => {
 		onInit();
 	}, [])
@@ -40,6 +39,8 @@ function PhoneForm(props: IFormProps) {
 		setError({msg: ''})
 		setIsResettingPassword(true);
 		try {
+			// const requestToken = jwt.sign({ secret: payload.secret }, otp);
+
 			const {succeeded} = await RestService.resetUserPassword(id);
 			setIsResettingPassword(false);
 
@@ -47,7 +48,7 @@ function PhoneForm(props: IFormProps) {
 				setError({msg: ERRORS.passwordResetsExceededLimit});
 			}
 		} catch (err) {
-			setError({ msg: ERRORS.smsError })
+			setError({ msg: ERRORS.smsError });
 			setIsResettingPassword(false);
 		}
 	}

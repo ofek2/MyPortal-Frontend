@@ -31,6 +31,7 @@ export const ERRORS = {
 	</React.Fragment>,
 
 	invalidId: "מספר תעודת זהות אינו תקין",
+	invalidOtp: "הקוד שהוזן איננו תואם, אנא נסה שנית.",
 
 	generalWithoutWhatsapp: 
 	<React.Fragment>

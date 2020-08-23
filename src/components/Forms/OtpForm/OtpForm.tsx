@@ -1,54 +1,52 @@
 import React, { useState } from 'react';
-import './IdForm.css';
+import './OtpForm.css';
 import { Typography, InputAdornment, Grid, IconButton, CircularProgress } from '@material-ui/core';
 import { ClkInput } from '../../ClkInput/ClkInput';
 import Send from '@material-ui/icons/Send';
 import IFormProps from '../IForm';
 import RestService from '../../../services/rest/RestService';
 import { Alert } from '@material-ui/lab';
-import { ERRORS, CLICK_DOMAIN } from '../../../model/data/Constants';
+import { ERRORS } from '../../../model/data/Constants';
 
-function IdForm(props: IFormProps) {
+function OtpForm(props: IFormProps) {
 	// State & props
-	const { onResolve } = props;
+	const { onResolve, payload } = props;
 	const [error, setError] = useState<any>({ msg: '', severity: 'error' });
 	const [isLoading, setIsLoading] = useState(false);
-	const [idInput, setIdInput] = useState('');
+	const [otpInput, setOtpInput] = useState('');
 
 	// Methodes
-	const isFormValid = (id: string) => {
-		const isLengthValid = id.length === 9 && isValidIdInput(id);
+	const isFormValid = (number: string) => {
+		const isLengthValid = number.length === 6 && isValidInput(number);
 
 		return isLengthValid;
 	}
 
-	const isValidIdInput = (id: string) => {
+	const isValidInput = (id: string) => {
 		const isInputNumber = /^\d*$/.test(id);
 
 		return isInputNumber;
 	}
 
-	const checkIsUserExist = async () => {
+	const isOtpMatch = async () => {
+		const { id } = payload;
+
 		setError({ msg: '', severity: 'error' });
 		setIsLoading(true);
 
 		try {
-			let { isRegistered, isUserNotExists, mobilePhone } = await RestService.checkUser(idInput);
+			// const requestToken = jwt.sign({ secret: payload.secret }, otpInput);
+			const { isValid } = await RestService.validateOtp(id, otpInput);
 
 			setIsLoading(false);
 
-			if (isRegistered) {
+			if (isValid) {
+				onResolve({ ...payload, otp: otpInput });
+			} else {
 				setError({
-					msg: ERRORS.userAlreadyRegistered(`${idInput}@${CLICK_DOMAIN}`),
-					severity: 'info'
-				});
-			} else if (isUserNotExists || !mobilePhone) {
-				setError({
-					msg: ERRORS.generalWithoutWhatsapp,
+					msg: ERRORS.invalidOtp,
 					severity: 'error'
 				});
-			} else {
-				onResolve({ id: idInput, mobilePhone });
 			}
 		} catch (err) {
 			setIsLoading(false);
@@ -62,10 +60,10 @@ function IdForm(props: IFormProps) {
 
 	// Handlers
 	const onChange = (value: any) => {
-		const idFromInput = value.target.value;
+		const inputVal = value.target.value;
 
-		if (isValidIdInput(idFromInput)) {
-			setIdInput(idFromInput);
+		if (isValidInput(inputVal)) {
+			setOtpInput(inputVal);
 		}
 	}
 
@@ -73,13 +71,13 @@ function IdForm(props: IFormProps) {
 		event.preventDefault();
 
 		if (!isLoading) {
-			if (isFormValid(idInput)) {
+			if (isFormValid(otpInput)) {
 				setIsLoading(true);
-				await checkIsUserExist();
+				await isOtpMatch();
 			}
 			else {
 				setError({
-					msg: ERRORS.invalidId,
+					msg: ERRORS.invalidOtp,
 					severity: 'error'
 				});
 			}
@@ -89,13 +87,14 @@ function IdForm(props: IFormProps) {
 	// Rendering
 	return (
 		<React.Fragment>
-			<Typography variant="h4" style={{ fontWeight: "bold", marginBottom: "10px" }}>ברוכים הבאים</Typography>
-			<Typography>לצורך אימות הנתונים אל מול מערכות צה"ל,</Typography>
-			<Typography>נא להזין מספר תעודת זהות (כולל ספרת ביקורת):</Typography>
+			<Typography variant="h6">במידה ומס' הטלפון הנייד שלך קיים במערכות צה"ל,</Typography>
+			<Typography variant="h6">ישלח אליך מסרון עם קוד בדקות הקרובות.</Typography>
+
 			<Grid container direction="column" justify="center" alignItems="center" style={{ margin: "10px 0px" }}>
+				<Typography className="bold">נא להזין את הקוד שנשלח:​</Typography>
 				<Grid item md={3}>
 					<form noValidate onSubmit={onClick}>
-						<ClkInput onChange={onChange} value={idInput} endAdornment={
+						<ClkInput onChange={onChange} value={otpInput} endAdornment={
 							<InputAdornment position="end" onClick={onClick}>
 								{
 									isLoading ?
@@ -106,7 +105,7 @@ function IdForm(props: IFormProps) {
 										</IconButton>
 								}
 							</InputAdornment>
-						} placeholder={"הכנס תעודת זהות"} autoFocus={false} fullWidth />
+						} placeholder={"הכנס קוד"} autoFocus={false} fullWidth />
 					</form>
 				</Grid>
 				<Grid item xs={12}>
@@ -123,4 +122,4 @@ function IdForm(props: IFormProps) {
 	);
 }
 
-export default IdForm;
+export default OtpForm;
