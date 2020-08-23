@@ -91,7 +91,7 @@ function OtpForm(props: IFormProps) {
 			<Typography variant="h6">ישלח אליך מסרון עם קוד בדקות הקרובות.</Typography>
 
 			<Grid container direction="column" justify="center" alignItems="center" style={{ margin: "10px 0px" }}>
-				<Typography>נא להזין את הקוד שנשלח:​</Typography>
+				<Typography className="bold">נא להזין את הקוד שנשלח:​</Typography>
 				<Grid item md={3}>
 					<form noValidate onSubmit={onClick}>
 						<ClkInput onChange={onChange} value={otpInput} endAdornment={
