@@ -73,10 +73,11 @@ function PhoneForm(props: IFormProps) {
 					}
 				</Grid>
 			</Grid>
-
-			<Typography variant="h6" className="bold">זהו אינו מספר הטלפון הנייד שלך?</Typography>
-			<Typography>צור קשר עם מוקד התמיכה במס' 1111 ובחר את השלוחה המתאימה עבורך</Typography>
-			<Typography>מתגייסים - שלוחה 1, משרתים - שלוחה 0, מילואים - שלוחה 4</Typography>
+			<Grid item xs={12}>
+				<Typography variant="subtitle1" className="bold support-section">זהו אינו מספר הטלפון הנייד שלך?</Typography>
+				<Typography variant="body2">צור קשר עם מוקד התמיכה במס' 1111 ובחר את השלוחה המתאימה עבורך</Typography>
+				<Typography variant="body2">מתגייסים - שלוחה 1, משרתים - שלוחה 0, מילואים - שלוחה 4</Typography>
+			</Grid> 
 		</React.Fragment>
 	);
 }
