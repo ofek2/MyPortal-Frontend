@@ -14,11 +14,16 @@ function CensorPhone(props: ICensorPhoneProps) {
 
 	// Rendering
 	return (
-		<Typography variant="h5" style={{ direction: "ltr" }}>
+		<React.Fragment>
+		{
+			phone ?
+			<Typography variant="h5" style={{ direction: "ltr" }}>
 			{
 				phone.split('').map((char, index) => char.toLocaleLowerCase() === stringToReplace.toLowerCase() ? <img key={index} alt="star" className="censor-phone-img" src={Star} /> : char)
 			}
-		</Typography>
+			</Typography> 
+			: <Typography className="important-text">שגיאה במספר הטלפון!</Typography>}
+	</React.Fragment>
 	);
 }
 

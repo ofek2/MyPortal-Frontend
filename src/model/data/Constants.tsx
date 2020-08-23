@@ -61,6 +61,4 @@ export const ERRORS = {
 	
 }
 
-
-
-
+export const idToUpn = (id) => `${id}@${CLICK_DOMAIN}`

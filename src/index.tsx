@@ -20,7 +20,7 @@ const theme = createMuiTheme({
   typography: {
 
     fontFamily: 'NarkisBlock',
-    fontSize: 17
+    fontSize: 18
   },
   palette: {
     primary: {
@@ -41,13 +41,13 @@ const jss = create({
 
 // Render the root component
 ReactDOM.render(
-  <React.StrictMode>
+  // <React.StrictMode>
     <ThemeProvider theme={theme}>
       <StylesProvider jss={jss}>
         <App />
       </StylesProvider>
-    </ThemeProvider>
-  </React.StrictMode>,
+    </ThemeProvider>,
+  // </React.StrictMode>,
   document.getElementById('root')
 );
 

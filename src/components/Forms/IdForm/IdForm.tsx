@@ -6,7 +6,7 @@ import Send from '@material-ui/icons/Send';
 import IFormProps from '../IForm';
 import RestService from '../../../services/rest/RestService';
 import { Alert } from '@material-ui/lab';
-import { ERRORS, CLICK_DOMAIN } from '../../../model/data/Constants';
+import { ERRORS } from '../../../model/data/Constants';
 
 function IdForm(props: IFormProps) {
 	// State & props
@@ -33,23 +33,25 @@ function IdForm(props: IFormProps) {
 		setIsLoading(true);
 
 		try {
-			let { isRegistered, isUserNotExists, mobilePhone } = await RestService.checkUser(idInput);
+			let { isRegistered, mobilePhone } = await RestService.checkUser(idInput);
 
 			setIsLoading(false);
 
-			if (isRegistered) {
-				setError({
-					msg: ERRORS.userAlreadyRegistered(`${idInput}@${CLICK_DOMAIN}`),
-					severity: 'info'
-				});
-			} else if (isUserNotExists || !mobilePhone) {
-				setError({
-					msg: ERRORS.generalWithoutWhatsapp,
-					severity: 'error'
-				});
-			} else {
-				onResolve({ id: idInput, mobilePhone });
-			}
+			onResolve({id: idInput, mobilePhone, isRegistered});
+
+			// if (isRegistered) {
+			// 	setError({
+			// 		msg: ERRORS.userAlreadyRegistered(idToUpn(idInput)),
+			// 		severity: 'info'
+			// 	});
+			// } else if (isUserNotExists || !mobilePhone) {
+			// 	setError({
+			// 		msg: ERRORS.generalWithoutWhatsapp,
+			// 		severity: 'error'
+			// 	});
+			// } else {
+			// 	onResolve({ id: idInput, mobilePhone });
+			// }
 		} catch (err) {
 			setIsLoading(false);
 
@@ -76,6 +78,7 @@ function IdForm(props: IFormProps) {
 			if (isFormValid(idInput)) {
 				setIsLoading(true);
 				await checkIsUserExist();
+				// onResolve({id: idInput});
 			}
 			else {
 				setError({

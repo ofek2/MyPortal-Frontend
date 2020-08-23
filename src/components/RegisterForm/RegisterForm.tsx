@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import Paper from '@material-ui/core/Paper';
-import { Grid, Hidden, StepLabel } from '@material-ui/core';
+import { Grid, Hidden, StepLabel, Tooltip, IconButton } from '@material-ui/core';
 import registerSteps from '../../model/data/RegisterSteps';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
+import ArrowForward from '@material-ui/icons/ArrowForward';
 import MobileStepper from '@material-ui/core/MobileStepper';
 import withWidth, { WithWidth } from '@material-ui/core/withWidth';
 import './RegisterForm.css';
@@ -23,14 +24,32 @@ function RegisterForm(props: WithWidth) {
 		setCurrentStep(oldVal => oldVal += 1);
 	}
 
+	const handleReset = () => {
+		currentPayload = {};
+		setCurrentStep(0);
+	}
+
 	// Rendering
 	return (
-		<Paper elevation={3} style={{ padding: "10px 0px" }} >
+		<Paper elevation={3} style={{ padding: "20px 0px", position: "relative" }} >
+			{steps[currentStep].isResettable && 
+		
+				<Tooltip title="חזרה" aria-label="חזרה">
+					<IconButton size="small" onClick={handleReset} className="reset-button">
+						<ArrowForward/>
+					</IconButton>
+				</Tooltip>
+			
+			}
+			
 			<Grid container style={{ padding: "10px" }} justify="center" alignItems="center" direction="column">
 				{
-					React.cloneElement(steps[currentStep].component, { onResolve: handleNextStep, payload: currentPayload })
+					React.cloneElement(steps[currentStep].component, { onResolve: handleNextStep, onReset: handleReset, payload: currentPayload })
 				}
 			</Grid>
+
+			
+
 			<Grid container item justify="center" alignItems="center" md={12} >
 				<Grid item xs={3} sm={8} md={6}>
 					{/* Mobile steps */}

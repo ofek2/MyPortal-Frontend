@@ -13,7 +13,8 @@ import PhoneForm from '../../components/Forms/PhoneForm/PhoneForm';
 interface IRegisterStep {
 	title: string,
 	icon: any,
-	component: any
+	component: any,
+	isResettable?: boolean
 }
 
 const registerSteps: IRegisterStep[] = [
@@ -25,7 +26,8 @@ const registerSteps: IRegisterStep[] = [
 	{
 		title: "אימות",
 		icon: <PhoneAndroid />,
-		component: <OtpForm/>
+		component: <OtpForm/>,
+		isResettable: true
 	},
 	{
 		title: "הסבר התהליך",
