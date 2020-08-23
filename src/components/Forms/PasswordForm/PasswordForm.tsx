@@ -11,7 +11,6 @@ import copy from 'copy-to-clipboard';
 function PasswordForm(props: IFormProps) {
 	// State & props
 	const { payload } = props;
-	// const payload = {id: "311165906", password: "3saAS24x"}
 	const [error, setError] = useState<any>({ msg: '' });
 	const [timer, setTimer] = useState(5);
 
