@@ -107,7 +107,7 @@ function OtpForm(props: IFormProps) {
 		}
 	}
 
-	const {id, isRegistered} = payload;
+	const {id} = payload;
 
 	// Rendering
 	return (
