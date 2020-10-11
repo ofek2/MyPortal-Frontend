@@ -15,20 +15,20 @@ function OtpForm(props: IFormProps) {
 	const [isLoading, setIsLoading] = useState(false);
 	const [otpInput, setOtpInput] = useState('');
 
-	useEffect(() => {
-		onInit();
-	}, [])
+	// useEffect(() => {
+	// 	onInit();
+	// }, [])
 
-	const onInit = () => {
-		const {id, isRegistered} = payload;
+	// const onInit = () => {
+	// 	const {id, isRegistered} = payload;
 
-		if (isRegistered) {
-			setError({
-				msg: ERRORS.userAlreadyRegistered(idToUpn(id)),
-				severity: 'info'
-			});
-		}
-	}
+	// 	if (isRegistered) {
+	// 		setError({
+	// 			msg: ERRORS.userAlreadyRegistered(idToUpn(id)),
+	// 			severity: 'info'
+	// 		});
+	// 	}
+	// }
 
 	// Methodes
 	const isFormValid = (number: string) => {
@@ -44,7 +44,7 @@ function OtpForm(props: IFormProps) {
 	}
 
 	const isOtpMatch = async () => {
-		const { id } = payload;
+		const { id, isRegistered } = payload;
 
 		setError({ msg: '', severity: 'error' });
 		setIsLoading(true);
@@ -56,7 +56,15 @@ function OtpForm(props: IFormProps) {
 			setIsLoading(false);
 
 			if (isValid) {
-				onResolve({ ...payload, otp: otpInput });
+				if (isRegistered) {
+					setError({
+						msg: ERRORS.userAlreadyRegistered(idToUpn(id)),
+						severity: 'info'
+					});
+				} else {
+					onResolve({ ...payload, otp: otpInput });
+				}
+				
 			} else {
 				setError({
 					msg: ERRORS.invalidOtp,
@@ -104,34 +112,33 @@ function OtpForm(props: IFormProps) {
 	// Rendering
 	return (
 		<React.Fragment>
-			{!isRegistered && 
-				<React.Fragment>
-					<Typography variant="h6" className="bold">תעודת הזהות שהוכנסה: {id}</Typography>
-					<Typography>במידה ומס' הטלפון הנייד שלך קיים במערכות צה"ל,</Typography>
-					<Typography>ישלח אליך מסרון עם קוד בדקות הקרובות.</Typography>
+			<React.Fragment>
+				<Typography variant="h6" className="bold">תעודת הזהות שהוכנסה: {id}</Typography>
+				<Typography>במידה ומס' הטלפון הנייד שלך קיים במערכות צה"ל,</Typography>
+				<Typography>ישלח אליך מסרון עם קוד בדקות הקרובות.</Typography>
 
-					<Grid container direction="column" justify="center" alignItems="center" style={{ margin: "10px 0px" }}>
-						<Typography className="bold">נא להזין את הקוד שנשלח:​</Typography>
-						<Grid item md={3}>
-							<form noValidate onSubmit={onClick}>
-								<ClkInput onChange={onChange} value={otpInput} endAdornment={
-									<InputAdornment position="end" onClick={onClick}>
-										{
-											isLoading ?
-												<CircularProgress color="primary" size={23} thickness={7} style={{ marginLeft: "10px", cursor: "default" }} />
-												:
-												<IconButton size="small">
-													<Send className="login-send-icon" />
-												</IconButton>
-										}
-									</InputAdornment>
-								} placeholder={"הכנס קוד"} autoFocus={false} fullWidth />
-							</form>
-						</Grid>
-						
+				<Grid container direction="column" justify="center" alignItems="center" style={{ margin: "10px 0px" }}>
+					<Typography className="bold">נא להזין את הקוד שנשלח:​</Typography>
+					<Grid item md={3}>
+						<form noValidate onSubmit={onClick}>
+							<ClkInput onChange={onChange} value={otpInput} endAdornment={
+								<InputAdornment position="end" onClick={onClick}>
+									{
+										isLoading ?
+											<CircularProgress color="primary" size={23} thickness={7} style={{ marginLeft: "10px", cursor: "default" }} />
+											:
+											<IconButton size="small">
+												<Send className="login-send-icon" />
+											</IconButton>
+									}
+								</InputAdornment>
+							} placeholder={"הכנס קוד"} autoFocus={false} fullWidth />
+						</form>
 					</Grid>
-				</React.Fragment>
-			}
+					
+				</Grid>
+			</React.Fragment>
+			
 			<Grid item xs={12}>
 				{
 					error && error.msg !== '' ?
@@ -141,14 +148,12 @@ function OtpForm(props: IFormProps) {
 						<React.Fragment />
 				}
 			</Grid>
-			{!isRegistered && 
+			
 			<Grid item xs={12}>
 				<Typography variant="subtitle1" className="bold support-section">לא קיבלת את הקוד?</Typography>
 				<Typography variant="body2">צור קשר עם מוקד התמיכה במס' 1111 ובחר את השלוחה המתאימה עבורך</Typography>
 				<Typography variant="body2">מתגייסים - שלוחה 1, משרתים - שלוחה 0, מילואים - שלוחה 4</Typography>
 			</Grid> 
-			}
-			
 		</React.Fragment>
 	);
 }
