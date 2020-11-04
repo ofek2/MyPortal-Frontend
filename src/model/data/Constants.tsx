@@ -18,8 +18,8 @@ export const CLICK_DOMAIN = "idf.il";
 export const SUPPORT_INFO = 
 <React.Fragment>
 	<Typography>צור קשר עם מוקד התמיכה:</Typography>
-	<Typography>משרתי מילואים – טלפון מס' 1111 שלוחה 4</Typography>
-	<Typography>משרתים סדירים – באמצעות הודעת <span className="english-font">Whatsapp</span> למס': <a className="no-wrap" href="https://api.whatsapp.com/send?phone=9720529436631">052-9436631</a></Typography>
+	<Typography>צור קשר עם מוקד התמיכה במס' 1111 ובחר את השלוחה המתאימה עבורך –</Typography>
+	<Typography>מתגייסים – שלוחה 1, משרתים – שלוחה 0, מילואים – שלוחה 4</Typography>
 </React.Fragment>
 
 // Errors
@@ -29,16 +29,14 @@ export const ERRORS = {
 		<Typography className="bold">נתקלנו בשגיאה לא צפויה</Typography>
 		{SUPPORT_INFO}
 	</React.Fragment>,
+	smsError: 
+	<React.Fragment>
+		<Typography className="bold">לא הצלחנו לשלוח לך סיסמה ב-SMS</Typography>
+		{SUPPORT_INFO}
+	</React.Fragment>,
 
 	invalidId: "מספר תעודת זהות אינו תקין",
 	invalidOtp: "הקוד שהוזן איננו תואם, אנא נסה שנית.",
-
-	generalWithoutWhatsapp: 
-	<React.Fragment>
-			<Typography className="bold">נתקלנו בשגיאה לא צפויה</Typography>
-		<Typography>צור קשר עם מוקד התמיכה במס' 1111 ובחר את השלוחה המתאימה עבורך –</Typography>
-		<Typography>מתגייסים – שלוחה 1, משרתים – שלוחה 0, מילואים – שלוחה 4</Typography>
-	</React.Fragment>,
 
 	userAlreadyRegistered: (upn) => {
 		return (
@@ -51,11 +49,7 @@ export const ERRORS = {
 		</React.Fragment>
 		)
 	},
-	smsError: 
-	<React.Fragment>
-		<Typography className="bold">לא הצלחנו לשלוח לך סיסמה ב-SMS</Typography>
-		{SUPPORT_INFO}
-	</React.Fragment>,
+	
 
 	passwordResetsExceededLimit: "ניצלת את כל נסיונות איפוס הסיסמה שלך, אנא פנה למוקד התמיכה לקבלת עזרה"
 	

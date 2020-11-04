@@ -10,9 +10,9 @@ class RestService {
 		}
 	}
 
-	public static async resetUserPassword(idNumber) {
+	public static async resetUserPassword() {
 		try {
-			const res = await axiosInstance.put(`/users/${idNumber}/resetPassword`);
+			const res = await axiosInstance.put(`/users/me/resetPassword`);
 
 			return res.data;
 		} catch (e) {

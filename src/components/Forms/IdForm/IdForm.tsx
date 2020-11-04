@@ -38,20 +38,6 @@ function IdForm(props: IFormProps) {
 			setIsLoading(false);
 
 			onResolve({id: idInput, mobilePhone, isRegistered});
-
-			// if (isRegistered) {
-			// 	setError({
-			// 		msg: ERRORS.userAlreadyRegistered(idToUpn(idInput)),
-			// 		severity: 'info'
-			// 	});
-			// } else if (isUserNotExists || !mobilePhone) {
-			// 	setError({
-			// 		msg: ERRORS.generalWithoutWhatsapp,
-			// 		severity: 'error'
-			// 	});
-			// } else {
-			// 	onResolve({ id: idInput, mobilePhone });
-			// }
 		} catch (err) {
 			setIsLoading(false);
 
@@ -78,7 +64,6 @@ function IdForm(props: IFormProps) {
 			if (isFormValid(idInput)) {
 				setIsLoading(true);
 				await checkIsUserExist();
-				// onResolve({id: idInput});
 			}
 			else {
 				setError({
