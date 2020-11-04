@@ -34,14 +34,12 @@ function PhoneForm(props: IFormProps) {
 	}
 
 	const onSendAgainClick = async () => {
-		const { id } = payload;
-
 		setError({msg: ''})
 		setIsResettingPassword(true);
 		try {
 			// const requestToken = jwt.sign({ secret: payload.secret }, otp);
 
-			const {succeeded} = await RestService.resetUserPassword(id);
+			const {succeeded} = await RestService.resetUserPassword();
 			setIsResettingPassword(false);
 
 			if (!succeeded) {
