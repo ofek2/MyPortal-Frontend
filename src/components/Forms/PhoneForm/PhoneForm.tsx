@@ -22,8 +22,8 @@ function PhoneForm(props: IFormProps) {
 
 	const onInit = async () => {
 		setIsLoadingFirstTime(true);
-		// await onSendAgainClick();
-		// setIsLoadingFirstTime(false);
+		await onSendAgainClick();
+		setIsLoadingFirstTime(false);
 	}
 	// Handlers
 	const onContinueClick = async () => {

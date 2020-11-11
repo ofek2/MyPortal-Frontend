@@ -18,22 +18,22 @@ interface IRegisterStep {
 }
 
 const registerSteps: IRegisterStep[] = [
-	// {
-	// 	title: "הזדהות משתמש",
-	// 	icon: <Fingerprint />,
-	// 	component: <IdForm/>
-	// },
-	// {
-	// 	title: "אימות",
-	// 	icon: <PhoneAndroid />,
-	// 	component: <OtpForm/>,
-	// 	isResettable: true
-	// },
-	// {
-	// 	title: "הסבר התהליך",
-	// 	icon: <Info />,
-	// 	component: <InfoForm/>
-	// },
+	{
+		title: "הזדהות משתמש",
+		icon: <Fingerprint />,
+		component: <IdForm/>
+	},
+	{
+		title: "אימות",
+		icon: <PhoneAndroid />,
+		component: <OtpForm/>,
+		isResettable: true
+	},
+	{
+		title: "הסבר התהליך",
+		icon: <Info />,
+		component: <InfoForm/>
+	},
 	{
 		title: "קבלת סיסמה",
 		icon: <Lock />,
