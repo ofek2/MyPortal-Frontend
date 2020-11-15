@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './PhoneForm.css';
-import { Typography, Button, Grid } from '@material-ui/core';
+import { Typography, Button, Grid, CircularProgress } from '@material-ui/core';
 import IFormProps from '../IForm';
 import CensorPhone from '../../CensorPhone/CensorPhone';
 import MsService from '../../../services/microsoft/MsService';
@@ -14,13 +14,16 @@ function PhoneForm(props: IFormProps) {
 	const { payload } = props;
 	const [error, setError] = useState<any>({ msg: '' });
 	const [isResettingPassword, setIsResettingPassword] = useState(false);
-	
+	const [isLoadingFirstTime, setIsLoadingFirstTime] = useState(false);
+
 	useEffect(() => {
 		onInit();
 	}, [])
 
 	const onInit = async () => {
+		setIsLoadingFirstTime(true);
 		await onSendAgainClick();
+		setIsLoadingFirstTime(false);
 	}
 	// Handlers
 	const onContinueClick = async () => {
@@ -54,28 +57,44 @@ function PhoneForm(props: IFormProps) {
 	// Rendering
 	return (
 		<React.Fragment>
-			<Typography>נשלחה אליך סיסמה חד-פעמית לכניסה למספר הבא:</Typography>
-			<CensorPhone phone={payload.mobilePhone} stringToReplace="X" />
-			<Grid container item xs={12} justify="center" alignItems="center">
-				<Button variant="contained" onClick={onContinueClick} disableElevation={true} color="primary" className="idf-button" style={{ margin: "10px 0px", marginLeft: "20px" }}>קיבלתי, אפשר להמשיך</Button>
-				<LoadingButton isLoading={isResettingPassword} variant="contained" onClick={onSendAgainClick} disableElevation={true} className="idf-button-secondary" style={{ margin: "10px 0px", backgroundColor: "#333" }}>שלחו לי שוב</LoadingButton>
-			</Grid>
-				<Grid container direction="column" justify="center" alignItems="center" style={{ margin: "10px 0px" }}>
+		{
+			isLoadingFirstTime ? 
+			<Grid container item xs={12} justify="center" alignItems="center" spacing={2}>
 				<Grid item xs={12}>
-					{
-						error && error.msg !== '' ?
-							<Alert severity="error" >
-								{error.msg}
-							</Alert> :
-							<React.Fragment />
-					}
+					<CircularProgress size={48}/>
+				</Grid>
+				<Grid item xs={12}>
+					<Typography variant="h6">מסיימים להגדיר עבורכם מספר דברים ומיד נמשיך...</Typography>
 				</Grid>
 			</Grid>
-			<Grid item xs={12}>
-				<Typography variant="subtitle1" className="bold support-section">זהו אינו מספר הטלפון הנייד שלך?</Typography>
-				<Typography variant="body2">צור קשר עם מוקד התמיכה במס' 1111 ובחר את השלוחה המתאימה עבורך</Typography>
-				<Typography variant="body2">מתגייסים - שלוחה 1, משרתים - שלוחה 0, מילואים - שלוחה 4</Typography>
-			</Grid> 
+			
+			: 
+		
+			<React.Fragment>
+				<Typography>נשלחה אליך סיסמה חד-פעמית לכניסה, למספר הבא:</Typography>
+				<CensorPhone phone={payload.mobilePhone} stringToReplace="X" />
+				<Grid container item xs={12} justify="center" alignItems="center">
+					<Button variant="contained" onClick={onContinueClick} disableElevation={true} color="primary" className="idf-button" style={{ margin: "10px 0px", marginLeft: "20px" }}>קיבלתי, אפשר להמשיך</Button>
+					<LoadingButton isLoading={isResettingPassword} variant="contained" onClick={onSendAgainClick} disableElevation={true} className="idf-button-secondary" style={{ margin: "10px 0px", backgroundColor: "#333" }}>שלחו לי שוב</LoadingButton>
+				</Grid>
+					<Grid container direction="column" justify="center" alignItems="center" style={{ margin: "10px 0px" }}>
+					<Grid item xs={12}>
+						{
+							error && error.msg !== '' ?
+								<Alert severity="error" >
+									{error.msg}
+								</Alert> :
+								<React.Fragment />
+						}
+					</Grid>
+				</Grid>
+				<Grid item xs={12}>
+					<Typography variant="subtitle1" className="bold support-section">זהו אינו מספר הטלפון הנייד שלך?</Typography>
+					<Typography variant="body2">צור קשר עם מוקד התמיכה במס' 1111 ובחר את השלוחה המתאימה עבורך</Typography>
+					<Typography variant="body2">מתגייסים - שלוחה 1, משרתים - שלוחה 0, מילואים - שלוחה 4</Typography>
+				</Grid> 
+			</React.Fragment>
+		}
 		</React.Fragment>
 	);
 }

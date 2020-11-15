@@ -1,8 +1,7 @@
 {
 	"development": {
 		"authService": {
-			"baseURL": "http://localhost:5000/api",
-			"jwtSecret": "vqpFozAiXgR8Hm3qf9o9m0Qhtp6b0Lro"
+			"baseURL": "http://localhost:5000/api"
 		},
 		"msalConfig": {
 			"auth": {
