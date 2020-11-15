@@ -71,30 +71,30 @@ function PhoneForm(props: IFormProps) {
 			
 			: 
 		
-		<React.Fragment>
-			<Typography>נשלחה אליך סיסמה חד-פעמית לכניסה למספר הבא:</Typography>
-			<CensorPhone phone={payload.mobilePhone} stringToReplace="X" />
-			<Grid container item xs={12} justify="center" alignItems="center">
-				<Button variant="contained" onClick={onContinueClick} disableElevation={true} color="primary" className="idf-button" style={{ margin: "10px 0px", marginLeft: "20px" }}>קיבלתי, אפשר להמשיך</Button>
-				<LoadingButton isLoading={isResettingPassword} variant="contained" onClick={onSendAgainClick} disableElevation={true} className="idf-button-secondary" style={{ margin: "10px 0px", backgroundColor: "#333" }}>שלחו לי שוב</LoadingButton>
-			</Grid>
-				<Grid container direction="column" justify="center" alignItems="center" style={{ margin: "10px 0px" }}>
-				<Grid item xs={12}>
-					{
-						error && error.msg !== '' ?
-							<Alert severity="error" >
-								{error.msg}
-							</Alert> :
-							<React.Fragment />
-					}
+			<React.Fragment>
+				<Typography>נשלחה אליך סיסמה חד-פעמית לכניסה למספר הבא:</Typography>
+				<CensorPhone phone={payload.mobilePhone} stringToReplace="X" />
+				<Grid container item xs={12} justify="center" alignItems="center">
+					<Button variant="contained" onClick={onContinueClick} disableElevation={true} color="primary" className="idf-button" style={{ margin: "10px 0px", marginLeft: "20px" }}>קיבלתי, אפשר להמשיך</Button>
+					<LoadingButton isLoading={isResettingPassword} variant="contained" onClick={onSendAgainClick} disableElevation={true} className="idf-button-secondary" style={{ margin: "10px 0px", backgroundColor: "#333" }}>שלחו לי שוב</LoadingButton>
 				</Grid>
-			</Grid>
-			<Grid item xs={12}>
-				<Typography variant="subtitle1" className="bold support-section">זהו אינו מספר הטלפון הנייד שלך?</Typography>
-				<Typography variant="body2">צור קשר עם מוקד התמיכה במס' 1111 ובחר את השלוחה המתאימה עבורך</Typography>
-				<Typography variant="body2">מתגייסים - שלוחה 1, משרתים - שלוחה 0, מילואים - שלוחה 4</Typography>
-			</Grid> 
-		</React.Fragment>
+					<Grid container direction="column" justify="center" alignItems="center" style={{ margin: "10px 0px" }}>
+					<Grid item xs={12}>
+						{
+							error && error.msg !== '' ?
+								<Alert severity="error" >
+									{error.msg}
+								</Alert> :
+								<React.Fragment />
+						}
+					</Grid>
+				</Grid>
+				<Grid item xs={12}>
+					<Typography variant="subtitle1" className="bold support-section">זהו אינו מספר הטלפון הנייד שלך?</Typography>
+					<Typography variant="body2">צור קשר עם מוקד התמיכה במס' 1111 ובחר את השלוחה המתאימה עבורך</Typography>
+					<Typography variant="body2">מתגייסים - שלוחה 1, משרתים - שלוחה 0, מילואים - שלוחה 4</Typography>
+				</Grid> 
+			</React.Fragment>
 		}
 		</React.Fragment>
 	);
