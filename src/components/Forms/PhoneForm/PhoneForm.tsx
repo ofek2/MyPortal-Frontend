@@ -64,15 +64,14 @@ function PhoneForm(props: IFormProps) {
 					<CircularProgress size={48}/>
 				</Grid>
 				<Grid item xs={12}>
-					<Typography variant="h6">מכין עבורך את משתמש ה MyIDF שלך,</Typography>
-					<Typography variant="h6">אנא המתן מספר רגעים..</Typography>
+					<Typography variant="h6">מסיימים להגדיר עבורכם מספר דברים ומיד נמשיך...</Typography>
 				</Grid>
 			</Grid>
 			
 			: 
 		
 			<React.Fragment>
-				<Typography>נשלחה אליך סיסמה חד-פעמית לכניסה למספר הבא:</Typography>
+				<Typography>נשלחה אליך סיסמה חד-פעמית לכניסה, למספר הבא:</Typography>
 				<CensorPhone phone={payload.mobilePhone} stringToReplace="X" />
 				<Grid container item xs={12} justify="center" alignItems="center">
 					<Button variant="contained" onClick={onContinueClick} disableElevation={true} color="primary" className="idf-button" style={{ margin: "10px 0px", marginLeft: "20px" }}>קיבלתי, אפשר להמשיך</Button>
