@@ -1,10 +1,22 @@
 import axios from 'axios';
+import { validateChecksum } from '../model/data/Checksum';
 import config from "../model/data/Configuration";
 
 const axiosInstance = axios.create({
 	baseURL: config.authService.baseURL,
 	withCredentials: true
 });
+
+// axiosInstance.interceptors.response.use((response) => {
+// 	if (validateChecksum(response.data, config.responseSecret, response.headers["content-checksum"])) {
+// 		return response;
+// 	} else {
+// 		throw new Error("Server response has been tempered with!");
+// 	}
+// }, (err) => {
+// 	return Promise.reject(err);
+// });
+
 
 // axiosInstance.interceptors.request.use((options) => {
 // 	options = jwtOptions(options);
