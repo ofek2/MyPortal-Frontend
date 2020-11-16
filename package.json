@@ -33,7 +33,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "start:prod": "node server.js",
-    "build:test": "REACT_APP_ENVIRONMENT=test REACT_APP_CHECKSUM_SECRET=$CHECKSUM_SECRET npm run build",
+    "build:test": "REACT_APP_ENVIRONMENT=test npm run build",
     "build:prod": "REACT_APP_ENVIRONMENT=production REACT_APP_CHECKSUM_SECRET=$CHECKSUM_SECRET npm run build"
   },
   "eslintConfig": {
