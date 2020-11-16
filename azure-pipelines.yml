@@ -20,8 +20,6 @@ variables:
   vmImageName: 'ubuntu-latest'
 
 stages:
-- stage: Define Variables
-  
 - stage: Build
   displayName: Build and push stage
   jobs:  
