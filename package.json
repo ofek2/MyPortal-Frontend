@@ -16,6 +16,7 @@
     "@types/react": "^16.9.43",
     "@types/react-dom": "^16.9.8",
     "axios": "^0.19.2",
+    "bcrypt": "^5.0.0",
     "copy-to-clipboard": "^3.3.1",
     "jss-rtl": "^0.3.0",
     "lodash": "^4.17.19",
@@ -31,8 +32,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "start:prod": "node server.js",
-    "build:test": "REACT_APP_ENVIRONMENT=test npm run build",
-    "build:prod": "REACT_APP_ENVIRONMENT=production npm run build"
+    "build:test": "REACT_APP_ENVIRONMENT=test REACT_APP_CHECKSUM_SECRET=$CHECKSUM_SECRET npm run build",
+    "build:prod": "REACT_APP_ENVIRONMENT=production REACT_APP_CHECKSUM_SECRET=$CHECKSUM_SECRET npm run build"
   },
   "eslintConfig": {
     "extends": "react-app"
