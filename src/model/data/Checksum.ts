@@ -12,7 +12,7 @@ export function createChecksum(data, secret) {
         checksum += secret.charCodeAt(i) * i;
     }
 
-    return cryptojs.SHA256(checksum).toString();
+    return cryptojs.SHA256(checksum.toString()).toString();
 }
 
 function hashValue(input) {

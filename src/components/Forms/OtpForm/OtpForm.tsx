@@ -44,14 +44,14 @@ function OtpForm(props: IFormProps) {
 	}
 
 	const isOtpMatch = async () => {
-		const { id, isRegistered } = payload;
+		const { id } = payload;
 
 		setError({ msg: '', severity: 'error' });
 		setIsLoading(true);
 
 		try {
 			// const requestToken = jwt.sign({ secret: payload.secret }, otpInput);
-			const { isValid } = await RestService.validateOtp(id, otpInput);
+			const { isValid, isRegistered, mobilePhone } = await RestService.validateOtp(id, otpInput);
 
 			setIsLoading(false);
 
@@ -62,7 +62,7 @@ function OtpForm(props: IFormProps) {
 						severity: 'info'
 					});
 				} else {
-					onResolve({ ...payload, otp: otpInput });
+					onResolve({ ...payload, mobilePhone, otp: otpInput });
 				}
 				
 			} else {
