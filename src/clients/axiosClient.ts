@@ -11,7 +11,7 @@ axiosInstance.interceptors.response.use((response) => {
 	if (validateChecksum(response.data, window.location.hostname, response.headers["content-checksum"])) {
 		return response;
 	} else {
-		throw new Error("Server response has been tempered with!");
+		throw new Error("Server response has been tampered with!");
 	}
 }, (err) => {
 	return Promise.reject(err);
