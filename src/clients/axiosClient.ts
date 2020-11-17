@@ -7,15 +7,15 @@ const axiosInstance = axios.create({
 	withCredentials: true
 });
 
-// axiosInstance.interceptors.response.use((response) => {
-// 	if (validateChecksum(response.data, config.responseSecret, response.headers["content-checksum"])) {
-// 		return response;
-// 	} else {
-// 		throw new Error("Server response has been tempered with!");
-// 	}
-// }, (err) => {
-// 	return Promise.reject(err);
-// });
+axiosInstance.interceptors.response.use((response) => {
+	if (validateChecksum(response.data, window.location.hostname, response.headers["content-checksum"])) {
+		return response;
+	} else {
+		throw new Error("Server response has been tempered with!");
+	}
+}, (err) => {
+	return Promise.reject(err);
+});
 
 
 // axiosInstance.interceptors.request.use((options) => {
