@@ -1,6 +1,5 @@
 {
 	"development": {
-		"responseSecret": "secret",
 		"authService": {
 			"baseURL": "http://localhost:5000/api"
 		},
