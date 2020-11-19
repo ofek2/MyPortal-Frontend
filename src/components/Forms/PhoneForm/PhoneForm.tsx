@@ -40,8 +40,6 @@ function PhoneForm(props: IFormProps) {
 		setError({msg: ''})
 		setIsResettingPassword(true);
 		try {
-			// const requestToken = jwt.sign({ secret: payload.secret }, otp);
-
 			const {succeeded} = await RestService.resetUserPassword();
 			setIsResettingPassword(false);
 
