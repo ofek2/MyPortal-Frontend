@@ -8,7 +8,6 @@ const axiosInstance = axios.create({
 });
 
 axiosInstance.interceptors.response.use((response) => {
-	console.log(response)
 	if (validateChecksum(response.data, window.location.hostname, response.headers["content-checksum"])) {
 		return response;
 	} else {
