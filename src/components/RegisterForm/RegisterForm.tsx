@@ -15,7 +15,7 @@ let currentPayload = {};
 function RegisterForm(props: WithWidth) {
 	// State & props
 	const steps = registerSteps;
-	const [currentStep, setCurrentStep] = useState(1);
+	const [currentStep, setCurrentStep] = useState(0);
 
 	// Handlers
 
