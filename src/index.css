@@ -79,3 +79,7 @@ code {
   padding: 0px 10px !important;
   margin-top: 10px;
 }
+
+.MuiAlert-icon {
+  align-items: flex-start !important;
+}
