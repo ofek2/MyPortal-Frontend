@@ -5,7 +5,7 @@ import { ClkInput } from '../../ClkInput/ClkInput';
 import Send from '@material-ui/icons/Send';
 import IFormProps from '../IForm';
 import RestService from '../../../services/rest/RestService';
-import { Alert } from '@material-ui/lab';
+import { Alert, AlertTitle } from '@material-ui/lab';
 import { ERRORS, idToUpn } from '../../../model/data/Constants';
 
 
@@ -113,7 +113,7 @@ function OtpForm(props: IFormProps) {
 
 	// Rendering
 	return (
-		<React.Fragment>
+		<Container maxWidth="sm">
 			<React.Fragment>
 				<Typography variant="h6" className="bold">תעודת הזהות שהוכנסה: {id}</Typography>
 				<Typography>במידה ומס' הטלפון הנייד שלך קיים במערכות צה"ל,</Typography>
@@ -121,7 +121,7 @@ function OtpForm(props: IFormProps) {
 
 				<Grid container direction="column" justify="center" alignItems="center" style={{ margin: "10px 0px" }}>
 					<Typography className="bold">נא להזין את הקוד שנשלח:​</Typography>
-					<Grid item md={3}>
+					<Grid item md={6}>
 						<form noValidate onSubmit={onClick}>
 							<ClkInput onChange={onChange} value={otpInput} endAdornment={
 								<InputAdornment position="end" onClick={onClick}>
@@ -152,8 +152,8 @@ function OtpForm(props: IFormProps) {
 			</Grid>
 			
 			<Grid item xs={12}>
-				<Alert severity="info" className="info-container">		
-					<Typography variant="subtitle1" className="bold">לא קיבלת את הקוד?</Typography>
+				<Alert severity="info" className="info-container">
+					<AlertTitle><b>לא קיבלת את הקוד?</b></AlertTitle>		
 					<Typography variant="body2">מספר הטלפון שברשותך אינו מעודכן ברישומת הצה"לית,</Typography>
 					<Typography variant="body2">יש להתחבר לאתר הפרט (<a href="https://prat.idf.il">Prat.idf.il</a>) ולעדכן את מספר הטלפון ב- "הפרופיל שלי".​</Typography>
 					<Typography variant="body2">לאחר כרבע שעה ניתן יהיה לשוב ולהשלים את תהליך הרישום.​</Typography>
@@ -170,7 +170,7 @@ function OtpForm(props: IFormProps) {
 				</Alert>
 			</Grid> 
 		
-		</React.Fragment>
+		</Container>
 	);
 }
 
