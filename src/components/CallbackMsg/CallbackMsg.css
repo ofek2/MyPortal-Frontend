@@ -1,0 +1,39 @@
+.grid-margin {
+    margin: 5px 0;
+}
+
+.link-container {
+    position: relative;
+    width: fit-content;
+    margin: auto;
+}
+
+.link-container.clickable {
+    cursor: pointer;
+    transition: all .2s;
+}
+
+.link-container.clickable:hover {
+    transform: scale(1.07);
+}
+
+.link-image {
+    border: 2px solid black;
+    border-radius: 10px;
+    
+}
+
+.soon-label {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: -10px;
+    right: -10px;
+    background: #F44336;
+    border-radius: 20px;
+    font-weight: bold;
+    color: white;
+    font-size: 16px;
+    padding: 0px 20px;
+}
