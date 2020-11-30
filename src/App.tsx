@@ -11,6 +11,7 @@ import CallbackContainer from './containers/CallbackContainer';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import ErrorContainer from './containers/ErrorContainer';
+import ChatBott from './components/ChatBot/ChatBot';
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           </Switch>
         </Router>
         <Footer />
+        <ChatBott/>
       </div>
     </div>
   );

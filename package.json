@@ -17,6 +17,7 @@
     "@types/react-dom": "^16.9.8",
     "axios": "^0.19.2",
     "bcrypt": "^5.0.0",
+    "chatbot": "file:../../../repos/npm-locals-libs/ChatBot",
     "copy-to-clipboard": "^3.3.1",
     "crypto-js": "^4.0.0",
     "jss-rtl": "^0.3.0",
@@ -50,5 +51,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.12.1"
   }
 }
