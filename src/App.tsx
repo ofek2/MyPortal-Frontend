@@ -27,7 +27,7 @@ function App() {
           </Switch>
         </Router>
         <Footer />
-        <ChatBott/>
+        {/* <ChatBott/> */}
       </div>
     </div>
   );

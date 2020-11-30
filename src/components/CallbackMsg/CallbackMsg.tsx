@@ -53,7 +53,7 @@ function CallbackMsg(props: ICallbackMsgProps) {
 					</Grid>
 					)}
 					<Grid item xs={12} style={{marginTop: 10}}>
-						<Typography variant="subtitle1">ועוד אפליקציות רבות נוספות...</Typography>
+						<Typography variant="subtitle1">ועוד אפליקציות רבות נוספות באתר צה"ל בדיגיטל...</Typography>
 
 					</Grid>
 				</Grid>
