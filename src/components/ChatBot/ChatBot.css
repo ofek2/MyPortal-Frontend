@@ -51,7 +51,6 @@ p {
 #chat_container::-webkit-scrollbar-track {
   background: white; /* color of the tracking area */
   border-bottom-right-radius: 10px;
-  height: 95%;
 }
 #chat_container::-webkit-scrollbar-thumb {
   background-color: #ccc; /* color of the scroll thumb */
