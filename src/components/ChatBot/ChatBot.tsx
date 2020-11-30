@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import Chatbot from 'chatbot';
+import Chatbot from '../../modules/Chatbot/index';
 import { assistance, client, xIcon, defaultGIF } from './assets';
 import './ChatBot.css';
 
