@@ -31,8 +31,8 @@
   position: fixed;
   right: 35px;
   bottom: 110px;
-  border-bottom-left-radius: 15px;
-  border-bottom-right-radius: 15px;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
   cursor: default;
   direction: rtl;
   z-index: 1000;
@@ -49,7 +49,7 @@ p {
   width: 12px; /* width of the entire scrollbar */
 }
 #chat_container::-webkit-scrollbar-track {
-  background: white; /* color of the tracking area */
+  background: transparent; /* color of the tracking area */
   border-bottom-right-radius: 10px;
 }
 #chat_container::-webkit-scrollbar-thumb {
