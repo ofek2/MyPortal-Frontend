@@ -78,8 +78,10 @@ code {
 .MuiAlert-root {
   padding: 0px 10px !important;
   margin-top: 10px;
+  flex-direction: column;
 }
 
 .MuiAlert-icon {
   align-items: flex-start !important;
+  padding: 5px 0 0 0;
 }
