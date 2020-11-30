@@ -72,9 +72,9 @@ export class ChatRow {
             messagePopupDiv.style[prop.toString()] = messagePopupDivStyle[prop.toString()];
         }
 
-        const messageText = document.createElement("P");
-        var textNode = document.createTextNode(this.message);
-        messageText.appendChild(textNode);
+        const messageText = document.createElement("p");
+        // var textNode = document.createTextNode(this.message);
+        messageText.innerHTML = this.message;
         messagePopupDiv.appendChild(messageText);
         return messagePopupDiv;
     }
