@@ -15,6 +15,13 @@ function CallbackMsg(props: ICallbackMsgProps) {
 	const steps = registerSteps;
 	const [currentStep] = useState(registerSteps.length - 1);
 
+
+	const redirectToUrl = (url) => {
+		if (url) {
+			window.open(url, '_blank');
+		}
+			
+	}
 	// Rendering
 	return (
 		<Paper elevation={3} style={{ padding: "10px 0px" }} >
@@ -30,15 +37,19 @@ function CallbackMsg(props: ICallbackMsgProps) {
 
 				</Grid>
 
-				<Grid container item sm={10} xs={12} style={{marginTop: 20, marginBottom: 20}}>
+				<Grid container item sm={10} xs={12} style={{marginTop: 20, marginBottom: 20}} justify="center">
 					<Grid item xs={12} style={{marginBottom: 20}}>
 						<Typography variant="h6" style={{ fontWeight: "bold" }}>כעת ניתן להתחבר למגוון שירותי הדיגיטל השונים של צה"ל:</Typography>
 
 					</Grid>
 					{applinks.map((link, index) => 
-					<Grid item key={index} sm={3} xs={6}>
-						<a href={link.url} target="_blank"><img src={link.image} width={100} height={100} className="link-image"/></a>
+					<Grid item key={index} lg={2} md={3} sm={4} xs={6} className="grid-margin">
+						<div className={"link-container " + (link.url ? "clickable" : "")} onClick={redirectToUrl.bind(null, link.url)}>
+							{link.soon && <Typography variant="body2" className="soon-label">בקרוב!</Typography>}
+							<img src={link.image} width={100} height={100} className={"link-image"}/>
+						</div>
 						<Typography variant="body2">{link.name}</Typography>
+						
 					</Grid>
 					)}
 					<Grid item xs={12} style={{marginTop: 10}}>
