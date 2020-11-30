@@ -6,12 +6,12 @@ import { withRouter } from 'react-router-dom'
 
 function CallbackContainer(props) {
 	// State & props
-	const [account, setAccount] = useState('');
+	const [account, setAccount] = useState('311165');
 	const [isLoading, setIsLoading] = useState(false);
 
 	// Side effects
 	useEffect(() => {
-		onInit();
+		// onInit();
 	}, []);
 
 	// Methodes

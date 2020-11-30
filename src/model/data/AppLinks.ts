@@ -3,7 +3,7 @@ import kitbag from '../../assets/images/kitbag.png';
 import madim from '../../assets/images/madim.png';
 import cactus from '../../assets/images/cactus.png';
 import smartbase from '../../assets/images/smartbase.png';
-import shekel from '../../assets/images/shekel.png';
+import academy from '../../assets/images/academy.png';
 
 interface ILink {
     name: string,
@@ -17,6 +17,11 @@ const applinks: ILink[] = [
         name: "אתר המילואים",
         url: "https://www.miluim.idf.il",
         image: idf
+    },
+    {
+        name: 'אקדמיה - קטלוג קורסים צה"לי',
+        url: "https://academy.digital.idf.il",
+        image: academy
     },
     {
         name: 'הצב"ר',
@@ -35,14 +40,10 @@ const applinks: ILink[] = [
     },
     {
         name: "Smart Base",
+        url: "https://base.idf.il",
         image: smartbase,
-        soon: true
     },
-    {
-        name: "שקל",
-        image: shekel,
-        soon: true
-    },
+    
 ]
 
 export default applinks;
