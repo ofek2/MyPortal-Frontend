@@ -28,8 +28,8 @@ export class ChatBot {
 		const chatBotLogoDiv = document.createElement("DIV");
 		chatBotLogoDiv.setAttribute('id', this.logoId)
 		let logoStyle = {
-			width: "80px",
-			height: "65px",
+			width: "100%",
+			height: "100%",
 		};
 		const logo = createImageWithStyle(this.icons.logo, logoStyle);
 		chatBotLogoDiv.appendChild(logo);
