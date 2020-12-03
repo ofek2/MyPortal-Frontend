@@ -32,7 +32,7 @@ function ChatBott() {
 
 אלי קוד לטלפון הנייד`,
 				answer:`מספר הטלפון שברשותך אינו מעודכן ברישומת הצה"לית ויש לעדכנו. <br>
-					לחיילי חובה וקבע - יש להתחבר לאתר הפרט (<a href="https://prat.idf.il">Prat.idf.il</a>) ולעדכן את מספר הטלפון ב- "הפרופיל שלי".<br>
+					<u>לחיילי חובה וקבע</u> - יש להתחבר לאתר הפרט (<a href="https://prat.idf.il">Prat.idf.il</a>) ולעדכן את מספר הטלפון ב- "הפרופיל שלי".<br>
 					לאחר כרבע שעה ניתן יהיה לשוב ולהשלים את תהליך הרישום. לחילופין, יש לפנות לקצין/ת המשא"ן ביחידה.<br>
 					<u>גמלאים</u> - יש לעדכן את פרטי ההתקשרות מול מוקד מופת.<br>
 					<u>מילואים</u> - יש לעדכן את פרטי הקשר אצל קצין/ת הקישור.<br>
@@ -74,11 +74,11 @@ function ChatBott() {
 	return (
 		<>
 			<div id="chat-bot" />
-			{/* <Box position="fixed" bottom="10px" left="10px" style={{ backgroundColor: "white", zIndex: 1000, padding: "1px 4px", borderRadius: "5px", boxShadow: "0px 3px 3px -2px rgba(0,0,0,0.2), 0px 3px 4px 0px rgba(0,0,0,0.14), 0px 1px 8px 0px rgba(0,0,0,0.12)"}}>
+			<Box position="fixed" bottom="10px" left="10px" style={{ backgroundColor: "white", zIndex: 1000, padding: "0px 3px", borderRadius: "5px", boxShadow: "0px 3px 3px -2px rgba(0,0,0,0.2), 0px 3px 4px 0px rgba(0,0,0,0.14), 0px 1px 8px 0px rgba(0,0,0,0.12)"}}>
 				<Typography style={{color: "black", fontSize: "14px"}}>
 					איך ניתן לסייע לך היום?
 				</Typography>
-			</Box> */}
+			</Box>
 
 		</>
 	)
