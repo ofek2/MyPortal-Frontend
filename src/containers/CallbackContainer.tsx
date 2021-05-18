@@ -26,11 +26,20 @@ function CallbackContainer(props) {
 			setIsLoading(false);
 
 			try {
+				await MsService.getClickApiToken();
+			} catch (err) {
+				console.log(err)
+			}
+
+			try {
 				const currentAccount = await MsService.getAccount();
 
-				setAccount(currentAccount.userName)
+				if (currentAccount) {
+					setAccount(currentAccount.username);
+				} else {
+					history.push('/');
+				}
 			} catch (err) {
-				setIsLoading(false);
 				history.push('/error');
 			}
 		} catch (err) {

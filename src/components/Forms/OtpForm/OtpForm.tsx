@@ -53,14 +53,14 @@ function OtpForm(props: IFormProps) {
 
 		try {
 			// const requestToken = jwt.sign({ secret: payload.secret }, otpInput);
-			const { isValid, isRegistered, mobilePhone } = await RestService.validateOtp(id, otpInput);
+			const { isValid, isRegistered, mobilePhone, upn } = await RestService.validateOtp(id, otpInput);
 
 			setIsLoading(false);
 
 			if (isValid) {
 				if (isRegistered) {
 					setError({
-						msg: ERRORS.userAlreadyRegistered(idToUpn(id)),
+						msg: ERRORS.userAlreadyRegistered(upn),
 						severity: 'info'
 					});
 				} else {

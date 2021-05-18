@@ -14,33 +14,39 @@ function PhoneForm(props: IFormProps) {
 	const { payload } = props;
 	const [error, setError] = useState<any>({ msg: '' });
 	const [isResettingPassword, setIsResettingPassword] = useState(false);
-	const [isLoadingFirstTime, setIsLoadingFirstTime] = useState(false);
-
+	const [isLoadingFirstTime, setIsLoadingFirstTime] = useState(true);
+	const [currentUserUpn, setCurrentUserUpn] = useState('');
+	
 	useEffect(() => {
 		onInit();
 	}, [])
 
 	const onInit = async () => {
-		setIsLoadingFirstTime(true);
 		await onSendAgainClick();
 		setIsLoadingFirstTime(false);
 	}
 	// Handlers
 	const onContinueClick = async () => {
-		const { id } = payload;
-
-		try {
-			await MsService.login(`${id}@${CLICK_DOMAIN}`);
-		} catch (err) {
-			setError({ msg: ERRORS.general })
+		console.log(currentUserUpn)
+		if (currentUserUpn) {
+			try {
+				await MsService.login(`${currentUserUpn}`);
+			} catch (err) {
+				console.log(err)
+				setError({ msg: ERRORS.general })
+			}
+		} else {
+			setError({ msg: ERRORS.general });
 		}
 	}
 
 	const onSendAgainClick = async () => {
 		setError({msg: ''})
 		setIsResettingPassword(true);
+
 		try {
-			const {succeeded} = await RestService.resetUserPassword();
+			const {succeeded, upn} = await RestService.resetUserPassword();
+			setCurrentUserUpn(upn);
 			setIsResettingPassword(false);
 
 			if (!succeeded) {

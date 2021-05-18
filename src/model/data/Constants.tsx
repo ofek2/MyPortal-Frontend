@@ -1,5 +1,6 @@
 import React from 'react';
 import { Typography } from '@material-ui/core';
+import config from "./Configuration";
 
 // GraphApi
 export const GRAPH_REQUEST = {
@@ -8,7 +9,10 @@ export const GRAPH_REQUEST = {
 };
 export const LOGIN_REQUEST = {
 	prompt: "login",
-	scopes: ["user.read", "openid"]
+	scopes: config.msalScopes
+};
+export const CLICK_API_REQUEST = {
+	scopes: config.clickApiScopes
 };
 
 // Click Domain
