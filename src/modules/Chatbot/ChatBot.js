@@ -28,8 +28,8 @@ export class ChatBot {
 		const chatBotLogoDiv = document.createElement("DIV");
 		chatBotLogoDiv.setAttribute('id', this.logoId)
 		let logoStyle = {
-			width: "80px",
-			height: "65px",
+			width: "100%",
+			height: "100%",
 		};
 		const logo = createImageWithStyle(this.icons.logo, logoStyle);
 		chatBotLogoDiv.appendChild(logo);
@@ -101,7 +101,6 @@ export class ChatBot {
 	// Buttons clicks create a user interaction
 	async buttonEventListener(faq) {
 		let activeChatContainer = document.getElementById(this.chatContainer);
-		console.log(activeChatContainer == null);
 		// step 1: create client chat row with the selected question
 		activeChatContainer.appendChild(new ChatRow(true, faq.question, this.icons.client, false).buildChatMessages());
 		const buttonsToDisable = activeChatContainer.getElementsByClassName('keyboard-rounded three-d');
@@ -130,7 +129,7 @@ export class ChatBot {
 			overflow: 'auto',
 			overflowY: "auto",
 			overflowX: "auto",
-			maxWidth: "280px",
+			maxWidth: "300px",
 			minHeight: "360px",
 			padding: "5px",
 			top: "10px",

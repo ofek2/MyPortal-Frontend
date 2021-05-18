@@ -19,27 +19,27 @@ const applinks: ILink[] = [
         image: idf
     },
     {
-        name: 'אקדמיה - קטלוג קורסים צה"לי',
+        name: 'אקדמיה - קטלוג הקורסים הצה"לי',
         url: "https://academy.digital.idf.il",
         image: academy
     },
     {
-        name: 'הצב"ר',
+        name: 'הצב"ר - הצהרת בריאות',
         url: "https://clearance.medical.idf.il",
         image: cactus
     },
     {
-        name: "קיטבג",
+        name: "קיטבג - חתימה על ציוד",
         url: "https://kitbag.prat.idf.il/",
         image: kitbag
     },
     {
-        name: "מדים אקספרס",
+        name: "מדים אקספרס - הזמנת מדים",
         url: "https://madim.prat.idf.il",
         image: madim
     },
     {
-        name: "Smart Base",
+        name: "Smart Base - שירותי בסיס חכם",
         url: "https://base.idf.il",
         image: smartbase,
     },
