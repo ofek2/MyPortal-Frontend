@@ -16,7 +16,7 @@ import ChatBott from './components/ChatBot/ChatBot';
 function App() {
   return (
     <div className="App">
-      <Header />
+      {/* <Header /> */}
       <div className="App-content">
         <Router>
           <Switch>

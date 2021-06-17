@@ -3,3 +3,11 @@
     top: 5px;
     right: 5px;
 }
+
+.idf-icon {
+    position: absolute;
+    width: 90px;
+    top: -60px;
+    left: 50%;
+    transform: translate(-50%, 0);
+}

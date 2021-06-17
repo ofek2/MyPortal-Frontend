@@ -41,6 +41,7 @@ export const ERRORS = {
 
 	invalidId: "מספר תעודת זהות אינו תקין",
 	invalidOtp: "הקוד שהוזן איננו תואם, אנא נסה שנית.",
+	requiredCaptcha: `אנא לחץ על כפתור "אני לא רובוט"`,
 
 	userAlreadyRegistered: (upn) => {
 		return (

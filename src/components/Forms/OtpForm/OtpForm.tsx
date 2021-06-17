@@ -117,7 +117,7 @@ function OtpForm(props: IFormProps) {
 			<React.Fragment>
 				<Typography variant="h6" className="bold">תעודת הזהות שהוכנסה: {id}</Typography>
 				<Typography>במידה ומס' הטלפון הנייד שלך קיים במערכות צה"ל,</Typography>
-				<Typography>ישלח אליך מסרון עם קוד בדקות הקרובות.</Typography>
+				<Typography>ישלח אליך מסרון עם קוד.</Typography>
 
 				<Grid container direction="column" justify="center" alignItems="center" style={{ margin: "10px 0px" }}>
 					<Typography className="bold">נא להזין את הקוד שנשלח:​</Typography>
