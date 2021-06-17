@@ -7,6 +7,7 @@ import IFormProps from '../IForm';
 import RestService from '../../../services/rest/RestService';
 import { Alert, AlertTitle } from '@material-ui/lab';
 import { ERRORS, idToUpn } from '../../../model/data/Constants';
+import hourglassGif from '../../../assets/images/Hourglass.gif'
 
 
 
@@ -136,6 +137,10 @@ function OtpForm(props: IFormProps) {
 								</InputAdornment>
 							} placeholder={"הכנס קוד"} autoFocus={false} fullWidth />
 						</form>
+					</Grid>
+					<Grid container item md={12} justify="center">
+						<img src={hourglassGif} className="hourglass"/>
+						<Typography>ההודעה תתקבל בעוד כ-30 שניות..</Typography>
 					</Grid>
 					
 				</Grid>
