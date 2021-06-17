@@ -28,11 +28,12 @@ function CallbackMsg(props: ICallbackMsgProps) {
 			<Container maxWidth="md">
 			<Grid container justify="center" >
 				<Grid style={{ padding: "10px" }} item xs={12}>
-					<Typography variant="h4">המשתמש נוצר בהצלחה!</Typography>
-					<Typography variant="h6" style={{ fontWeight: "bold" }}>שם המשתמש האישי שלך הינו:</Typography>
+					<Typography variant="h5" className="bold">מעולה, המשתמש נוצר בהצלחה!</Typography>
+					<Typography variant="h6" className="bold">שם המשתמש האישי שלך:</Typography>
 					<Typography dir="ltr" className="english-font" style={{ color: "#2196f3" }}>{account}</Typography>
-					<Typography variant="h6" style={{ fontWeight: "bold", marginTop: "10px" }}>סיסמה:</Typography>
-					<Typography>כפי שנקבעה בתהליך הרישום</Typography>
+					<Typography style={{marginTop: 10}}>כדאי לצלם את המסך ולשמור את שם המשתמש :)</Typography>
+					{/* <Typography variant="h6" style={{ fontWeight: "bold", marginTop: "10px" }}>סיסמה:</Typography>
+					<Typography>כפי שנקבעה בתהליך הרישום</Typography> */}
 					{/* <Typography style={{ fontWeight: "bold", marginTop: "10px" }}>ניתן לחזור לאתר ולבצע התחברות באמצעות המשתמש.</Typography> */}
 
 				</Grid>

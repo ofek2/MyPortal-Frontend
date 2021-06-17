@@ -10,4 +10,5 @@
     top: -60px;
     left: 50%;
     transform: translate(-50%, 0);
+    filter: drop-shadow(2px 4px 3px rgba(0,0,0,0.5));
 }
