@@ -42,7 +42,7 @@ function IdForm(props: IFormProps) {
 		setIsLoading(true);
 
 		try {
-			await RestService.checkUser(idInput);
+			await RestService.checkUser(idInput, captchaRef?.current?.getValue());
 
 			setIsLoading(false);
 
@@ -100,7 +100,7 @@ function IdForm(props: IFormProps) {
 			<Typography variant="h4" style={{ fontWeight: "bold", marginBottom: "10px" }}>ברוכים הבאים</Typography>
 			
 			<Typography style={{ fontWeight: "bold", marginBottom: "10px"}}>שירותי הדיגיטל של צה"ל עוברים להזדהות חכמה!</Typography>
-			<Typography>כאן ניתן ליצור באופן עצמאי ובקלות משמתמש MY IDF</Typography>
+			<Typography>כאן ניתן ליצור באופן עצמאי ובקלות משתמש MY IDF</Typography>
 			<Typography style={{marginBottom: "10px"}}>איתו ניתן להתחבר בקלות ובנוחות לשירותי הדיגיטל של צה"ל.</Typography>
 			<Typography>להתחלת תהליך הרישום ולצורך אימות מול מערכת כוח האדם,</Typography>
 			<Typography>יש להזין מספר תעודת זהות מלא באורך 9 ספרות:</Typography>
@@ -123,6 +123,7 @@ function IdForm(props: IFormProps) {
 				</Grid>
 				<Grid item xs={12}>
 				<ReCAPTCHA
+					hl="iw"
 					ref={captchaRef}
 					style={{marginTop: 10}}
 					sitekey={config.captchaSiteKey}

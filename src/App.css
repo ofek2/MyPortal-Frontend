@@ -14,7 +14,9 @@
 }
 
 .App-content {
-  background-color: #f5e36e;
+  /* background-color: #f5e36e; */
+  background-color: #2f2f2f;
+  
   min-height: calc(100vh - 170px);
   display: flex;
   flex-direction: column;
@@ -42,4 +44,8 @@
   display: flex;
   align-items: center;
   margin-left: 5px !important;
+}
+
+.MuiAlert-message {
+  padding: 8px 30px;
 }

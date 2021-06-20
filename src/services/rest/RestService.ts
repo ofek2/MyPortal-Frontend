@@ -1,9 +1,9 @@
 import axiosInstance from "../../clients/axiosClient";
 
 class RestService {
-	public static async checkUser(idNumber: string) {
+	public static async checkUser(idNumber: string, captchaToken: string) {
 		try {
-			const res = await axiosInstance.post(`/users`, { idNumber });
+			const res = await axiosInstance.post(`/users`, { idNumber, "g-recaptcha-response": captchaToken });
 			return res.data;
 		} catch (e) {
 			throw e;

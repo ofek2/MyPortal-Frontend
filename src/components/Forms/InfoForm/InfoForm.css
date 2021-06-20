@@ -1,0 +1,26 @@
+.info-image {
+    width: inherit;
+    
+}
+
+.info-image-circle {
+    border-radius: 50%;
+    border: 1px solid black;
+    padding: 20px;
+    width: 180px;
+    height: 180px;
+    display: flex;
+    align-items: center;
+}
+
+.info-arrow {
+    width: 60px;
+    transform: rotateZ(-180deg);
+}
+
+@media screen and (max-width: 960px) {
+    
+    .info-arrow {
+        transform: rotateZ(90deg);
+    }
+}
