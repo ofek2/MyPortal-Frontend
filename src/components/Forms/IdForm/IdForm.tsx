@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import './IdForm.css';
-import { Typography, InputAdornment, Grid, IconButton, CircularProgress } from '@material-ui/core';
+import { Typography, InputAdornment, Grid, IconButton, CircularProgress, Container } from '@material-ui/core';
 import { ClkInput } from '../../ClkInput/ClkInput';
 import Send from '@material-ui/icons/Send';
 import IFormProps from '../IForm';
@@ -96,16 +96,16 @@ function IdForm(props: IFormProps) {
 
 	// Rendering
 	return (
-		<React.Fragment>
-			<Typography variant="h4" style={{ fontWeight: "bold", marginBottom: "10px" }}>ברוכים הבאים</Typography>
+		<Container maxWidth="sm">
+			<Typography variant="h3" style={{ fontWeight: "bold", marginBottom: 10, marginTop: 30 }}>ברוכים הבאים</Typography>
 			
-			<Typography style={{ fontWeight: "bold", marginBottom: "10px"}}>שירותי הדיגיטל של צה"ל עוברים להזדהות חכמה!</Typography>
-			<Typography>כאן ניתן ליצור באופן עצמאי ובקלות משתמש MY IDF</Typography>
-			<Typography style={{marginBottom: "10px"}}>איתו ניתן להתחבר בקלות ובנוחות לשירותי הדיגיטל של צה"ל.</Typography>
-			<Typography>להתחלת תהליך הרישום ולצורך אימות מול מערכת כוח האדם,</Typography>
+			<Typography style={{ fontWeight: "bold", marginBottom: 20}}>שירותי הדיגיטל של צה"ל עוברים להזדהות חכמה!</Typography>
+			<Typography>כאן ניתן ליצור באופן עצמאי ובקלות, משתמש MY IDF,
+			איתו ניתן להתחבר בקלות ובנוחות לשירותי הדיגיטל של צה"ל.</Typography>
+			<Typography style={{marginTop: 20}}>להתחלת תהליך הרישום ולצורך אימות מול מערכת כוח האדם,</Typography>
 			<Typography>יש להזין מספר תעודת זהות מלא באורך 9 ספרות:</Typography>
 			<Grid container direction="column" justify="center" alignItems="center" style={{ margin: "10px 0px" }}>
-				<Grid item md={3}>
+				<Grid item md={6}>
 					<form noValidate onSubmit={onClick}>
 						<ClkInput onChange={onChange} value={idInput} endAdornment={
 							<InputAdornment position="end" onClick={onClick}>
@@ -140,7 +140,7 @@ function IdForm(props: IFormProps) {
 					}
 				</Grid>
 			</Grid>
-		</React.Fragment>
+		</Container>
 	);
 }
 

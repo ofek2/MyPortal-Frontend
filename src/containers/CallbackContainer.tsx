@@ -11,7 +11,7 @@ function CallbackContainer(props) {
 
 	// Side effects
 	useEffect(() => {
-		onInit();
+	//	onInit();
 	}, []);
 
 	// Methodes

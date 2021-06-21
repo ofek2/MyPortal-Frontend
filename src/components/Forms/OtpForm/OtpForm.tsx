@@ -17,22 +17,23 @@ function OtpForm(props: IFormProps) {
 	const [error, setError] = useState<any>({ msg: '', severity: 'error' });
 	const [isLoading, setIsLoading] = useState(false);
 	const [otpInput, setOtpInput] = useState('');
+	const [timerInterval, setTimerInterval] = useState(0);
+	const [time, setTime] = useState(30);
+	
+	useEffect(() => {
+		onInit();
+	}, [])
 
-	// useEffect(() => {
-	// 	onInit();
-	// }, [])
-
-	// const onInit = () => {
-	// 	const {id, isRegistered} = payload;
-
-	// 	if (isRegistered) {
-	// 		setError({
-	// 			msg: ERRORS.userAlreadyRegistered(idToUpn(id)),
-	// 			severity: 'info'
-	// 		});
-	// 	}
-	// }
-
+	const onInit = () => {
+		let intervalId = setInterval(() => {
+			setTime(time - 1);
+			console.log(time)
+			if (time < 0) {
+				console.log("entered")
+				clearInterval(intervalId);
+			}
+		}, 1000);
+	}
 	// Methodes
 	const isFormValid = (number: string) => {
 		const isLengthValid = number.length === 6 && isValidInput(number);
@@ -140,7 +141,7 @@ function OtpForm(props: IFormProps) {
 					</Grid>
 					<Grid container item md={12} justify="center">
 						<img src={hourglassGif} className="hourglass"/>
-						<Typography>ההודעה תתקבל בעוד כ-30 שניות..</Typography>
+						<Typography>ההודעה תתקבל בעוד כ-{time} שניות..</Typography>
 					</Grid>
 					
 				</Grid>

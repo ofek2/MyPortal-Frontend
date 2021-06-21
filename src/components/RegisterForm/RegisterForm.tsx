@@ -31,7 +31,7 @@ function RegisterForm(props: WithWidth) {
 
 	// Rendering
 	return (
-		<Paper elevation={3} style={{ padding: "20px 0px", position: "relative" }} >
+		<Paper elevation={3} style={{ padding: "20px 0px", position: "relative", borderRadius: 30 }} >
 			<img src={idfPng} className="idf-icon"/>
 			{steps[currentStep].isResettable && 
 		

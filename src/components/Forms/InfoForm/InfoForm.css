@@ -1,14 +1,13 @@
 .info-image {
     width: inherit;
-    
 }
 
 .info-image-circle {
     border-radius: 50%;
     border: 1px solid black;
-    padding: 20px;
-    width: 180px;
-    height: 180px;
+    padding: 25px;
+    width: 200px;
+    height: 200px;
     display: flex;
     align-items: center;
 }
@@ -18,9 +17,16 @@
     transform: rotateZ(-180deg);
 }
 
-@media screen and (max-width: 960px) {
-    
+@media screen and (max-width: 960px) {   
     .info-arrow {
         transform: rotateZ(90deg);
+    }
+}
+
+@media screen and (max-width: 1250px) {   
+    .info-image-circle {
+        width: 145px;
+        height: 145px;
+        padding: 20px;
     }
 }

@@ -61,7 +61,7 @@ export class ChatBot {
 		// create Div that holds the xIcon
 		const xIconDiv = document.createElement("DIV");
 		xIconDiv.setAttribute("class", "xIcon_div");
-		xIconDiv.style.minHeight = "20px";
+		xIconDiv.style.minHeight = "22px";
 		// xIconDiv.style.display = "inline-block";
 		let xIconStyle = {
 			width: "10px",
@@ -126,13 +126,14 @@ export class ChatBot {
 		chatContainerDiv.setAttribute("id", this.chatContainer);
 		chatContainerDiv.scrollTop = chatContainerDiv.scrollHeight;
 		let chatContainerDivStyle = {
+			scrollBehavior: 'smooth',
 			overflow: 'auto',
 			overflowY: "auto",
 			overflowX: "auto",
 			maxWidth: "300px",
 			minHeight: "360px",
 			padding: "5px",
-			top: "10px",
+			top: "8px",
 			bottom: "0px",
 			position: "relative",
 			alignItems: "center",

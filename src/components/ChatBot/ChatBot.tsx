@@ -72,15 +72,16 @@ function ChatBott() {
 	}, []);
 
 	return (
-		<>
-			<div id="chat-bot" />
-			<Box position="fixed" bottom="10px" left="10px" style={{ backgroundColor: "white", zIndex: 1000, padding: "0px 3px", borderRadius: "5px", boxShadow: "0px 3px 3px -2px rgba(0,0,0,0.2), 0px 3px 4px 0px rgba(0,0,0,0.14), 0px 1px 8px 0px rgba(0,0,0,0.12)"}}>
-				<Typography style={{color: "black", fontSize: "14px"}}>
-					איך ניתן לסייע לך היום?
+		<div className="chat-bot-container">
+			<div id="chat-bot"/>
+			{/* <Box position="fixed" bottom="10px" left="10px" style={{ backgroundColor: "white", zIndex: 1000, padding: "0px 3px", borderRadius: "5px", boxShadow: "0px 3px 3px -2px rgba(0,0,0,0.2), 0px 3px 4px 0px rgba(0,0,0,0.14), 0px 1px 8px 0px rgba(0,0,0,0.12)"}}> */}
+			<Box style={{ backgroundColor: "#383838", zIndex: 1000, padding: "0px 3px", marginTop: 5, borderRadius: 5, boxShadow: "0px 3px 3px -2px rgba(0,0,0,0.2), 0px 3px 4px 0px rgba(0,0,0,0.14), 0px 1px 8px 0px rgba(0,0,0,0.12)"}}>
+				<Typography style={{color: "#fdd835", fontSize: 18}}>
+					היי, איך אפשר לעזור?
 				</Typography>
 			</Box>
 
-		</>
+		</div>
 	)
 }
 

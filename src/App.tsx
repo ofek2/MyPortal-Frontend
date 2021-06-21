@@ -26,7 +26,7 @@ function App() {
             <Redirect to="/" />
           </Switch>
         </Router>
-        <Footer />
+        {/* <Footer /> */}
         <ChatBott/>
       </div>
     </div>
