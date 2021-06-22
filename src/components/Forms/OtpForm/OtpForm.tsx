@@ -5,8 +5,8 @@ import { ClkInput } from '../../ClkInput/ClkInput';
 import Send from '@material-ui/icons/Send';
 import IFormProps from '../IForm';
 import RestService from '../../../services/rest/RestService';
-import { Alert, AlertTitle } from '@material-ui/lab';
-import { ERRORS, idToUpn } from '../../../model/data/Constants';
+import { Alert } from '@material-ui/lab';
+import { ERRORS } from '../../../model/data/Constants';
 import hourglassGif from '../../../assets/images/Hourglass.gif'
 
 
@@ -17,23 +17,30 @@ function OtpForm(props: IFormProps) {
 	const [error, setError] = useState<any>({ msg: '', severity: 'error' });
 	const [isLoading, setIsLoading] = useState(false);
 	const [otpInput, setOtpInput] = useState('');
-	const [timerInterval, setTimerInterval] = useState(0);
+	const [timerOn, setTimerOn] = useState(true);
 	const [time, setTime] = useState(30);
-	
-	useEffect(() => {
-		onInit();
-	}, [])
+	let intervalId;
 
-	const onInit = () => {
-		let intervalId = setInterval(() => {
-			setTime(time - 1);
-			console.log(time)
-			if (time < 0) {
-				console.log("entered")
-				clearInterval(intervalId);
-			}
-		}, 1000);
-	}
+	useEffect(() => {
+		if (timerOn) {
+			intervalId = setInterval(() => {
+				setTime(time => time - 1);
+			}, 1000);
+		} else {
+			clearInterval(intervalId);
+		}
+		
+
+		return () => clearInterval(intervalId);
+	}, [timerOn])
+
+	useEffect(() => {
+		if (time <= 0) {
+			setTimerOn(false);
+			openChatBot();
+		}
+	}, [time])
+
 	// Methodes
 	const isFormValid = (number: string) => {
 		const isLengthValid = number.length === 6 && isValidInput(number);
@@ -100,6 +107,7 @@ function OtpForm(props: IFormProps) {
 		if (!isLoading) {
 			if (isFormValid(otpInput)) {
 				setIsLoading(true);
+				setTimerOn(false);
 				await isOtpMatch();
 			}
 			else {
@@ -108,6 +116,27 @@ function OtpForm(props: IFormProps) {
 					severity: 'error'
 				});
 			}
+		}
+	}
+
+	const openChatBot = () => {
+		let chatBot: HTMLElement | null = document.querySelector('#chat_bot_logo');
+
+		if (chatBot) {
+			let activeChat = document.querySelector('#active_chat');
+			if (activeChat) {
+				chatBot.click();	// close active chat
+			}
+			chatBot.click();
+			setTimeout(() => {
+				let chatBtns: NodeListOf<HTMLElement> | null = document.querySelectorAll('#active_chat button');
+				if (chatBtns) {
+					let noOtpReceivedBtn: HTMLElement | null = chatBtns[1];
+					console.log(noOtpReceivedBtn);
+					noOtpReceivedBtn?.click();
+				}
+			}, 500);
+			
 		}
 	}
 
@@ -139,10 +168,12 @@ function OtpForm(props: IFormProps) {
 							} placeholder={"הכנס קוד"} autoFocus={false} fullWidth />
 						</form>
 					</Grid>
-					<Grid container item md={12} justify="center">
-						<img src={hourglassGif} className="hourglass"/>
-						<Typography>ההודעה תתקבל בעוד כ-{time} שניות..</Typography>
+					{timerOn && 
+					<Grid container item xs={12} justify="center">
+						<Typography style={{display: "flex"}}><img src={hourglassGif} className="hourglass"/>
+ההודעה תתקבל במכשירך ב-{30} השניות הקרובות..</Typography>
 					</Grid>
+					}
 					
 				</Grid>
 			</React.Fragment>
@@ -157,7 +188,7 @@ function OtpForm(props: IFormProps) {
 				}
 			</Grid>
 			
-			<Grid item xs={12}>
+			{/* <Grid item xs={12}>
 				<Alert severity="info" className="info-container">
 					<AlertTitle><b>לא קיבלת את הקוד?</b></AlertTitle>		
 					<Typography variant="body2">מספר הטלפון שברשותך אינו מעודכן ברישומת הצה"לית,</Typography>
@@ -168,7 +199,7 @@ function OtpForm(props: IFormProps) {
 					<Typography variant="body2"><u>מילואים</u> - יש לעדכן את פרטי הקשר אצל קצין/ת הקישור.</Typography>
 					<Typography variant="body2"><u>אזרחים עובדי צה"ל</u> - יש לעדכן את פרטי הקשר אצל קצין/ת האזרחים.</Typography>
 				</Alert>
-			</Grid> 
+			</Grid>  */}
 			<Grid item xs={12}>
 				<Alert severity="info" className="info-container">	
 					<Typography variant="body2"><b>הסתבכת? לא הצלחת? יש לך שאלות נוספות? </b> אנחנו כאן כדי לעזור!</Typography>	

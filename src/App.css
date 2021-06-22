@@ -16,12 +16,12 @@
 .App-content {
     /* background-color: #f5e36e; */
   /* background-color: #2f2f2f; */
-  background-image: url(/static/media/v748-toon-131.46d85de7.jpg);
+  /* background-image: url(/static/media/v748-toon-131.46d85de7.jpg); */
+  background: linear-gradient(135deg, rgba(34,22,6,1) 0%, rgba(80,66,39,1) 20%, rgba(43,38,24,1) 55%, rgba(80,66,39,1) 86%, rgba(48,48,48,1) 100%);
   background-size: cover;
   /* background-repeat: round; */
   min-height: calc(100vh - 170px);
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);

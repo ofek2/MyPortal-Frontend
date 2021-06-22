@@ -113,10 +113,14 @@ export class ChatBot {
 		this.scrollDown("chat_container", scrollTypingIndicator);
 		// Step 2: Display the answer of the selected question
 		setTimeout(() => {
-			activeChatContainer.removeChild(botTyping);
-			activeChatContainer.appendChild(new ChatRow(false, faq.answer, this.icons.assistance, false).buildChatMessages());
-			this.createChatFlow(anyOtherQuestion);
-			this.scrollDown("chat_container", scrollToClientQuestion);
+			activeChatContainer = document.getElementById(this.chatContainer);
+			
+			if (activeChatContainer) {
+				activeChatContainer.removeChild(botTyping);
+				activeChatContainer.appendChild(new ChatRow(false, faq.answer, this.icons.assistance, false).buildChatMessages());
+				this.createChatFlow(anyOtherQuestion);
+				this.scrollDown("chat_container", scrollToClientQuestion);
+			}
 		}, 2000);
 	}
 

@@ -52,7 +52,7 @@ export class ChatRow {
         messagePopupDiv.setAttribute("class", "message_popup");
 
         let messagePopupDivStyle = {
-            width: "65%",
+            width: "75%",
             padding: "5px",
             minHeight: "30px",
             textAlign: "right",
