@@ -97,7 +97,7 @@ function IdForm(props: IFormProps) {
 	// Rendering
 	return (
 		<Container maxWidth="sm">
-			<Typography variant="h3" style={{ fontWeight: "bold", marginBottom: 10, marginTop: 30 }}>ברוכים הבאים</Typography>
+			<Typography variant="h3" style={{ fontWeight: "bold", marginBottom: 10 }}>ברוכים הבאים</Typography>
 			
 			<Typography style={{ fontWeight: "bold", marginBottom: 20}}>שירותי הדיגיטל של צה"ל עוברים להזדהות חכמה!</Typography>
 			<Typography>כאן ניתן ליצור באופן עצמאי ובקלות, משתמש MY IDF,

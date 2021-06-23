@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './InfoForm.css';
 import { Typography, Grid, Button, Hidden } from '@material-ui/core';
 import Favorite from '@material-ui/icons/Favorite';
@@ -7,15 +7,34 @@ import info1 from '../../../assets/images/info1.png';
 import info2 from '../../../assets/images/info2.png';
 import info3 from '../../../assets/images/info3.png';
 import arrow from '../../../assets/images/arrow.png';
+import MsService from '../../../services/microsoft/MsService';
+import { ERRORS } from '../../../model/data/Constants';
+import { Alert } from '@material-ui/lab';
 
 function InfoForm(props: IFormProps) {
 	// State & props
 	const { onResolve, payload } = props;
+	const [error, setError] = useState<any>({ msg: '' });
 
 	// Handlers
+	// const onClick = async () => {
+	// 	onResolve(payload);
+	// }
 	const onClick = async () => {
-		onResolve(payload);
+		const {currentUserUpn} = payload;
+		
+		if (currentUserUpn) {
+			try {
+				await MsService.login(`${currentUserUpn}`);
+			} catch (err) {
+				console.log(err)
+				setError({ msg: ERRORS.general })
+			}
+		} else {
+			setError({ msg: ERRORS.general });
+		}
 	}
+
 
 	
 	// Rendering
@@ -78,6 +97,17 @@ function InfoForm(props: IFormProps) {
 						<Typography align="center">לבסוף, יש לבחור סיסמה קבועה למשתמש עפ"י ההנחיות</Typography>
 					</Grid>
 				</Hidden>
+				<Grid container direction="column" justify="center" alignItems="center" style={{ margin: "10px 0px" }}>
+					<Grid item xs={12}>
+						{
+							error && error.msg !== '' ?
+								<Alert severity="error" >
+									{error.msg}
+								</Alert> :
+								<React.Fragment />
+						}
+					</Grid>
+				</Grid>
 			 </Grid>
 			<Button variant="contained" onClick={onClick} disableElevation={true} color="primary" className="idf-button" style={{ margin: "10px 0px" }}>המשך</Button>
 		</React.Fragment>

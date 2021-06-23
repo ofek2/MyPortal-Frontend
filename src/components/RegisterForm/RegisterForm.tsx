@@ -10,6 +10,7 @@ import withWidth, { WithWidth } from '@material-ui/core/withWidth';
 import './RegisterForm.css';
 import StepIcon from '../StepIcon/StepIcon';
 import idfPng from '../../assets/images/idf.png';
+import { MyPaper } from '../Common/MyPaper';
 let currentPayload = {};
 
 function RegisterForm(props: WithWidth) {
@@ -31,8 +32,7 @@ function RegisterForm(props: WithWidth) {
 
 	// Rendering
 	return (
-		<Paper elevation={3} style={{ padding: "20px 0px", position: "relative", borderRadius: 30 }} >
-			<img src={idfPng} className="idf-icon"/>
+		<MyPaper>
 			{steps[currentStep].isResettable && 
 		
 				<Tooltip title="חזרה" aria-label="חזרה">
@@ -73,7 +73,7 @@ function RegisterForm(props: WithWidth) {
 					</Hidden>
 				</Grid>
 			</Grid>
-		</Paper>
+		</MyPaper>
 	);
 }
 

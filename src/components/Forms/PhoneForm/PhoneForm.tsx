@@ -11,7 +11,7 @@ import LoadingButton from '../../Buttons/LoadingButton';
 
 function PhoneForm(props: IFormProps) {
 	// State & props
-	const { payload } = props;
+	const { onResolve, payload } = props;
 	const [error, setError] = useState<any>({ msg: '' });
 	const [isResettingPassword, setIsResettingPassword] = useState(false);
 	const [isLoadingFirstTime, setIsLoadingFirstTime] = useState(true);
@@ -26,18 +26,21 @@ function PhoneForm(props: IFormProps) {
 		setIsLoadingFirstTime(false);
 	}
 	// Handlers
+	// const onContinueClick = async () => {
+	// 	
+	// 	if (currentUserUpn) {
+	// 		try {
+	// 			await MsService.login(`${currentUserUpn}`);
+	// 		} catch (err) {
+	// 			console.log(err)
+	// 			setError({ msg: ERRORS.general })
+	// 		}
+	// 	} else {
+	// 		setError({ msg: ERRORS.general });
+	// 	}
+	// }
 	const onContinueClick = async () => {
-		console.log(currentUserUpn)
-		if (currentUserUpn) {
-			try {
-				await MsService.login(`${currentUserUpn}`);
-			} catch (err) {
-				console.log(err)
-				setError({ msg: ERRORS.general })
-			}
-		} else {
-			setError({ msg: ERRORS.general });
-		}
+		onResolve({currentUserUpn, ...payload});
 	}
 
 	const onSendAgainClick = async () => {
@@ -81,7 +84,7 @@ function PhoneForm(props: IFormProps) {
 					<Button variant="contained" onClick={onContinueClick} disableElevation={true} color="primary" className="idf-button" style={{ margin: "10px 0px", marginLeft: "20px" }}>קיבלתי, אפשר להמשיך</Button>
 					<LoadingButton isLoading={isResettingPassword} variant="contained" onClick={onSendAgainClick} disableElevation={true} className="idf-button-secondary" style={{ margin: "10px 0px", backgroundColor: "#333" }}>שלחו לי שוב</LoadingButton>
 				</Grid>
-					<Grid container direction="column" justify="center" alignItems="center" style={{ margin: "10px 0px" }}>
+				<Grid container direction="column" justify="center" alignItems="center" style={{ margin: "10px 0px" }}>
 					<Grid item xs={12}>
 						{
 							error && error.msg !== '' ?
@@ -93,9 +96,11 @@ function PhoneForm(props: IFormProps) {
 					</Grid>
 				</Grid>
 				<Grid item xs={12}>
-					<Typography variant="subtitle1" className="bold support-section">זהו אינו מספר הטלפון הנייד שלך?</Typography>
-					<Typography variant="body2">צור קשר עם מוקד התמיכה במס' 1111 ובחר את השלוחה המתאימה עבורך</Typography>
-					<Typography variant="body2">מתגייסים - שלוחה 1, משרתים - שלוחה 0, מילואים - שלוחה 4</Typography>
+					<Alert severity="info">
+						<Typography variant="subtitle1" className="bold support-section">זהו אינו מספר הטלפון הנייד שלך?</Typography>
+						<Typography variant="body2">צור קשר עם מוקד התמיכה במס' 1111 ובחר את השלוחה המתאימה עבורך</Typography>
+						<Typography variant="body2">מתגייסים - שלוחה 1, משרתים - שלוחה 0, מילואים - שלוחה 4</Typography>
+					</Alert>
 				</Grid> 
 			</React.Fragment>
 		}

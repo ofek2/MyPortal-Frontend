@@ -18,8 +18,8 @@
   /* background-color: #2f2f2f; */
   /* background-image: url(/static/media/v748-toon-131.46d85de7.jpg); */
   /* background: linear-gradient(135deg, rgba(34,22,6,1) 0%, rgba(80,66,39,1) 20%, rgba(43,38,24,1) 55%, rgba(80,66,39,1) 86%, rgba(48,48,48,1) 100%); */
-  background: linear-gradient(180deg, rgba(48,48,48,1) 0%, #332605 42%, rgb(86 63 20) 53%, rgb(0 0 0) 100%);
-  background-size: cover;
+  /* background: linear-gradient(180deg, rgba(48,48,48,1) 0%, #332605 42%, rgb(86 63 20) 53%, rgb(0 0 0) 100%);
+  background-size: cover; */
   /* background-repeat: round; */
   min-height: calc(100vh - 170px);
   display: flex;
@@ -28,15 +28,21 @@
   font-size: calc(10px + 2vmin);
   color: white;
   padding: 80px 0px;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
+ 
 }
 
 .App-link {
   color: #61dafb;
+}
+
+.App-Bg {
+  background: linear-gradient(180deg, rgba(48,48,48,1) 0%, #332605 42%, rgb(86 63 20) 53%, rgb(0 0 0) 100%);
+  background-size: cover;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
 }
 
 @keyframes App-logo-spin {

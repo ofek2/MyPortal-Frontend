@@ -4,7 +4,7 @@
 
 .info-image-circle {
     border-radius: 50%;
-    border: 1px solid black;
+    border: 3px solid black;
     padding: 25px;
     width: 200px;
     height: 200px;
@@ -13,20 +13,36 @@
 }
 
 .info-arrow {
-    width: 60px;
+    width: 100px;
     transform: rotateZ(-180deg);
 }
 
-@media screen and (max-width: 960px) {   
+@media screen and (max-width: 1430px) {   
     .info-arrow {
-        transform: rotateZ(90deg);
+        width: 90px;
     }
-}
-
-@media screen and (max-width: 1250px) {   
     .info-image-circle {
         width: 145px;
         height: 145px;
         padding: 20px;
     }
 }
+
+@media screen and (max-width: 1145px) {   
+    .info-arrow {
+        width: 65px;
+    }
+    .info-image-circle {
+        width: 145px;
+        height: 145px;
+        padding: 20px;
+    }
+}
+
+@media screen and (max-width: 959px) {   
+    .info-arrow {
+        transform: rotateZ(90deg);
+        padding: 10px;
+    }
+}
+

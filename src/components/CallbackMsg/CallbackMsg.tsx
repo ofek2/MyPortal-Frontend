@@ -1,10 +1,13 @@
 import React, { useState } from 'react';
-import { Grid, Paper, Typography, Container, Hidden, MobileStepper, Stepper, Step, StepLabel } from '@material-ui/core';
+import { Grid, Paper, Typography, Container, Hidden, MobileStepper, Stepper, Step, StepLabel, Link } from '@material-ui/core';
 import registerSteps from '../../model/data/RegisterSteps';
 import StepIcon from '../StepIcon/StepIcon';
 import applinks from '../../model/data/AppLinks';
 import tzahal from '../../assets/images/tzahal.png';
+import idfPng from '../../assets/images/idf.png';
+
 import './CallbackMsg.css';
+import { MyPaper } from '../Common/MyPaper';
 
 interface ICallbackMsgProps {
 	account: string
@@ -25,7 +28,7 @@ function CallbackMsg(props: ICallbackMsgProps) {
 	}
 	// Rendering
 	return (
-		<Paper elevation={3} style={{ padding: "10px 0px" }} >
+		<>
 			<Container maxWidth="md">
 			<Grid container justify="center" >
 				<Grid style={{ padding: "10px" }} item xs={12}>
@@ -37,7 +40,9 @@ function CallbackMsg(props: ICallbackMsgProps) {
 					<Typography>כפי שנקבעה בתהליך הרישום</Typography> */}
 					{/* <Typography style={{ fontWeight: "bold", marginTop: "10px" }}>ניתן לחזור לאתר ולבצע התחברות באמצעות המשתמש.</Typography> */}
 					<Typography className="bold" style={{marginTop: 30}}>למעבר לדף הבית הדיגיטלי של צה"ל:</Typography>
-					<img src={tzahal} style={{marginTop: 10, cursor: "pointer", width: "150px"}}/>
+					<a href={"https://home.idf.il"}>
+						<img src={tzahal} style={{marginTop: 10, cursor: "pointer", width: "150px"}}/>
+					</a>
 				</Grid>
 
 				{/* <Grid container item sm={10} xs={12} style={{marginTop: 20, marginBottom: 20}} justify="center">
@@ -84,7 +89,7 @@ function CallbackMsg(props: ICallbackMsgProps) {
 			</Grid> */}
 			</Grid>
 			</Container>
-		</Paper>
+		</>
 	);
 }
 

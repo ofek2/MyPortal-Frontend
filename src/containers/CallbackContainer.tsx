@@ -3,6 +3,7 @@ import { Grid, Container, Typography, CircularProgress } from '@material-ui/core
 import CallbackMsg from '../components/CallbackMsg/CallbackMsg';
 import MsService from '../services/microsoft/MsService';
 import { withRouter } from 'react-router-dom'
+import { MyPaper } from '../components/Common/MyPaper';
 
 function CallbackContainer(props) {
 	// State & props
@@ -11,7 +12,7 @@ function CallbackContainer(props) {
 
 	// Side effects
 	useEffect(() => {
-	//	onInit();
+		onInit();
 	}, []);
 
 	// Methodes
@@ -62,7 +63,7 @@ function CallbackContainer(props) {
 	return (
 		<Grid container item xs={12} md={10} xl={8} style={{ zIndex: 5 }}>
 			<Container>
-				{isLoading ? loadingComp : <CallbackMsg account={account} />}
+				{isLoading ? loadingComp : <MyPaper><CallbackMsg account={account} /></MyPaper>}
 			</Container>
 		</Grid>
 	);
