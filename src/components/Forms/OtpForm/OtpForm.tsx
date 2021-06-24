@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './OtpForm.css';
 import { Typography, InputAdornment, Grid, IconButton, CircularProgress, Container } from '@material-ui/core';
 import { ClkInput } from '../../ClkInput/ClkInput';
@@ -8,17 +8,19 @@ import RestService from '../../../services/rest/RestService';
 import { Alert } from '@material-ui/lab';
 import { ERRORS } from '../../../model/data/Constants';
 import hourglassGif from '../../../assets/images/Hourglass.gif'
-
+import _ from 'lodash';
 
 
 function OtpForm(props: IFormProps) {
+	const waitingTime = 20;
+	const debounceDelay = 1500;
 	// State & props
 	const { onResolve, payload } = props;
 	const [error, setError] = useState<any>({ msg: '', severity: 'error' });
 	const [isLoading, setIsLoading] = useState(false);
 	const [otpInput, setOtpInput] = useState('');
 	const [timerOn, setTimerOn] = useState(true);
-	const [time, setTime] = useState(30);
+	const [time, setTime] = useState(waitingTime);
 	let intervalId;
 
 	useEffect(() => {
@@ -41,6 +43,11 @@ function OtpForm(props: IFormProps) {
 		}
 	}, [time])
 
+	useEffect(()=> {
+		if (otpInput != "") {
+			debouncedSubmit();
+		}
+	}, [otpInput])
 	// Methodes
 	const isFormValid = (number: string) => {
 		const isLengthValid = number.length === 6 && isValidInput(number);
@@ -92,6 +99,8 @@ function OtpForm(props: IFormProps) {
 		}
 	}
 
+	
+
 	// Handlers
 	const onChange = (value: any) => {
 		const inputVal = value.target.value;
@@ -101,9 +110,7 @@ function OtpForm(props: IFormProps) {
 		}
 	}
 
-	const onClick = async (event) => {
-		event.preventDefault();
-
+	const submit = async () => {
 		if (!isLoading) {
 			if (isFormValid(otpInput)) {
 				setIsLoading(true);
@@ -118,7 +125,17 @@ function OtpForm(props: IFormProps) {
 			}
 		}
 	}
+	const onSubmit = async (event) => {
+		event.preventDefault();
 
+		await submit();
+	}
+
+	const debouncedSubmit = useCallback(
+		_.debounce(submit, debounceDelay),
+		[otpInput], // will be created only once initially
+	);
+	
 	const openChatBot = () => {
 		let chatBot: HTMLElement | null = document.querySelector('#chat_bot_logo');
 
@@ -132,7 +149,6 @@ function OtpForm(props: IFormProps) {
 				let chatBtns: NodeListOf<HTMLElement> | null = document.querySelectorAll('#active_chat button');
 				if (chatBtns) {
 					let noOtpReceivedBtn: HTMLElement | null = chatBtns[1];
-					console.log(noOtpReceivedBtn);
 					noOtpReceivedBtn?.click();
 				}
 			}, 500);
@@ -153,9 +169,9 @@ function OtpForm(props: IFormProps) {
 				<Grid container direction="column" justify="center" alignItems="center" style={{ margin: "10px 0px" }}>
 					<Typography className="bold">נא להזין את הקוד שנשלח:​</Typography>
 					<Grid item md={6}>
-						<form noValidate onSubmit={onClick}>
+						<form noValidate onSubmit={onSubmit}>
 							<ClkInput onChange={onChange} value={otpInput} endAdornment={
-								<InputAdornment position="end" onClick={onClick}>
+								<InputAdornment position="end" onClick={onSubmit}>
 									{
 										isLoading ?
 											<CircularProgress color="primary" size={23} thickness={7} style={{ marginLeft: "10px", cursor: "default" }} />
@@ -171,7 +187,7 @@ function OtpForm(props: IFormProps) {
 					{timerOn && 
 					<Grid container item xs={12} justify="center">
 						<Typography style={{display: "flex"}}><img src={hourglassGif} className="hourglass"/>
-ההודעה תתקבל במכשירך ב-{30} השניות הקרובות..</Typography>
+ההודעה תתקבל במכשירך ב-{waitingTime} השניות הקרובות..</Typography>
 					</Grid>
 					}
 					
@@ -200,12 +216,12 @@ function OtpForm(props: IFormProps) {
 					<Typography variant="body2"><u>אזרחים עובדי צה"ל</u> - יש לעדכן את פרטי הקשר אצל קצין/ת האזרחים.</Typography>
 				</Alert>
 			</Grid>  */}
-			<Grid item xs={12}>
+			{/* <Grid item xs={12}>
 				<Alert severity="info" className="info-container">	
 					<Typography variant="body2"><b>הסתבכת? לא הצלחת? יש לך שאלות נוספות? </b> אנחנו כאן כדי לעזור!</Typography>	
 					<Typography variant="body2">פנו אלינו במייל: MySupport@idf.il</Typography>
 				</Alert>
-			</Grid> 
+			</Grid>  */}
 		
 		</Container>
 	);

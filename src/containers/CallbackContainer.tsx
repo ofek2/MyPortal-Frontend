@@ -49,12 +49,14 @@ function CallbackContainer(props) {
 		}
 	}
 
+	const loadingColor = "rgba(256,256,256,0.8)";
+	
 	const loadingComp = <Grid container item xs={12} justify="center" direction="column">
 		<Grid item xs={12}>
-			<CircularProgress style={{color: "#333"}}/>
+			<CircularProgress style={{color: loadingColor}}/>
 		</Grid>
 		<Grid item xs={12}>
-			<Typography variant="h4" color="textPrimary">כבר מסיימים, אנא המתן...</Typography>
+			<Typography variant="h4" style={{color: loadingColor}}>כבר מסיימים, אנא המתן...</Typography>
 		</Grid>
 		
 	</Grid>;

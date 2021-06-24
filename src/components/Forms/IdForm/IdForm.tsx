@@ -90,10 +90,6 @@ function IdForm(props: IFormProps) {
 		}
 	}
 
-	const onCaptchaChange = (value) => {
-		console.log(value);
-	}
-
 	// Rendering
 	return (
 		<Container maxWidth="sm">
@@ -127,7 +123,6 @@ function IdForm(props: IFormProps) {
 					ref={captchaRef}
 					style={{marginTop: 10}}
 					sitekey={config.captchaSiteKey}
-					onChange={onCaptchaChange}
 				/>
 				</Grid>
 				<Grid item xs={12}>

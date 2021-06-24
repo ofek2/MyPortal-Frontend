@@ -36,7 +36,8 @@
 }
 
 .App-Bg {
-  background: linear-gradient(180deg, rgba(48,48,48,1) 0%, #332605 42%, rgb(86 63 20) 53%, rgb(0 0 0) 100%);
+  background-image: url("./assets/images/back.png");
+  /* background: linear-gradient(180deg, rgba(48,48,48,1) 0%, #332605 42%, rgb(86 63 20) 53%, rgb(0 0 0) 100%); */
   background-size: cover;
   position: fixed;
   top: 0;
