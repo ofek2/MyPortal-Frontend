@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './InitialPasswordForm.css';
-import '../InfoForm/InfoForm.css';
+// import '../InfoForm/InfoForm.css';
 import { Typography, Button, Grid, CircularProgress, Hidden } from '@material-ui/core';
 import IFormProps from '../IForm';
 import CensorPhone from '../../CensorPhone/CensorPhone';
@@ -27,7 +27,7 @@ function InitialPasswordForm(props: IFormProps) {
 	}, [])
 
 	const onInit = async () => {
-		await onSendAgainClick();
+		// await onSendAgainClick();
 		setIsLoadingFirstTime(false);
 	}
 	// Handlers
@@ -63,6 +63,12 @@ function InitialPasswordForm(props: IFormProps) {
 		}
 	}
 
+	const instructions = [
+		{image: info1, text: 'בחלון הבא, יש להדביק את הסיסמה הזמנית שקיבלת ב-SMS'},
+		{image: info2, text: 'לאחר מכן, יש להקליד את קוד האימות הנוסף שיתקבל בהודעת SMS'},
+		{image: info3, text: 'לבסוף, יש לבחור סיסמה קבועה למשתמש עפ"י ההנחיות'}
+	]
+
 	// Rendering
 	return (
 		<React.Fragment>
@@ -84,7 +90,22 @@ function InitialPasswordForm(props: IFormProps) {
 				<Typography>ולכן, ההזדהות החכמה של MY IDF כוללת אימות דו-שלבי באמצעות הודעת SMS.</Typography>
 				<Typography className="bold" style={{marginTop: 10}}>לסיום תהליך הרישום, נצטרך לאמת את זהותך עוד פעם אחת:</Typography>
 				<Grid container justify="center" alignItems="flex-start" style={{marginTop: 20}} >
-					<Grid item md={3} xs={12} direction="column" container justify="center" alignItems="center">
+					{instructions.map((instruction, index) => 
+						<React.Fragment key={index}>
+							<Grid item md={3} xs={12} direction="column" container justify="center" alignItems="center">
+								<div className={"info-image-circle"}><img src={instruction.image} className={"info-image"}/></div>
+								<Hidden mdUp>
+									<Typography align="center" className="info-text">{instruction.text}</Typography>
+								</Hidden>
+							</Grid>
+							{index < instructions.length - 1 && 
+							<Grid item md={1} xs={12} style={{alignSelf:"center"}}>
+								<img src={arrow} className={"info-arrow"}/>
+							</Grid>}	
+						</React.Fragment>
+					)}
+
+					{/* <Grid item md={3} xs={12} direction="column" container justify="center" alignItems="center">
 						<div className={"info-image-circle"}><img src={info1} className={"info-image"}/>
 						</div>
 						<Hidden mdUp>
@@ -109,11 +130,20 @@ function InitialPasswordForm(props: IFormProps) {
 						<Hidden mdUp>
 							<Typography align="center">לבסוף, יש לבחור סיסמה קבועה למשתמש עפ"י ההנחיות</Typography>
 						</Hidden>
-					</Grid>
+					</Grid> */}
 
 
 					<Hidden smDown>
-						<Grid container item md={3}  justify="center" alignItems="flex-start">
+						{instructions.map((instruction, index) =>
+							<React.Fragment key={index}>
+								<Grid container item md={3}  justify="center" alignItems="flex-start">
+									<Typography align="center" className="info-text">{instruction.text}</Typography>
+								</Grid>
+								{index < instructions.length - 1 &&
+								<Grid item md={1} style={{alignSelf:"center"}}></Grid>}
+							</React.Fragment>
+						)}
+						{/* <Grid container item md={3}  justify="center" alignItems="flex-start">
 							<Typography align="center">בחלון הבא, יש להדביק את הסיסמה הזמנית שקיבלת ב-SMS</Typography>
 						</Grid>
 
@@ -127,11 +157,11 @@ function InitialPasswordForm(props: IFormProps) {
 
 						<Grid container item md={3} justify="center" alignItems="flex-start">
 							<Typography align="center">לבסוף, יש לבחור סיסמה קבועה למשתמש עפ"י ההנחיות</Typography>
-						</Grid>
+						</Grid> */}
 					</Hidden>
 					<Grid container item xs={12} justify="center" alignItems="center">
-						<Button variant="contained" onClick={onContinueClick} disableElevation={true} color="primary" className="idf-button" style={{ margin: "10px 0px", marginLeft: "20px" }}>קיבלתי, אפשר להמשיך</Button>
-						<LoadingButton isLoading={isResettingPassword} variant="contained" onClick={onSendAgainClick} disableElevation={true} className="idf-button-secondary" style={{ margin: "10px 0px", backgroundColor: "#333" }}>שלחו לי שוב</LoadingButton>
+						<Button variant="contained" onClick={onContinueClick} disableElevation={true} color="primary" className="idf-button" >קיבלתי, אפשר להמשיך</Button>
+						<LoadingButton isLoading={isResettingPassword} variant="contained" onClick={onSendAgainClick} disableElevation={true} className="idf-button-secondary" style={{ backgroundColor: "#333" }}>שלחו לי שוב</LoadingButton>
 					</Grid>
 					<Grid container direction="column" justify="center" alignItems="center" style={{ margin: "10px 0px" }}>
 						<Grid item xs={12}>

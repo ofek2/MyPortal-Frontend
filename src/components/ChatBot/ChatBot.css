@@ -74,11 +74,11 @@ button.three-d {
   position: relative;
   /* display: grid; */
   margin: 0 10px 10px 0;
-  padding: 0 10px;
+  padding: 5px 10px;
   background-color: #fde85e;
   color: #333;
   width: 230px;
-  height: 60px;
+  min-height: 60px;
   line-height: 20px;
   vertical-align: middle;
   font-family: 'Arimo';
@@ -112,9 +112,13 @@ button.three-d:hover {
 }
 
 .xIcon_div {
-  background: #fbc02d !important;
+  background: #fde85e !important;
   border-top-left-radius: inherit;
   border-top-right-radius: inherit;
+  padding: 0px 5px;
+  min-height: 23px;
+  display: flex;
+  align-items: center;
 }
 /* Typing Indicator */
 

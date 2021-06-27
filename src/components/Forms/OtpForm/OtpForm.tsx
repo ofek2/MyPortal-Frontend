@@ -9,6 +9,7 @@ import { Alert } from '@material-ui/lab';
 import { ERRORS } from '../../../model/data/Constants';
 import hourglassGif from '../../../assets/images/Hourglass.gif'
 import _ from 'lodash';
+import { useTimer } from '../../../hooks/timerHook';
 
 
 function OtpForm(props: IFormProps) {
@@ -19,29 +20,50 @@ function OtpForm(props: IFormProps) {
 	const [error, setError] = useState<any>({ msg: '', severity: 'error' });
 	const [isLoading, setIsLoading] = useState(false);
 	const [otpInput, setOtpInput] = useState('');
-	const [timerOn, setTimerOn] = useState(true);
-	const [time, setTime] = useState(waitingTime);
-	let intervalId;
 
-	useEffect(() => {
-		if (timerOn) {
-			intervalId = setInterval(() => {
-				setTime(time => time - 1);
-			}, 1000);
-		} else {
-			clearInterval(intervalId);
+	const openChatBot = () => {
+		let chatBot: HTMLElement | null = document.querySelector('#chat_bot_logo');
+
+		if (chatBot) {
+			let activeChat = document.querySelector('#active_chat');
+			if (activeChat) {
+				chatBot.click();	// close active chat
+			}
+			chatBot.click();
+			setTimeout(() => {
+				let chatBtns: NodeListOf<HTMLElement> | null = document.querySelectorAll('#active_chat button');
+				if (chatBtns) {
+					let noOtpReceivedBtn: HTMLElement | null = chatBtns[1];
+					noOtpReceivedBtn?.click();
+				}
+			}, 500);
+			
 		}
+	}
+	const [time, setTime, timerOn, setTimerOn] = useTimer(waitingTime, openChatBot);
+	// const [timerOn, setTimerOn] = useState(true);
+	// const [time, setTime] = useState(waitingTime);
+	// let intervalId;
+
+	// useEffect(() => {
+	// 	if (timerOn) {
+	// 		intervalId = setInterval(() => {
+	// 			setTime(time => time - 1);
+	// 		}, 1000);
+	// 	} else {
+	// 		clearInterval(intervalId);
+	// 	}
 		
 
-		return () => clearInterval(intervalId);
-	}, [timerOn])
+	// 	return () => clearInterval(intervalId);
+	// }, [timerOn])
 
-	useEffect(() => {
-		if (time <= 0) {
-			setTimerOn(false);
-			openChatBot();
-		}
-	}, [time])
+	// useEffect(() => {
+	// 	if (time <= 0) {
+	// 		setTimerOn(false);
+	// 		openChatBot();
+	// 	}
+	// }, [time])
 
 	useEffect(()=> {
 		if (otpInput != "") {
@@ -136,25 +158,6 @@ function OtpForm(props: IFormProps) {
 		[otpInput], // will be created only once initially
 	);
 	
-	const openChatBot = () => {
-		let chatBot: HTMLElement | null = document.querySelector('#chat_bot_logo');
-
-		if (chatBot) {
-			let activeChat = document.querySelector('#active_chat');
-			if (activeChat) {
-				chatBot.click();	// close active chat
-			}
-			chatBot.click();
-			setTimeout(() => {
-				let chatBtns: NodeListOf<HTMLElement> | null = document.querySelectorAll('#active_chat button');
-				if (chatBtns) {
-					let noOtpReceivedBtn: HTMLElement | null = chatBtns[1];
-					noOtpReceivedBtn?.click();
-				}
-			}, 500);
-			
-		}
-	}
 
 	const {id} = payload;
 
@@ -170,7 +173,7 @@ function OtpForm(props: IFormProps) {
 					<Typography className="bold">נא להזין את הקוד שנשלח:​</Typography>
 					<Grid item md={6}>
 						<form noValidate onSubmit={onSubmit}>
-							<ClkInput onChange={onChange} value={otpInput} endAdornment={
+							<ClkInput onChange={onChange}  value={otpInput} endAdornment={
 								<InputAdornment position="end" onClick={onSubmit}>
 									{
 										isLoading ?

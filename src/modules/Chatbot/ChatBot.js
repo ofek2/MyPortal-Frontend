@@ -61,15 +61,15 @@ export class ChatBot {
 		// create Div that holds the xIcon
 		const xIconDiv = document.createElement("DIV");
 		xIconDiv.setAttribute("class", "xIcon_div");
-		xIconDiv.style.minHeight = "22px";
+
 		// xIconDiv.style.display = "inline-block";
 		let xIconStyle = {
 			width: "10px",
 			height: "10px",
-			left: "10px",
-			top: "6px",
-			position: "absolute",
-			display: "flex",
+			// left: "10px",
+			// top: "6px",
+			// position: "absolute",
+			// display: "flex",
 			borderRadius: "50%",
 			borderColor: "black",
 			cursor: "pointer"
@@ -114,7 +114,7 @@ export class ChatBot {
 		// Step 2: Display the answer of the selected question
 		setTimeout(() => {
 			activeChatContainer = document.getElementById(this.chatContainer);
-			
+
 			if (activeChatContainer) {
 				activeChatContainer.removeChild(botTyping);
 				activeChatContainer.appendChild(new ChatRow(false, faq.answer, this.icons.assistance, false).buildChatMessages());
@@ -137,11 +137,11 @@ export class ChatBot {
 			maxWidth: "300px",
 			minHeight: "360px",
 			padding: "5px",
-			top: "8px",
-			bottom: "0px",
+			// top: "8px",
+			// bottom: "0px",
 			position: "relative",
 			alignItems: "center",
-			marginBlockEnd: "10px",
+			// marginBlockEnd: "10px",
 		};
 		for (let prop of Object.keys(chatContainerDivStyle)) {
 			chatContainerDiv.style[prop.toString()] = chatContainerDivStyle[prop.toString()];
