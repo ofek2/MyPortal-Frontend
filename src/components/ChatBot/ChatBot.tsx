@@ -7,6 +7,46 @@ import { Typography, Box } from '@material-ui/core';
 
 let chatbotInstance;
 
+export function openChatBot() {
+	let chatBot: HTMLElement | null = document.querySelector('#chat_bot_logo');
+
+	if (chatBot) {
+		let activeChat = document.querySelector('#active_chat');
+		if (!activeChat) {
+			chatBot.click();
+		}
+	}
+}
+
+export function closeChatBot() {
+	let chatBot: HTMLElement | null = document.querySelector('#chat_bot_logo');
+
+	if (chatBot) {
+		let activeChat = document.querySelector('#active_chat');
+		if (activeChat) {
+			chatBot.click();
+		}
+	}
+}
+
+export function hideChatBot() {
+	closeChatBot();
+
+	let chatBot: HTMLElement | null = document.querySelector('.chat-bot-container');
+
+	if (chatBot) {
+		chatBot.style.display = "none";
+	}
+}
+
+export function unhideChatBot() {
+	let chatBot: HTMLElement | null = document.querySelector('.chat-bot-container');
+
+	if (chatBot) {
+		chatBot.style.display = "flex";
+	}
+}
+
 function ChatBott() {
 	useEffect(() => {
 		const url = "https://myidfchatbot.azurewebsites.net/qnamaker/knowledgebases/2df455d0-03c9-4691-af84-5b587b4ad028/generateAnswer";
@@ -76,7 +116,7 @@ function ChatBott() {
 			<div id="chat-bot"/>
 			{/* <Box position="fixed" bottom="10px" left="10px" style={{ backgroundColor: "white", zIndex: 1000, padding: "0px 3px", borderRadius: "5px", boxShadow: "0px 3px 3px -2px rgba(0,0,0,0.2), 0px 3px 4px 0px rgba(0,0,0,0.14), 0px 1px 8px 0px rgba(0,0,0,0.12)"}}> */}
 			<Box style={{ backgroundColor: "#383838", zIndex: 1000, padding: "0px 3px", marginTop: 5, borderRadius: 5, boxShadow: "0px 3px 3px -2px rgba(0,0,0,0.2), 0px 3px 4px 0px rgba(0,0,0,0.14), 0px 1px 8px 0px rgba(0,0,0,0.12)"}}>
-				<Typography style={{color: "#fdd835", fontSize: 18}}>
+				<Typography className="chat-bot-title">
 					היי, איך אפשר לעזור?
 				</Typography>
 			</Box>

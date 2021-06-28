@@ -6,7 +6,7 @@ import Send from '@material-ui/icons/Send';
 import IFormProps from '../IForm';
 import RestService from '../../../services/rest/RestService';
 import { Alert } from '@material-ui/lab';
-import { ERRORS } from '../../../model/data/Constants';
+import { ERRORS, MY_IDF } from '../../../model/data/Constants';
 import ReCAPTCHA from "react-google-recaptcha";
 import config from "../../../model/data/Configuration";
 
@@ -92,11 +92,11 @@ function IdForm(props: IFormProps) {
 
 	// Rendering
 	return (
-		<Container maxWidth="sm">
+		<Container maxWidth="sm" className="no-padding">
 			<Typography variant="h3" style={{ fontWeight: "bold", marginBottom: 10 }}>ברוכים הבאים</Typography>
 			
 			<Typography style={{ fontWeight: "bold", marginBottom: 20}}>שירותי הדיגיטל של צה"ל עוברים להזדהות חכמה!</Typography>
-			<Typography>כאן ניתן ליצור באופן עצמאי ובקלות, משתמש MY IDF,
+			<Typography>כאן ניתן ליצור באופן עצמאי ובקלות, משתמש {MY_IDF},
 			איתו ניתן להתחבר בקלות ובנוחות לשירותי הדיגיטל של צה"ל.</Typography>
 			<Typography style={{marginTop: 20}}>להתחלת תהליך הרישום ולצורך אימות מול מערכת כוח האדם,</Typography>
 			<Typography>יש להזין מספר תעודת זהות מלא באורך 9 ספרות:</Typography>

@@ -18,6 +18,7 @@ export const CLICK_API_REQUEST = {
 // Click Domain
 export const CLICK_DOMAIN = "idf.il";
 
+export const MY_IDF = <span className="no-wrap">MY IDF</span>;
 
 export const SUPPORT_INFO = 
 <React.Fragment>
