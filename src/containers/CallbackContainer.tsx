@@ -4,6 +4,7 @@ import CallbackMsg from '../components/CallbackMsg/CallbackMsg';
 import MsService from '../services/microsoft/MsService';
 import { withRouter } from 'react-router-dom'
 import { MyPaper } from '../components/Common/MyPaper';
+import RestService from '../services/rest/RestService';
 
 function CallbackContainer(props) {
 	// State & props
@@ -37,6 +38,7 @@ function CallbackContainer(props) {
 
 				if (currentAccount) {
 					setAccount(currentAccount.username);
+					await sendFinishSMS();
 				} else {
 					history.push('/');
 				}
@@ -46,6 +48,20 @@ function CallbackContainer(props) {
 		} catch (err) {
 			setIsLoading(false);
 			history.push('/');
+		}
+	}
+
+	const sendFinishSMS = async () => {
+		try {
+			await RestService.sendFinishSMS();
+		} catch (err) {
+			console.error(err);
+			// Try to send the sms again
+			try {
+				await RestService.sendFinishSMS();
+			} catch (err) {
+				console.error(err);
+			}
 		}
 	}
 

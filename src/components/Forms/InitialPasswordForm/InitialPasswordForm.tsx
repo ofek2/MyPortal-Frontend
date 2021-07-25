@@ -27,7 +27,7 @@ function InitialPasswordForm(props: IFormProps) {
 	}, [])
 
 	const onInit = async () => {
-		// await onSendAgainClick();
+		await onSendAgainClick();
 		setIsLoadingFirstTime(false);
 	}
 	// Handlers
@@ -64,7 +64,7 @@ function InitialPasswordForm(props: IFormProps) {
 	}
 
 	const instructions = [
-		{image: info1, text: 'בחלון הבא, יש להדביק את הסיסמה הזמנית שקיבלת ב-SMS'},
+		{image: info1, text: 'בחלון הבא, יש להדביק את הסיסמה הזמנית שקיבלת הרגע ב-SMS'},
 		{image: info2, text: 'לאחר מכן, יש להקליד את קוד האימות הנוסף שיתקבל בהודעת SMS'},
 		{image: info3, text: 'לבסוף, יש לבחור סיסמה קבועה למשתמש עפ"י ההנחיות'}
 	]
@@ -88,7 +88,7 @@ function InitialPasswordForm(props: IFormProps) {
 			<React.Fragment>
 				<Typography>שירותי הדיגיטל של צה"ל שומרים על רמת אבטחה גבוהה</Typography>
 				<Typography>ולכן, ההזדהות החכמה של MY IDF כוללת אימות דו-שלבי באמצעות הודעת SMS.</Typography>
-				<Typography className="bold" style={{marginTop: 10}}>לסיום תהליך הרישום, נצטרך לאמת את זהותך עוד פעם אחת:</Typography>
+				<Typography className="bold" style={{marginTop: 10}}>לסיום תהליך הרישום, נצטרך לאמת את זהותך עוד פעם אחת באמצעות סיסמה זמנית שקיבלת זה עתה ב-SMS:</Typography>
 				<Grid container justify="center" alignItems="flex-start" style={{marginTop: 20}} >
 					{instructions.map((instruction, index) => 
 						<React.Fragment key={index}>
@@ -160,7 +160,7 @@ function InitialPasswordForm(props: IFormProps) {
 						</Grid> */}
 					</Hidden>
 					<Grid container item xs={12} justify="center" alignItems="center">
-						<Button variant="contained" onClick={onContinueClick} disableElevation={true} color="primary" className="idf-button" >קיבלתי, אפשר להמשיך</Button>
+						<Button variant="contained" onClick={onContinueClick} disableElevation={true} color="primary" className="idf-button" >קיבלתי את ה-SMS, אפשר להמשיך</Button>
 						<LoadingButton isLoading={isResettingPassword} variant="contained" onClick={onSendAgainClick} disableElevation={true} className="idf-button-secondary" style={{ backgroundColor: "#333" }}>שלחו לי שוב</LoadingButton>
 					</Grid>
 					<Grid container direction="column" justify="center" alignItems="center" style={{ margin: "10px 0px" }}>

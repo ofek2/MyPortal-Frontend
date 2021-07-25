@@ -9,6 +9,7 @@ import { Alert } from '@material-ui/lab';
 import { ERRORS, MY_IDF } from '../../../model/data/Constants';
 import ReCAPTCHA from "react-google-recaptcha";
 import config from "../../../model/data/Configuration";
+import MsService from '../../../services/microsoft/MsService';
 
 function IdForm(props: IFormProps) {
 	// State & props
@@ -89,10 +90,11 @@ function IdForm(props: IFormProps) {
 			await checkIsUserExist();
 		}
 	}
-
+	
 	// Rendering
 	return (
-		<Container maxWidth="sm" className="no-padding">
+		<>
+		<Container maxWidth="sm">
 			<Typography variant="h3" style={{ fontWeight: "bold", marginBottom: 10 }}>ברוכים הבאים</Typography>
 			
 			<Typography style={{ fontWeight: "bold", marginBottom: 20}}>שירותי הדיגיטל של צה"ל עוברים להזדהות חכמה!</Typography>
@@ -118,14 +120,6 @@ function IdForm(props: IFormProps) {
 					</form>
 				</Grid>
 				<Grid item xs={12}>
-				<ReCAPTCHA
-					hl="iw"
-					ref={captchaRef}
-					style={{marginTop: 10}}
-					sitekey={config.captchaSiteKey}
-				/>
-				</Grid>
-				<Grid item xs={12}>
 					{
 						error && error.msg !== '' ?
 							<Alert severity={error.severity} >
@@ -136,6 +130,8 @@ function IdForm(props: IFormProps) {
 				</Grid>
 			</Grid>
 		</Container>
+		<ReCAPTCHA hl="iw" ref={captchaRef} style={{marginTop: 10}} sitekey={config.captchaSiteKey}/>
+	</>
 	);
 }
 

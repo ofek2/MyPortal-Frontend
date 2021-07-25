@@ -5,6 +5,7 @@ import StepIcon from '../StepIcon/StepIcon';
 import applinks from '../../model/data/AppLinks';
 import tzahal from '../../assets/images/tzahal.png';
 import idfPng from '../../assets/images/idf.png';
+import SentimentVerySatisfiedIcon from '@material-ui/icons/SentimentVerySatisfied';
 
 import './CallbackMsg.css';
 import { MyPaper } from '../Common/MyPaper';
@@ -35,7 +36,7 @@ function CallbackMsg(props: ICallbackMsgProps) {
 					<Typography variant="h5" className="bold">מעולה, המשתמש נוצר בהצלחה!</Typography>
 					<Typography className="bold">שם המשתמש האישי שלך:</Typography>
 					<Typography dir="ltr" className="english-font" style={{ color: "#2196f3" }}>{account}</Typography>
-					<Typography style={{marginTop: 10}}>כדאי לצלם את המסך ולשמור את שם המשתמש :)</Typography>
+					<Typography style={{marginTop: 10}}>שלחנו אותו גם ב-SMS, שיהיה למקרה הצורך <SentimentVerySatisfiedIcon/></Typography>
 					{/* <Typography variant="h6" style={{ fontWeight: "bold", marginTop: "10px" }}>סיסמה:</Typography>
 					<Typography>כפי שנקבעה בתהליך הרישום</Typography> */}
 					{/* <Typography style={{ fontWeight: "bold", marginTop: "10px" }}>ניתן לחזור לאתר ולבצע התחברות באמצעות המשתמש.</Typography> */}

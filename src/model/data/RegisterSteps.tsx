@@ -35,22 +35,6 @@ const registerSteps: IRegisterStep[] = [
 		icon: <Lock />,
 		component: <InitialPasswordForm/>
 	},
-
-	// {
-	// 	title: "קבלת סיסמה",
-	// 	icon: <Lock />,
-	// 	component: <PhoneForm/>
-	// },
-	// {
-	// 	title: "הסבר התהליך",
-	// 	icon: <Info />,
-	// 	component: <InfoForm/>
-	// },
-	// {
-	// 	title: "קבלת סיסמה",
-	// 	icon: <Lock />,
-	// 	component: <PhoneForm/>
-	// },
 	{
 		title: "השלמת הרישום",
 		icon: <Create/>,
