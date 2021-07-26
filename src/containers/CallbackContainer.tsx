@@ -28,12 +28,6 @@ function CallbackContainer(props) {
 			setIsLoading(false);
 
 			try {
-				await MsService.getClickApiToken();
-			} catch (err) {
-				console.log(err)
-			}
-
-			try {
 				const currentAccount = await MsService.getAccount();
 
 				if (currentAccount) {
@@ -56,7 +50,7 @@ function CallbackContainer(props) {
 			await RestService.sendFinishSMS();
 		} catch (err) {
 			console.error(err);
-			// Try to send the sms again
+			// Try to send the sms again if it fails
 			try {
 				await RestService.sendFinishSMS();
 			} catch (err) {
