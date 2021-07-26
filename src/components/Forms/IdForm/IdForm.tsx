@@ -1,12 +1,15 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import './IdForm.css';
-import { Typography, InputAdornment, Grid, IconButton, CircularProgress } from '@material-ui/core';
+import { Typography, InputAdornment, Grid, IconButton, CircularProgress, Container } from '@material-ui/core';
 import { ClkInput } from '../../ClkInput/ClkInput';
 import Send from '@material-ui/icons/Send';
 import IFormProps from '../IForm';
 import RestService from '../../../services/rest/RestService';
 import { Alert } from '@material-ui/lab';
-import { ERRORS } from '../../../model/data/Constants';
+import { ERRORS, MY_IDF } from '../../../model/data/Constants';
+import ReCAPTCHA from "react-google-recaptcha";
+import config from "../../../model/data/Configuration";
+import MsService from '../../../services/microsoft/MsService';
 
 function IdForm(props: IFormProps) {
 	// State & props
@@ -14,12 +17,19 @@ function IdForm(props: IFormProps) {
 	const [error, setError] = useState<any>({ msg: '', severity: 'error' });
 	const [isLoading, setIsLoading] = useState(false);
 	const [idInput, setIdInput] = useState('');
+	const captchaRef = useRef<ReCAPTCHA>(null);
 
 	// Methodes
 	const isFormValid = (id: string) => {
 		const isLengthValid = id.length === 9 && isValidIdInput(id);
+		const isCaptchaChecked = captchaRef?.current?.getValue();
+		return isLengthValid && isCaptchaChecked;
+	}
 
-		return isLengthValid;
+	const isCaptchaChecked = () => {
+		const isCaptchaChecked = captchaRef?.current?.getValue();
+
+		return isCaptchaChecked;
 	}
 
 	const isValidIdInput = (id: string) => {
@@ -33,7 +43,7 @@ function IdForm(props: IFormProps) {
 		setIsLoading(true);
 
 		try {
-			await RestService.checkUser(idInput);
+			await RestService.checkUser(idInput, captchaRef?.current?.getValue());
 
 			setIsLoading(false);
 
@@ -61,27 +71,39 @@ function IdForm(props: IFormProps) {
 		event.preventDefault();
 
 		if (!isLoading) {
-			if (isFormValid(idInput)) {
-				setIsLoading(true);
-				await checkIsUserExist();
+			if (!isCaptchaChecked()){
+				setError({
+					msg: ERRORS.requiredCaptcha,
+					severity: 'error'
+				});
+				return;
 			}
-			else {
+			if (!isFormValid(idInput)) {
 				setError({
 					msg: ERRORS.invalidId,
 					severity: 'error'
 				});
+				return;
 			}
+
+			setIsLoading(true);
+			await checkIsUserExist();
 		}
 	}
-
+	
 	// Rendering
 	return (
-		<React.Fragment>
-			<Typography variant="h4" style={{ fontWeight: "bold", marginBottom: "10px" }}>ברוכים הבאים</Typography>
-			<Typography>לצורך אימות הנתונים אל מול מערכות צה"ל,</Typography>
-			<Typography>נא להזין מספר תעודת זהות (כולל ספרת ביקורת):</Typography>
+		<>
+		<Container maxWidth="sm">
+			<Typography variant="h3" style={{ fontWeight: "bold", marginBottom: 10 }}>ברוכים הבאים</Typography>
+			
+			<Typography style={{ fontWeight: "bold", marginBottom: 20}}>שירותי הדיגיטל של צה"ל עוברים להזדהות חכמה!</Typography>
+			<Typography>כאן ניתן ליצור באופן עצמאי ובקלות, משתמש {MY_IDF},
+			איתו ניתן להתחבר בקלות ובנוחות לשירותי הדיגיטל של צה"ל.</Typography>
+			<Typography style={{marginTop: 20}}>להתחלת תהליך הרישום ולצורך אימות מול מערכת כוח האדם,</Typography>
+			<Typography>יש להזין מספר תעודת זהות מלא באורך 9 ספרות:</Typography>
 			<Grid container direction="column" justify="center" alignItems="center" style={{ margin: "10px 0px" }}>
-				<Grid item md={3}>
+				<Grid item md={6}>
 					<form noValidate onSubmit={onClick}>
 						<ClkInput onChange={onChange} value={idInput} endAdornment={
 							<InputAdornment position="end" onClick={onClick}>
@@ -107,7 +129,9 @@ function IdForm(props: IFormProps) {
 					}
 				</Grid>
 			</Grid>
-		</React.Fragment>
+		</Container>
+		<ReCAPTCHA hl="iw" ref={captchaRef} style={{marginTop: 10}} sitekey={config.captchaSiteKey}/>
+	</>
 	);
 }
 

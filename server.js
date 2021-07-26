@@ -1,5 +1,4 @@
 const http = require('http');
-
 const express = require('express');
 const path = require('path');
 const port = process.env.PORT || 8080;
@@ -15,5 +14,5 @@ app.get('/*', function (req, res) {
 const httpServer = http.createServer(app);
 
 httpServer.listen(port, () => {
-    console.log(`Web-Service listening on port ${port}!`);
+    console.log(`My Portal Front listening on port ${port}!`);
 });

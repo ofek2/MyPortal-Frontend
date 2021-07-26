@@ -7,4 +7,5 @@
 	background-position-x: 10px;
 	z-index: 1;
 	opacity: 0.5;
+	filter: invert();
 }

@@ -16,7 +16,8 @@ import ChatBott from './components/ChatBot/ChatBot';
 function App() {
   return (
     <div className="App">
-      <Header />
+      <div className="App-Bg"></div>
+      {/* <Header /> */}
       <div className="App-content">
         <Router>
           <Switch>
@@ -26,7 +27,7 @@ function App() {
             <Redirect to="/" />
           </Switch>
         </Router>
-        <Footer />
+        {/* <Footer /> */}
         <ChatBott/>
       </div>
     </div>

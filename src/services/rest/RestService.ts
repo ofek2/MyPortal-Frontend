@@ -1,33 +1,24 @@
 import axiosInstance from "../../clients/axiosClient";
 
 class RestService {
-	public static async checkUser(idNumber: string) {
-		try {
-			const res = await axiosInstance.post(`/users`, { idNumber });
-			return res.data;
-		} catch (e) {
-			throw e;
-		}
+	static async checkUser(idNumber: string, captchaToken: string) {
+		const res = await axiosInstance.post(`/users`, { idNumber, "g-recaptcha-response": captchaToken });
+		return res.data;
 	}
 
-	public static async resetUserPassword() {
-		try {
-			const res = await axiosInstance.put(`/users/me/resetPassword`);
-
-			return res.data;
-		} catch (e) {
-			throw e;
-		}
+	static async resetUserPassword() {
+		const res = await axiosInstance.put(`/users/me/resetPassword`);
+		return res.data;
 	}
 
-	public static async validateOtp(idNumber, otp) {
-		try {
-			const res = await axiosInstance.post(`/users/${idNumber}/validateOtp`, { otp });
+	static async validateOtp(idNumber, otp) {
+		const res = await axiosInstance.post(`/users/${idNumber}/validateOtp`, { otp });
+		return res.data;
+	}
 
-			return res.data;
-		} catch (e) {
-			throw e;
-		}
+	static async sendFinishSMS() {
+		const res = await axiosInstance.get(`/users/me/finish`);
+		return res.data;
 	}
 }
 

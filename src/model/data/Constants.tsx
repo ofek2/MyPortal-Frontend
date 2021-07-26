@@ -1,5 +1,6 @@
 import React from 'react';
 import { Typography } from '@material-ui/core';
+import config from "./Configuration";
 
 // GraphApi
 export const GRAPH_REQUEST = {
@@ -8,12 +9,16 @@ export const GRAPH_REQUEST = {
 };
 export const LOGIN_REQUEST = {
 	prompt: "login",
-	scopes: ["user.read", "openid"]
+	scopes: config.msalScopes
+};
+export const CLICK_API_REQUEST = {
+	scopes: config.clickApiScopes
 };
 
 // Click Domain
 export const CLICK_DOMAIN = "idf.il";
 
+export const MY_IDF = <span className="no-wrap">MY IDF</span>;
 
 export const SUPPORT_INFO = 
 <React.Fragment>
@@ -37,6 +42,7 @@ export const ERRORS = {
 
 	invalidId: "מספר תעודת זהות אינו תקין",
 	invalidOtp: "הקוד שהוזן איננו תואם, אנא נסה שנית.",
+	requiredCaptcha: `אנא לחץ על כפתור "אני לא רובוט"`,
 
 	userAlreadyRegistered: (upn) => {
 		return (

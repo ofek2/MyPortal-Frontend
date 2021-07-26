@@ -9,6 +9,7 @@ import IdForm from '../../components/Forms/IdForm/IdForm';
 import InfoForm from '../../components/Forms/InfoForm/InfoForm';
 import OtpForm from '../../components/Forms/OtpForm/OtpForm';
 import PhoneForm from '../../components/Forms/PhoneForm/PhoneForm';
+import InitialPasswordForm from '../../components/Forms/InitialPasswordForm/InitialPasswordForm';
 
 interface IRegisterStep {
 	title: string,
@@ -30,14 +31,9 @@ const registerSteps: IRegisterStep[] = [
 		isResettable: true
 	},
 	{
-		title: "הסבר התהליך",
-		icon: <Info />,
-		component: <InfoForm/>
-	},
-	{
 		title: "קבלת סיסמה",
 		icon: <Lock />,
-		component: <PhoneForm/>
+		component: <InitialPasswordForm/>
 	},
 	{
 		title: "השלמת הרישום",

@@ -27,7 +27,7 @@ code {
 }
 
 .idf-button {
-  color: #333 ;
+  color: #333;
 }
 
 .idf-button:hover {
@@ -45,6 +45,9 @@ code {
   color: whitesmoke;
 }
 
+.idf-button,.idf-button-secondary {
+  margin: 10px;
+}
 .container-progress {
   color: #FFC24B;
   position: absolute;
@@ -73,6 +76,10 @@ code {
 
 .no-wrap {
   white-space: nowrap;
+}
+
+.no-padding {
+  padding: 0;
 }
 
 .MuiAlert-root {

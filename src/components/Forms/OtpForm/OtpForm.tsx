@@ -1,37 +1,75 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './OtpForm.css';
 import { Typography, InputAdornment, Grid, IconButton, CircularProgress, Container } from '@material-ui/core';
 import { ClkInput } from '../../ClkInput/ClkInput';
 import Send from '@material-ui/icons/Send';
 import IFormProps from '../IForm';
 import RestService from '../../../services/rest/RestService';
-import { Alert, AlertTitle } from '@material-ui/lab';
-import { ERRORS, idToUpn } from '../../../model/data/Constants';
-
+import { Alert } from '@material-ui/lab';
+import { ERRORS } from '../../../model/data/Constants';
+import hourglassGif from '../../../assets/images/Hourglass.gif'
+import _ from 'lodash';
+import { useTimer } from '../../../hooks/timerHook';
 
 
 function OtpForm(props: IFormProps) {
+	const waitingTime = 30;
+	const debounceDelay = 2000;
 	// State & props
 	const { onResolve, payload } = props;
 	const [error, setError] = useState<any>({ msg: '', severity: 'error' });
 	const [isLoading, setIsLoading] = useState(false);
 	const [otpInput, setOtpInput] = useState('');
 
+	const openChatBot = () => {
+		let chatBot: HTMLElement | null = document.querySelector('#chat_bot_logo');
+
+		if (chatBot) {
+			let activeChat = document.querySelector('#active_chat');
+			if (activeChat) {
+				chatBot.click();	// close active chat
+			}
+			chatBot.click();
+			setTimeout(() => {
+				let chatBtns: NodeListOf<HTMLElement> | null = document.querySelectorAll('#active_chat button');
+				if (chatBtns) {
+					let noOtpReceivedBtn: HTMLElement | null = chatBtns[1];
+					noOtpReceivedBtn?.click();
+				}
+			}, 500);
+			
+		}
+	}
+	const [time, setTime, timerOn, setTimerOn] = useTimer(waitingTime, openChatBot);
+	// const [timerOn, setTimerOn] = useState(true);
+	// const [time, setTime] = useState(waitingTime);
+	// let intervalId;
+
 	// useEffect(() => {
-	// 	onInit();
-	// }, [])
-
-	// const onInit = () => {
-	// 	const {id, isRegistered} = payload;
-
-	// 	if (isRegistered) {
-	// 		setError({
-	// 			msg: ERRORS.userAlreadyRegistered(idToUpn(id)),
-	// 			severity: 'info'
-	// 		});
+	// 	if (timerOn) {
+	// 		intervalId = setInterval(() => {
+	// 			setTime(time => time - 1);
+	// 		}, 1000);
+	// 	} else {
+	// 		clearInterval(intervalId);
 	// 	}
-	// }
+		
 
+	// 	return () => clearInterval(intervalId);
+	// }, [timerOn])
+
+	// useEffect(() => {
+	// 	if (time <= 0) {
+	// 		setTimerOn(false);
+	// 		openChatBot();
+	// 	}
+	// }, [time])
+
+	useEffect(()=> {
+		if (otpInput != "") {
+			debouncedSubmit();
+		}
+	}, [otpInput])
 	// Methodes
 	const isFormValid = (number: string) => {
 		const isLengthValid = number.length === 6 && isValidInput(number);
@@ -52,15 +90,14 @@ function OtpForm(props: IFormProps) {
 		setIsLoading(true);
 
 		try {
-			// const requestToken = jwt.sign({ secret: payload.secret }, otpInput);
-			const { isValid, isRegistered, mobilePhone } = await RestService.validateOtp(id, otpInput);
+			const { isValid, isRegistered, mobilePhone, upn } = await RestService.validateOtp(id, otpInput);
 
 			setIsLoading(false);
 
 			if (isValid) {
 				if (isRegistered) {
 					setError({
-						msg: ERRORS.userAlreadyRegistered(idToUpn(id)),
+						msg: ERRORS.userAlreadyRegistered(upn),
 						severity: 'info'
 					});
 				} else {
@@ -83,6 +120,8 @@ function OtpForm(props: IFormProps) {
 		}
 	}
 
+	
+
 	// Handlers
 	const onChange = (value: any) => {
 		const inputVal = value.target.value;
@@ -92,12 +131,11 @@ function OtpForm(props: IFormProps) {
 		}
 	}
 
-	const onClick = async (event) => {
-		event.preventDefault();
-
+	const submit = async () => {
 		if (!isLoading) {
 			if (isFormValid(otpInput)) {
 				setIsLoading(true);
+				setTimerOn(false);
 				await isOtpMatch();
 			}
 			else {
@@ -108,6 +146,17 @@ function OtpForm(props: IFormProps) {
 			}
 		}
 	}
+	const onSubmit = async (event) => {
+		event.preventDefault();
+
+		await submit();
+	}
+
+	const debouncedSubmit = useCallback(
+		_.debounce(submit, debounceDelay),
+		[otpInput], // will be created only once initially
+	);
+	
 
 	const {id} = payload;
 
@@ -117,14 +166,14 @@ function OtpForm(props: IFormProps) {
 			<React.Fragment>
 				<Typography variant="h6" className="bold">תעודת הזהות שהוכנסה: {id}</Typography>
 				<Typography>במידה ומס' הטלפון הנייד שלך קיים במערכות צה"ל,</Typography>
-				<Typography>ישלח אליך מסרון עם קוד בדקות הקרובות.</Typography>
+				<Typography>ישלח אליך מסרון עם קוד.</Typography>
 
 				<Grid container direction="column" justify="center" alignItems="center" style={{ margin: "10px 0px" }}>
 					<Typography className="bold">נא להזין את הקוד שנשלח:​</Typography>
 					<Grid item md={6}>
-						<form noValidate onSubmit={onClick}>
-							<ClkInput onChange={onChange} value={otpInput} endAdornment={
-								<InputAdornment position="end" onClick={onClick}>
+						<form noValidate onSubmit={onSubmit}>
+							<ClkInput onChange={onChange}  value={otpInput} endAdornment={
+								<InputAdornment position="end" onClick={onSubmit}>
 									{
 										isLoading ?
 											<CircularProgress color="primary" size={23} thickness={7} style={{ marginLeft: "10px", cursor: "default" }} />
@@ -137,6 +186,12 @@ function OtpForm(props: IFormProps) {
 							} placeholder={"הכנס קוד"} autoFocus={false} fullWidth />
 						</form>
 					</Grid>
+					{timerOn && 
+					<Grid container item xs={12} justify="center">
+						<Typography style={{display: "flex"}}><img src={hourglassGif} className="hourglass"/>
+ההודעה תתקבל במכשירך ב-{waitingTime} השניות הקרובות..</Typography>
+					</Grid>
+					}
 					
 				</Grid>
 			</React.Fragment>
@@ -150,26 +205,6 @@ function OtpForm(props: IFormProps) {
 						<React.Fragment />
 				}
 			</Grid>
-			
-			<Grid item xs={12}>
-				<Alert severity="info" className="info-container">
-					<AlertTitle><b>לא קיבלת את הקוד?</b></AlertTitle>		
-					<Typography variant="body2">מספר הטלפון שברשותך אינו מעודכן ברישומת הצה"לית,</Typography>
-					<Typography variant="body2">יש להתחבר לאתר הפרט (<a href="https://prat.idf.il">Prat.idf.il</a>) ולעדכן את מספר הטלפון ב- "הפרופיל שלי".​</Typography>
-					<Typography variant="body2">לאחר כרבע שעה ניתן יהיה לשוב ולהשלים את תהליך הרישום.​</Typography>
-
-					<Typography variant="body2" style={{marginTop: 20}}>לחילופין,  <u>חיילי חובה וקבע</u> - יש לפנות לקצין/ת המשא"ן ביחידה.​</Typography>
-					<Typography variant="body2"><u>מילואים</u> - יש לעדכן את פרטי הקשר אצל קצין/ת הקישור.</Typography>
-					<Typography variant="body2"><u>אזרחים עובדי צה"ל</u> - יש לעדכן את פרטי הקשר אצל קצין/ת האזרחים.</Typography>
-				</Alert>
-			</Grid> 
-			<Grid item xs={12}>
-				<Alert severity="info" className="info-container">	
-					<Typography variant="body2"><b>הסתבכת? לא הצלחת? יש לך שאלות נוספות? </b> אנחנו כאן כדי לעזור!</Typography>	
-					<Typography variant="body2">פנו אלינו במייל: MySupport@idf.il</Typography>
-				</Alert>
-			</Grid> 
-		
 		</Container>
 	);
 }

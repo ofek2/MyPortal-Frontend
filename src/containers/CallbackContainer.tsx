@@ -3,6 +3,8 @@ import { Grid, Container, Typography, CircularProgress } from '@material-ui/core
 import CallbackMsg from '../components/CallbackMsg/CallbackMsg';
 import MsService from '../services/microsoft/MsService';
 import { withRouter } from 'react-router-dom'
+import { MyPaper } from '../components/Common/MyPaper';
+import RestService from '../services/rest/RestService';
 
 function CallbackContainer(props) {
 	// State & props
@@ -28,9 +30,13 @@ function CallbackContainer(props) {
 			try {
 				const currentAccount = await MsService.getAccount();
 
-				setAccount(currentAccount.userName)
+				if (currentAccount) {
+					setAccount(currentAccount.username);
+					await sendFinishSMS();
+				} else {
+					history.push('/');
+				}
 			} catch (err) {
-				setIsLoading(false);
 				history.push('/error');
 			}
 		} catch (err) {
@@ -39,12 +45,28 @@ function CallbackContainer(props) {
 		}
 	}
 
+	const sendFinishSMS = async () => {
+		try {
+			await RestService.sendFinishSMS();
+		} catch (err) {
+			console.error(err);
+			// Try to send the sms again if it fails
+			try {
+				await RestService.sendFinishSMS();
+			} catch (err) {
+				console.error(err);
+			}
+		}
+	}
+
+	const loadingColor = "rgba(256,256,256,0.8)";
+	
 	const loadingComp = <Grid container item xs={12} justify="center" direction="column">
 		<Grid item xs={12}>
-			<CircularProgress style={{color: "#333"}}/>
+			<CircularProgress style={{color: loadingColor}}/>
 		</Grid>
 		<Grid item xs={12}>
-			<Typography variant="h4" color="textPrimary">כבר מסיימים, אנא המתן...</Typography>
+			<Typography variant="h4" style={{color: loadingColor}}>כבר מסיימים, אנא המתן...</Typography>
 		</Grid>
 		
 	</Grid>;
@@ -53,7 +75,7 @@ function CallbackContainer(props) {
 	return (
 		<Grid container item xs={12} md={10} xl={8} style={{ zIndex: 5 }}>
 			<Container>
-				{isLoading ? loadingComp : <CallbackMsg account={account} />}
+				{isLoading ? loadingComp : <MyPaper><CallbackMsg account={account} /></MyPaper>}
 			</Container>
 		</Grid>
 	);

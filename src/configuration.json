@@ -12,16 +12,21 @@
 				"navigateToLoginRequestUrl": false
 			},
 			"cache": {
-				"cacheLocation": "sessionStorage",
+				"cacheLocation": "localStorage",
 				"storeAuthStateInCookie": false
 			}
 		},
 		"msalScopes": [
 			"user.read",
-			"openid"
+			"openid",
+			"profile"
+		],
+		"clickApiScopes": [
+			"api://0ed0e4b1-c2dc-4d34-b1ef-0d2d36bd7321/Users.IdentityNumber.Read"
 		],
 		"clickDomain": "idf.il",
-		"isInMaintenance": 0
+		"isInMaintenance": 0,
+		"captchaSiteKey": "6Lf_RzQbAAAAAJjNjBJCoLAb7ep2JPHQNJsxqGiW"
 	},
 	"test": {
 		"authService": {
