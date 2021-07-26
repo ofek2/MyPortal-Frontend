@@ -9,7 +9,6 @@ async function handleRedirect() {
 	const tokenResponse = await msalObj.handleRedirectPromise();
 	// const accountObj = tokenResponse ? tokenResponse.account : msalObj.getAccount();
 	const accountObj = tokenResponse && tokenResponse.account;
-	console.log(tokenResponse);
 	if (accountObj) {
 		msalObj.setActiveAccount(accountObj);
 		// Account object was retrieved, continue with app progress
@@ -29,7 +28,6 @@ export default {
 	getAccessToken: async () => {
 		try {
 			const token = await msalObj.acquireTokenSilent(GRAPH_REQUEST);
-			console.log(token);
 
 			return JSON.stringify({
 				accessToken: token.accessToken,
@@ -42,8 +40,6 @@ export default {
 	getClickApiToken: async () => {
 		try {
 			const token = await msalObj.acquireTokenSilent(CLICK_API_REQUEST);
-			
-			console.log(token);
 			return token;
 		} catch (err) {
 			throw err;
@@ -62,7 +58,6 @@ export default {
 	},
 	getAccount: () => {
 		const accounts = msalObj.getAllAccounts();
-		console.log(accounts);
 		return accounts && accounts.length > 0 ? accounts[0] : null;
 	},
 	logout: () => {
