@@ -14,7 +14,7 @@ import { useTimer } from '../../../hooks/timerHook';
 
 function OtpForm(props: IFormProps) {
 	const waitingTime = 30;
-	const debounceDelay = 1500;
+	const debounceDelay = 2000;
 	// State & props
 	const { onResolve, payload } = props;
 	const [error, setError] = useState<any>({ msg: '', severity: 'error' });
@@ -90,7 +90,6 @@ function OtpForm(props: IFormProps) {
 		setIsLoading(true);
 
 		try {
-			// const requestToken = jwt.sign({ secret: payload.secret }, otpInput);
 			const { isValid, isRegistered, mobilePhone, upn } = await RestService.validateOtp(id, otpInput);
 
 			setIsLoading(false);
@@ -206,26 +205,6 @@ function OtpForm(props: IFormProps) {
 						<React.Fragment />
 				}
 			</Grid>
-			
-			{/* <Grid item xs={12}>
-				<Alert severity="info" className="info-container">
-					<AlertTitle><b>לא קיבלת את הקוד?</b></AlertTitle>		
-					<Typography variant="body2">מספר הטלפון שברשותך אינו מעודכן ברישומת הצה"לית,</Typography>
-					<Typography variant="body2">יש להתחבר לאתר הפרט (<a href="https://prat.idf.il">Prat.idf.il</a>) ולעדכן את מספר הטלפון ב- "הפרופיל שלי".​</Typography>
-					<Typography variant="body2">לאחר כרבע שעה ניתן יהיה לשוב ולהשלים את תהליך הרישום.​</Typography>
-
-					<Typography variant="body2" style={{marginTop: 20}}>לחילופין,  <u>חיילי חובה וקבע</u> - יש לפנות לקצין/ת המשא"ן ביחידה.​</Typography>
-					<Typography variant="body2"><u>מילואים</u> - יש לעדכן את פרטי הקשר אצל קצין/ת הקישור.</Typography>
-					<Typography variant="body2"><u>אזרחים עובדי צה"ל</u> - יש לעדכן את פרטי הקשר אצל קצין/ת האזרחים.</Typography>
-				</Alert>
-			</Grid>  */}
-			{/* <Grid item xs={12}>
-				<Alert severity="info" className="info-container">	
-					<Typography variant="body2"><b>הסתבכת? לא הצלחת? יש לך שאלות נוספות? </b> אנחנו כאן כדי לעזור!</Typography>	
-					<Typography variant="body2">פנו אלינו במייל: MySupport@idf.il</Typography>
-				</Alert>
-			</Grid>  */}
-		
 		</Container>
 	);
 }
