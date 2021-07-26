@@ -13,7 +13,7 @@ import { useTimer } from '../../../hooks/timerHook';
 
 
 function OtpForm(props: IFormProps) {
-	const waitingTime = 20;
+	const waitingTime = 30;
 	const debounceDelay = 1500;
 	// State & props
 	const { onResolve, payload } = props;
