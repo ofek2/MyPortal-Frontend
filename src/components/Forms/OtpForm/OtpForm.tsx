@@ -65,11 +65,11 @@ function OtpForm(props: IFormProps) {
 	// 	}
 	// }, [time])
 
-	useEffect(()=> {
-		if (otpInput != "") {
-			debouncedSubmit();
-		}
-	}, [otpInput])
+	// useEffect(()=> {
+	// 	if (otpInput != "") {
+	// 		debouncedSubmit();
+	// 	}
+	// }, [otpInput])
 	// Methodes
 	const isFormValid = (number: string) => {
 		const isLengthValid = number.length === 6 && isValidInput(number);
