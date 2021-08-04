@@ -18,7 +18,9 @@ document.head.insertBefore(styleNode, document.head.firstChild);
 const theme = createMuiTheme({
   direction: 'rtl',
   typography: {
-
+    body1: {
+      lineHeight: 1.3
+    },
     fontFamily: 'NarkisBlock',
     fontSize: 18
   },
@@ -54,4 +56,4 @@ ReactDOM.render(
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
 // Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+serviceWorker.register();

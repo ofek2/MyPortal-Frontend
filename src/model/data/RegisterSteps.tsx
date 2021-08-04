@@ -4,11 +4,8 @@ import PhoneAndroid from '@material-ui/icons/PhoneAndroid';
 import Lock from '@material-ui/icons/Lock';
 import Create from '@material-ui/icons/Create';
 import CheckCircle from '@material-ui/icons/CheckCircle'; 
-import Info from '@material-ui/icons/Info';
 import IdForm from '../../components/Forms/IdForm/IdForm';
-import InfoForm from '../../components/Forms/InfoForm/InfoForm';
 import OtpForm from '../../components/Forms/OtpForm/OtpForm';
-import PhoneForm from '../../components/Forms/PhoneForm/PhoneForm';
 import InitialPasswordForm from '../../components/Forms/InitialPasswordForm/InitialPasswordForm';
 
 interface IRegisterStep {

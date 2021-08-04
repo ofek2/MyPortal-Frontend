@@ -97,10 +97,9 @@ function IdForm(props: IFormProps) {
 		<Container maxWidth="sm">
 			<Typography variant="h3" style={{ fontWeight: "bold", marginBottom: 10 }}>ברוכים הבאים</Typography>
 			
-			<Typography style={{ fontWeight: "bold", marginBottom: 20}}>שירותי הדיגיטל של צה"ל עוברים להזדהות חכמה!</Typography>
-			<Typography>כאן ניתן ליצור באופן עצמאי ובקלות, משתמש {MY_IDF},
-			איתו ניתן להתחבר בקלות ובנוחות לשירותי הדיגיטל של צה"ל.</Typography>
-			<Typography style={{marginTop: 20}}>להתחלת תהליך הרישום ולצורך אימות מול מערכת כוח האדם,</Typography>
+			<Typography className="bold">שירותי הדיגיטל של צה"ל עוברים להזדהות חכמה!</Typography>
+			<Typography>כאן ניתן ליצור באופן עצמאי ובקלות, משתמש {MY_IDF}.</Typography>
+			<Typography style={{marginTop: 20}}>להתחלת תהליך הרישום ולצורך אימות מול מערכת כח האדם,</Typography>
 			<Typography>יש להזין מספר תעודת זהות מלא באורך 9 ספרות:</Typography>
 			<Grid container direction="column" justify="center" alignItems="center" style={{ margin: "10px 0px" }}>
 				<Grid item md={6}>
