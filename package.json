@@ -16,16 +16,17 @@
     "@types/react": "^16.9.43",
     "@types/react-dom": "^16.9.8",
     "axios": "^0.21.1",
-    "bcrypt": "^5.0.0",
     "copy-to-clipboard": "^3.3.1",
     "crypto-js": "^4.0.0",
     "jss-rtl": "^0.3.0",
     "lodash": "^4.17.21",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-elastic-carousel": "^0.11.5",
     "react-google-recaptcha": "^2.1.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.3",
+    "styled-components": "^5.3.0",
     "typescript": "^3.8.3"
   },
   "scripts": {

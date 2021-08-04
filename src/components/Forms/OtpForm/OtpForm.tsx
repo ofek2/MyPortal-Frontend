@@ -159,17 +159,15 @@ function OtpForm(props: IFormProps) {
 	
 
 	const {id} = payload;
-
+	
 	// Rendering
 	return (
 		<Container maxWidth="sm">
 			<React.Fragment>
-				<Typography variant="h6" className="bold">תעודת הזהות שהוכנסה: {id}</Typography>
-				<Typography>במידה ומס' הטלפון הנייד שלך קיים במערכות צה"ל,</Typography>
-				<Typography>ישלח אליך מסרון עם קוד.</Typography>
+				<Typography className="bold">במידה ומס' הטלפון הנייד שלך קיים במערכות צה"ל, ישלח אלייך מסרון עם קוד.</Typography>
 
 				<Grid container direction="column" justify="center" alignItems="center" style={{ margin: "10px 0px" }}>
-					<Typography className="bold">נא להזין את הקוד שנשלח:​</Typography>
+					<Typography>נא להזין את הקוד שנשלח:​</Typography>
 					<Grid item md={6}>
 						<form noValidate onSubmit={onSubmit}>
 							<ClkInput onChange={onChange}  value={otpInput} endAdornment={

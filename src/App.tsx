@@ -16,6 +16,7 @@ import ChatBott from './components/ChatBot/ChatBot';
 function App() {
   return (
     <div className="App">
+      <div className="App-Bg"></div>
       {/* <Header /> */}
       <div className="App-content">
         <Router>

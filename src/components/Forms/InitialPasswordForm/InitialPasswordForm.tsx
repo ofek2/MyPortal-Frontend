@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './InitialPasswordForm.css';
 // import '../InfoForm/InfoForm.css';
-import { Typography, Button, Grid, CircularProgress, Hidden } from '@material-ui/core';
+import { Typography, Button, Grid, CircularProgress, Hidden, Container } from '@material-ui/core';
 import IFormProps from '../IForm';
-import CensorPhone from '../../CensorPhone/CensorPhone';
 import MsService from '../../../services/microsoft/MsService';
-import { CLICK_DOMAIN, ERRORS } from '../../../model/data/Constants';
+import {  ERRORS } from '../../../model/data/Constants';
 import RestService from '../../../services/rest/RestService';
 import { Alert } from '@material-ui/lab';
 import LoadingButton from '../../Buttons/LoadingButton';
@@ -13,6 +12,8 @@ import info1 from '../../../assets/images/info1.png';
 import info2 from '../../../assets/images/info2.png';
 import info3 from '../../../assets/images/info3.png';
 import arrow from '../../../assets/images/arrow.png';
+import Carousel from 'react-elastic-carousel'
+
 
 function InitialPasswordForm(props: IFormProps) {
 	// State & props
@@ -64,9 +65,9 @@ function InitialPasswordForm(props: IFormProps) {
 	}
 
 	const instructions = [
-		{image: info1, text: 'בחלון הבא, יש להדביק את הסיסמה הזמנית שקיבלת הרגע ב-SMS'},
-		{image: info2, text: 'לאחר מכן, יש להקליד את קוד האימות הנוסף שיתקבל בהודעת SMS'},
-		{image: info3, text: 'לבסוף, יש לבחור סיסמה קבועה למשתמש עפ"י ההנחיות'}
+		{image: info1, text: 'תחילה, יש להקליד את הסיסמה שקיבלת הרגע'},
+		{image: info2, text: 'ואז, יש להקליד את קוד האימות הנוסף שיתקבל'},
+		{image: info3, text: 'ולבסוף, יש לבחור סיסמה קבועה למשתמש'}
 	]
 
 	// Rendering
@@ -86,52 +87,40 @@ function InitialPasswordForm(props: IFormProps) {
 			: 
 		
 			<React.Fragment>
-				<Typography>שירותי הדיגיטל של צה"ל שומרים על רמת אבטחה גבוהה</Typography>
-				<Typography>ולכן, ההזדהות החכמה של MY IDF כוללת אימות דו-שלבי באמצעות הודעת SMS.</Typography>
-				<Typography className="bold" style={{marginTop: 10}}>לסיום תהליך הרישום, נצטרך לאמת את זהותך עוד פעם אחת באמצעות סיסמה זמנית שקיבלת זה עתה ב-SMS:</Typography>
+				<Container maxWidth="xs">
+					<Typography className="bold">שירותי הדיגיטל של צה"ל שומרים על רמת אבטחה גבוהה.</Typography>
+					<Typography style={{marginBottom: "10px"}}>לכן, לסיום תהליך הרישום, נצטרך לאמת את זהותך עוד פעם אחת באמצעות סיסמה זמנית שקיבלת זה עתה ב-SMS.</Typography>
+				</Container>
 				<Grid container justify="center" alignItems="flex-start" style={{marginTop: 20}} >
-					{instructions.map((instruction, index) => 
-						<React.Fragment key={index}>
-							<Grid item md={3} xs={12} direction="column" container justify="center" alignItems="center">
-								<div className={"info-image-circle"}><img src={instruction.image} className={"info-image"}/></div>
-								<Hidden mdUp>
-									<Typography align="center" className="info-text">{instruction.text}</Typography>
-								</Hidden>
-							</Grid>
-							{index < instructions.length - 1 && 
-							<Grid item md={1} xs={12} style={{alignSelf:"center"}}>
-								<img src={arrow} className={"info-arrow"}/>
-							</Grid>}	
-						</React.Fragment>
-					)}
-
-					{/* <Grid item md={3} xs={12} direction="column" container justify="center" alignItems="center">
-						<div className={"info-image-circle"}><img src={info1} className={"info-image"}/>
-						</div>
-						<Hidden mdUp>
-							<Typography align="center">בחלון הבא, יש להדביק את הסיסמה הזמנית שקיבלת ב-SMS</Typography>
-						</Hidden>
-					</Grid>
-
-					<Grid item md={1} xs={12} style={{alignSelf:"center"}}><img src={arrow} className={"info-arrow"}/></Grid>
-
-					<Grid item md={3} xs={12} direction="column" container justify="center" alignItems="center">
-						<div className={"info-image-circle"}><img src={info2} className={"info-image"}/></div>
-						
-						<Hidden mdUp>
-							<Typography align="center">לאחר מכן, יש להקליד את קוד האימות הנוסף שיתקבל בהודעת SMS</Typography>
-						</Hidden>
-					</Grid>
-
-					<Grid item md={1} xs={12} style={{alignSelf:"center"}}><img src={arrow} className={"info-arrow"}/></Grid>
-
-					<Grid item md={3} xs={12} direction="column" container justify="center" alignItems="center">
-						<div className={"info-image-circle"}><img src={info3} className={"info-image"}/></div>
-						<Hidden mdUp>
-							<Typography align="center">לבסוף, יש לבחור סיסמה קבועה למשתמש עפ"י ההנחיות</Typography>
-						</Hidden>
-					</Grid> */}
-
+					<Hidden smDown>
+						{instructions.map((instruction, index) => 
+							<React.Fragment key={index}>
+								<Grid item md={3} xs={12} direction="column" container justify="center" alignItems="center">
+									<div className={"info-image-circle"}><img src={instruction.image} className={"info-image"}/></div>
+									<Hidden mdUp>
+										<Typography align="center" className="info-text">{instruction.text}</Typography>
+									</Hidden>
+								</Grid>
+								{index < instructions.length - 1 && 
+								<Grid item md={1} xs={12} style={{alignSelf:"center"}}>
+									<img src={arrow} className={"info-arrow"}/>
+								</Grid>}	
+							</React.Fragment>
+						)}
+					</Hidden>
+					<Hidden mdUp>
+						<Carousel isRTL={true} >
+							{instructions.map((instruction, index) =>
+								<Container key={index}> 
+									<Grid direction="column" container justify="center" alignItems="center">
+										<div className={"info-image-circle"}><img src={instruction.image} className={"info-image"}/></div>
+										<Typography align="center" className="info-text">{instruction.text}</Typography>
+									</Grid>
+								</Container>
+							)}
+						</Carousel>
+							
+					</Hidden>
 
 					<Hidden smDown>
 						{instructions.map((instruction, index) =>
@@ -143,21 +132,6 @@ function InitialPasswordForm(props: IFormProps) {
 								<Grid item md={1} style={{alignSelf:"center"}}></Grid>}
 							</React.Fragment>
 						)}
-						{/* <Grid container item md={3}  justify="center" alignItems="flex-start">
-							<Typography align="center">בחלון הבא, יש להדביק את הסיסמה הזמנית שקיבלת ב-SMS</Typography>
-						</Grid>
-
-						<Grid item md={1} style={{alignSelf:"center"}}></Grid>
-
-						<Grid container item md={3} justify="center" alignItems="flex-start">
-							<Typography align="center">לאחר מכן, יש להקליד את קוד האימות הנוסף שיתקבל בהודעת SMS</Typography>
-						</Grid>
-
-						<Grid item md={1} style={{alignSelf:"center"}}></Grid>
-
-						<Grid container item md={3} justify="center" alignItems="flex-start">
-							<Typography align="center">לבסוף, יש לבחור סיסמה קבועה למשתמש עפ"י ההנחיות</Typography>
-						</Grid> */}
 					</Hidden>
 					<Grid container item xs={12} justify="center" alignItems="center">
 						<Button variant="contained" onClick={onContinueClick} disableElevation={true} color="primary" className="idf-button" >קיבלתי את ה-SMS, אפשר להמשיך</Button>
