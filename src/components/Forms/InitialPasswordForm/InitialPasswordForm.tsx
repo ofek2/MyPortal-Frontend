@@ -65,7 +65,7 @@ function InitialPasswordForm(props: IFormProps) {
 	}
 
 	const instructions = [
-		{image: info1, text: 'תחילה, יש להקיש את הסיסמה שקיבלת הרגע'},
+		{image: info1, text: 'תחילה, יש להקליד את הסיסמה שקיבלת הרגע'},
 		{image: info2, text: 'ואז, יש להקליד את קוד האימות הנוסף שיתקבל'},
 		{image: info3, text: 'ולבסוף, יש לבחור סיסמה קבועה למשתמש'}
 	]
