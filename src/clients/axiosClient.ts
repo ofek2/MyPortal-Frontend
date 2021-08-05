@@ -3,7 +3,8 @@ import { validateChecksum } from '../model/data/Checksum';
 import config from "../model/data/Configuration";
 
 const axiosInstance = axios.create({
-	baseURL: config.authService.baseURL,
+	// baseURL: config.authService.baseURL,
+	baseURL: '/api',
 	withCredentials: true
 });
 
