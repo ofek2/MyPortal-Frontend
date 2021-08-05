@@ -15,19 +15,6 @@ export function createChecksum(data, secret) {
     return cryptojs.SHA256(checksum.toString()).toString();
 }
 
-function hashValue(input) {
-    let hash = 0, i, chr;
-
-    input = input.toString();
-
-    for (i = 0; i < input.length; i++) {
-      chr   = input.charCodeAt(i);
-      hash  = ((hash << 5) - hash) + chr;
-      hash |= 0; // Convert to 32bit integer
-    }
-    return hash;
-}
-
 export function validateChecksum(data, secret, expectedChecksum) {
     const checksum = createChecksum(data, secret);
 
