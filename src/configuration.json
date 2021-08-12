@@ -34,9 +34,6 @@
 		}
 	},
 	"production": {
-		"authService": {
-			"baseURL": "https://my.idf.il/api"
-		},
 		"msalConfig": {
 			"auth": {
 				"redirectUri": "https://my.idf.il/auth/callback",
