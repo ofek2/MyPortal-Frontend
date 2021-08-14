@@ -1,8 +1,5 @@
 {
 	"development": {
-		"authService": {
-			"baseURL": "http://localhost:5000/api"
-		},
 		"msalConfig": {
 			"auth": {
 				"clientId": "2bea0ea4-60b9-400d-b544-94c5bccb1019",
@@ -29,9 +26,6 @@
 		"captchaSiteKey": "6Lf_RzQbAAAAAJjNjBJCoLAb7ep2JPHQNJsxqGiW"
 	},
 	"test": {
-		"authService": {
-			"baseURL": "https://devmyportal.azurewebsites.net/api"
-		},
 		"msalConfig": {
 			"auth": {
 				"redirectUri": "https://devfe.azurewebsites.net/auth/callback",
@@ -40,9 +34,6 @@
 		}
 	},
 	"production": {
-		"authService": {
-			"baseURL": "https://my.idf.il/api"
-		},
 		"msalConfig": {
 			"auth": {
 				"redirectUri": "https://my.idf.il/auth/callback",

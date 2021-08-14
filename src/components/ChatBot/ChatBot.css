@@ -106,6 +106,14 @@ button.three-d {
   border: 0px;
 }
 
+button.three-d:disabled,
+button.three-d:disabled:focus, 
+button.three-d:disabled:hover {
+  cursor: default;
+  background: #d4cd95;
+  color: initial;
+}
+
 button.three-d:hover,
 button.three-d:focus {
   cursor: pointer;

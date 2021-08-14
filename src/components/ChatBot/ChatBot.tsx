@@ -96,7 +96,7 @@ function ChatBott() {
 			{
 				id: 5,
 				question: `איך אפשר לקבל תמיכה נוספת?`,
-				answer: `נשמח לסייע לכם באמצעות מייל אזרחי לכתובת: MySupport@idf.il`
+				answer: `נשמח לסייע לכם באמצעות מילוי הטופס בכתובת הבאה: <a href="https://go.idf.il/Support">https://go.idf.il/Support</a>`
 			},
 		];
 		const options = {
