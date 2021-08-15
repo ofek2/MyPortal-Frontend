@@ -97,7 +97,7 @@ function ChatBott() {
 				id: 5,
 				question: `איך אפשר לקבל תמיכה נוספת?`,
 				answer: `אני כאן כדי לסייע לכם!<br>
-				לקבלת עזרה, יש למלא את הטופס בקישור הבא: <a href="https://go.idf.il/Support">https://go.idf.il/Support</a>`
+				לקבלת עזרה, יש למלא את הטופס בקישור הבא: <a  target="_blank" href="https://go.idf.il/Support">https://go.idf.il/Support</a>`
 			},
 		];
 		const options = {
