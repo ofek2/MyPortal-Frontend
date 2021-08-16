@@ -1,19 +1,16 @@
 import React, { useState } from 'react';
-import Paper from '@material-ui/core/Paper';
 import { Grid, Hidden, StepLabel, Tooltip, IconButton } from '@material-ui/core';
 import registerSteps from '../../model/data/RegisterSteps';
 import Stepper from '@material-ui/core/Stepper';
 import Step from '@material-ui/core/Step';
 import ArrowForward from '@material-ui/icons/ArrowForward';
 import MobileStepper from '@material-ui/core/MobileStepper';
-import withWidth, { WithWidth } from '@material-ui/core/withWidth';
 import './RegisterForm.css';
 import StepIcon from '../StepIcon/StepIcon';
-import idfPng from '../../assets/images/idf.png';
 import { MyPaper } from '../Common/MyPaper';
 let currentPayload = {};
 
-function RegisterForm(props: WithWidth) {
+function RegisterForm() {
 	// State & props
 	const steps = registerSteps;
 	const [currentStep, setCurrentStep] = useState(0);
@@ -77,4 +74,4 @@ function RegisterForm(props: WithWidth) {
 	);
 }
 
-export default withWidth()(RegisterForm);
+export default RegisterForm;

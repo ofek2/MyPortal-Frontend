@@ -1,0 +1,26 @@
+import { Container, Grid, Typography } from '@material-ui/core';
+import React from 'react';
+import { MyPaper } from '../Common/MyPaper';
+import faqs from '../../model/data/FAQs';
+import FAQItem from './FAQItem';
+
+function FAQPage() {
+
+
+    return (
+        <MyPaper>
+            <Typography variant="h3">נתקלת בבעיה? <b>ננסה לעזור לך</b> </Typography>
+            <Container maxWidth="lg">
+                <Grid container justify="center" style={{marginTop: "20px", marginBottom: "20px"}}>
+                {
+                    faqs.map(faq => 
+                        <Grid container item alignItems="center" justify="center" xs={12} sm={6} md={4}><FAQItem faq={faq}/></Grid>
+                    )
+                }
+                </Grid>
+            </Container>
+        </MyPaper>
+    )
+}
+
+export default FAQPage;

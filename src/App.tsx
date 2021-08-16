@@ -8,26 +8,25 @@ import {
 import './App.css';
 import RegisterContainer from './containers/RegisterContainer';
 import CallbackContainer from './containers/CallbackContainer';
-import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
+
 import ErrorContainer from './containers/ErrorContainer';
 import ChatBott from './components/ChatBot/ChatBot';
+import FAQContainer from './containers/FAQContainer';
 
 function App() {
   return (
     <div className="App">
       <div className="App-Bg"></div>
-      {/* <Header /> */}
       <div className="App-content">
         <Router>
           <Switch>
             <Route exact path="/" component={RegisterContainer} />
+            <Route exact path="/FAQ" component={FAQContainer} />
             <Route exact path="/error" component={ErrorContainer} />
             <Route exact path="/auth/callback" component={CallbackContainer} />
             <Redirect to="/" />
           </Switch>
         </Router>
-        {/* <Footer /> */}
         <ChatBott/>
       </div>
     </div>
