@@ -26,21 +26,21 @@ function FAQItem(props: FAQProps) {
         <div className="faq-container">
            <div className="faq-inner">
                 <div className="faq-front">
-                    <Grid container style={{height: "100%"}} justify="center" alignItems="center">
-                        <Grid container justify="center" alignItems="center" item xs={12} className="faq-front-icon"><img src={faq.question.icon}/></Grid>
+                    <Grid container style={{height: "100%"}} justify="center" alignItems="flex-start">
+                        <Grid container justify="center" alignItems="center" item xs={12}  className="faq-front-icon"><img src={faq.question.icon}/></Grid>
                         <Grid container justify="center" alignItems="center" item xs={12} className="faq-front-question">
-                            <Typography >{questionText}</Typography>
+                            <Typography className="faq-front-text">{questionText}</Typography>
                         </Grid>
                     </Grid>
                 </div>
                 <div className="faq-back">
-                    <Grid container style={{height: "100%"}} justify="center" alignItems="center">
-                        <Grid container justify="center" alignItems="center" item xs={12} className="faq-back-question">
-                            <Typography>{questionText}</Typography>
-                        </Grid>
-                        <Grid container justify="center" alignItems="center" item xs={12} className="faq-back-answer">
-                            <Typography>{answerText}</Typography>
-                        </Grid>
+                    <Grid container  justify="center" alignItems="flex-start">
+                        {/* <Grid container justify="center" alignItems="center" item xs={12} className="faq-back-question"> */}
+                            <Typography className="faq-back-question faq-back-question-text">{questionText}</Typography>
+                        {/* </Grid> */}
+                        {/* <Grid container justify="center" alignItems="center" item xs={12} className=""> */}
+                            <Typography className="faq-back-answer faq-back-answer-text">{answerText}</Typography>
+                        {/* </Grid> */}
                     </Grid>
                 </div>
             </div> 

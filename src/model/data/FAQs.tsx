@@ -1,5 +1,6 @@
 import React from 'react';
 import idf2 from '../../assets/images/idf2.png';
+import blockedUser from '../../assets/images/blocked-user.png';
 
 export interface FAQ {
     question: {
@@ -25,7 +26,7 @@ const faqs: FAQ[] = [
     },
     {
         question: {
-            icon: idf2,
+            icon: blockedUser,
             text: "נחסם לכם המשתמש לאחר הקלדת סיסמה שגויה יותר מדי פעמים?"
         },
         answer: {
