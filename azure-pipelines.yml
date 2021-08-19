@@ -15,7 +15,7 @@ variables:
   containerRegistry: 'myprofilecontainer.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/test.Dockerfile'
   tag: '$(Build.BuildId)'
-  sonarqubeServerEndpoint: 'MyPortalSC'
+  sonarqubeServerEndpoint: 'MyPortalFrontSC'
   cliProjectKey: 'clickMyPortal'
   cliProjectName: 'MyIDF-Front'
   # Agent VM image name
