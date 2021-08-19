@@ -46,6 +46,17 @@ stages:
     
     
     #Sonarqube + Dependency Check
+    # - task: SonarQubePrepare@4
+    #   inputs:
+    #     SonarQube: '$(SonarqubeServerEndpoint)'
+    #     scannerMode: 'CLI'
+    #     configMode: 'manual'
+    #     cliProjectKey: 'clickMyPortal'
+    #     cliProjectName: 'MyIDF-Front'
+    #     cliSources: '.'
+    #     extraProperties: |
+    #       sonar.externalIssuesReportPaths=$(Build.ArtifactStagingDirectory)/gitleaks_sonar_format.json,$(Build.ArtifactStagingDirectory)/snyk_sonar_format.json,$(Build.ArtifactStagingDirectory)/semgrep_sonar_format.json
+    #       sonar.branch.name=$(Build.SourceBranchName)
     - task: SonarQubePrepare@4
       inputs:
         SonarQube: '$(SonarqubeServerEndpoint)'
@@ -55,9 +66,11 @@ stages:
         cliProjectName: 'MyIDF-Front'
         cliSources: '.'
         extraProperties: |
-          sonar.externalIssuesReportPaths=$(Build.ArtifactStagingDirectory)/gitleaks_sonar_format.json,$(Build.ArtifactStagingDirectory)/snyk_sonar_format.json,$(Build.ArtifactStagingDirectory)/semgrep_sonar_format.json
+          sonar.externalIssuesReportPaths=$(Build.ArtifactStagingDirectory)/gitleaks_sonar_format.json,$(Build.ArtifactStagingDirectory)/semgrep_sonar_format.json
           sonar.branch.name=$(Build.SourceBranchName)
   
+    # wget -q -O "snyk.py" "https://devsecopszone.blob.core.windows.net/tools/snyk.py?sp=r&st=2021-08-05T08:26:44Z&se=2022-04-04T16:26:44Z&spr=https&sv=2020-08-04&sr=b&sig=zrEmqY%2BdRMK0xofnClOd15PqEwnRDrDu35kacZDv59U%3D"
+
     - task: Bash@3
       displayName: Download Tools    
       inputs:
@@ -67,7 +80,6 @@ stages:
           wget -q -O "gitleaks.toml" "https://devsecopszone.blob.core.windows.net/gitleak/gitleaks.toml?sp=r&st=2021-04-04T15:14:30Z&se=2022-04-04T23:14:30Z&spr=https&sv=2020-02-10&sr=b&sig=IGJnJ0XKQe9lJx2t6KDfA8TJ5xLotEOFjUFgEI9qC3w%3D"
           wget -q -O "trivy.zip" "https://devsecopszone.blob.core.windows.net/tools/trivy.zip?sp=r&st=2021-04-04T15:11:56Z&se=2022-04-04T23:11:56Z&spr=https&sv=2020-02-10&sr=b&sig=N5aqUv8%2BNZfubrOIxmo1j0nB4SU872s%2BgEyTmMoqewQ%3D"             
           wget -q -O "gitleaks_sonar_converter.py" "https://devsecopszone.blob.core.windows.net/gitleak/gitleaks_sonar_converter.py?sp=r&st=2021-07-22T07:53:42Z&se=2022-04-04T20:15:42Z&spr=https&sv=2020-08-04&sr=b&sig=9tds1VIxFQtncbYODxXeKHdHMu7I5ui88SLuDvoHBHo%3D"         
-          wget -q -O "snyk.py" "https://devsecopszone.blob.core.windows.net/tools/snyk.py?sp=r&st=2021-08-05T08:26:44Z&se=2022-04-04T16:26:44Z&spr=https&sv=2020-08-04&sr=b&sig=zrEmqY%2BdRMK0xofnClOd15PqEwnRDrDu35kacZDv59U%3D"
           wget -q -O "semgrep.zip" "https://devsecopszone.blob.core.windows.net/tools/semgrep.zip?sp=r&st=2021-08-12T12:40:42Z&se=2022-04-04T20:40:42Z&spr=https&sv=2020-08-04&sr=b&sig=gf09MSsdBNvfuyZlbOVTI1imRMWCAC2K2nVtxKzWIBE%3D"
           unzip trivy.zip
           unzip semgrep.zip
@@ -86,15 +98,15 @@ stages:
           # after the first run, add --depth={Number of past commits to scan}
       continueOnError: true
 
-    - task: Bash@3
-      displayName: Run Snyk
-      inputs:
-        targetType: 'inline'
-        script: |
-          pip install --upgrade pip
-          pip install beautifulsoup4
-          python3 snyk.py . $(Build.ArtifactStagingDirectory)/snyk_sonar_format.json
-      continueOnError: true
+    # - task: Bash@3
+    #   displayName: Run Snyk
+    #   inputs:
+    #     targetType: 'inline'
+    #     script: |
+    #       pip install --upgrade pip
+    #       pip install beautifulsoup4
+    #       python3 snyk.py . $(Build.ArtifactStagingDirectory)/snyk_sonar_format.json
+    #   continueOnError: true
 
     - task: Bash@3
       displayName: Run Semgrep
