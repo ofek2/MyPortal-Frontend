@@ -15,7 +15,8 @@ variables:
   containerRegistry: 'myprofilecontainer.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/test.Dockerfile'
   tag: '$(Build.BuildId)'
-  
+  SonarqubeServerEndpoint: 'MyPortalSC'
+
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
 
@@ -47,10 +48,11 @@ stages:
     #Sonarqube + Dependency Check
     - task: SonarQubePrepare@4
       inputs:
-        SonarQube: 'click-api-sonarqube'
+        SonarQube: '$(SonarqubeServerEndpoint)'
         scannerMode: 'CLI'
         configMode: 'manual'
-        cliProjectKey: 'click'
+        cliProjectKey: 'clickMyPortal'
+        cliProjectName: 'MyIDF-Front'
         cliSources: '.'
         extraProperties: |
           sonar.externalIssuesReportPaths=$(Build.ArtifactStagingDirectory)/gitleaks_sonar_format.json,$(Build.ArtifactStagingDirectory)/snyk_sonar_format.json,$(Build.ArtifactStagingDirectory)/semgrep_sonar_format.json
