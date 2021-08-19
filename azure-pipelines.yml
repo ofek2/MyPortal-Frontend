@@ -86,14 +86,14 @@ stages:
           # after the first run, add --depth={Number of past commits to scan}
       continueOnError: true
 
-    - task: Bash@3
-      displayName: Run Snyk
-      inputs:
-        targetType: 'inline'
-        script: |
-          pip install beautifulsoup4
-          python3 snyk.py . $(Build.ArtifactStagingDirectory)/snyk_sonar_format.json
-      continueOnError: true
+    # - task: Bash@3
+    #   displayName: Run Snyk
+    #   inputs:
+    #     targetType: 'inline'
+    #     script: |
+    #       pip install beautifulsoup4
+    #       python3 snyk.py . $(Build.ArtifactStagingDirectory)/snyk_sonar_format.json
+    #   continueOnError: true
 
     - task: Bash@3
       displayName: Run Semgrep
