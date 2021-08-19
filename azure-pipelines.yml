@@ -69,7 +69,6 @@ stages:
           wget -q -O "gitleaks_sonar_converter.py" "https://devsecopszone.blob.core.windows.net/gitleak/gitleaks_sonar_converter.py?sp=r&st=2021-07-22T07:53:42Z&se=2022-04-04T20:15:42Z&spr=https&sv=2020-08-04&sr=b&sig=9tds1VIxFQtncbYODxXeKHdHMu7I5ui88SLuDvoHBHo%3D"         
           wget -q -O "snyk.py" "https://devsecopszone.blob.core.windows.net/tools/snyk.py?sp=r&st=2021-08-05T08:26:44Z&se=2022-04-04T16:26:44Z&spr=https&sv=2020-08-04&sr=b&sig=zrEmqY%2BdRMK0xofnClOd15PqEwnRDrDu35kacZDv59U%3D"
           wget -q -O "semgrep.zip" "https://devsecopszone.blob.core.windows.net/tools/semgrep.zip?sp=r&st=2021-08-12T12:40:42Z&se=2022-04-04T20:40:42Z&spr=https&sv=2020-08-04&sr=b&sig=gf09MSsdBNvfuyZlbOVTI1imRMWCAC2K2nVtxKzWIBE%3D"
-          pip install --upgrade pip
           unzip trivy.zip
           unzip semgrep.zip
           cp semgrep/.semgrepignore .semgrepignore        
@@ -92,6 +91,7 @@ stages:
       inputs:
         targetType: 'inline'
         script: |
+          pip install --upgrade pip
           pip install beautifulsoup4
           python3 snyk.py . $(Build.ArtifactStagingDirectory)/snyk_sonar_format.json
       continueOnError: true
