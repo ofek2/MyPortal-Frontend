@@ -105,7 +105,7 @@ stages:
       inputs:
         targetType: 'inline'
         script: |
-          pip install beautifulsoup4
+          pip install Beautifulsoup4
           python3 snyk.py . $(Build.ArtifactStagingDirectory)/snyk_sonar_format.json
       continueOnError: true
 
