@@ -15,8 +15,9 @@ variables:
   containerRegistry: 'myprofilecontainer.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/test.Dockerfile'
   tag: '$(Build.BuildId)'
-  SonarqubeServerEndpoint: 'MyPortalSC'
-
+  sonarqubeServerEndpoint: 'MyPortalSC'
+  cliProjectKey: 'clickMyPortal'
+  cliProjectName: 'MyIDF-Front'
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
 
@@ -48,22 +49,22 @@ stages:
     #Sonarqube + Dependency Check
     # - task: SonarQubePrepare@4
     #   inputs:
-    #     SonarQube: '$(SonarqubeServerEndpoint)'
+    #     SonarQube: '$(sonarqubeServerEndpoint)'
     #     scannerMode: 'CLI'
     #     configMode: 'manual'
-    #     cliProjectKey: 'clickMyPortal'
-    #     cliProjectName: 'MyIDF-Front'
+    #     cliProjectKey: '$(cliProjectKey)'
+    #     cliProjectName: '$(cliProjectName)'
     #     cliSources: '.'
     #     extraProperties: |
     #       sonar.externalIssuesReportPaths=$(Build.ArtifactStagingDirectory)/gitleaks_sonar_format.json,$(Build.ArtifactStagingDirectory)/snyk_sonar_format.json,$(Build.ArtifactStagingDirectory)/semgrep_sonar_format.json
     #       sonar.branch.name=$(Build.SourceBranchName)
     - task: SonarQubePrepare@4
       inputs:
-        SonarQube: '$(SonarqubeServerEndpoint)'
+        SonarQube: '$(sonarqubeServerEndpoint)'
         scannerMode: 'CLI'
         configMode: 'manual'
-        cliProjectKey: 'clickMyPortal'
-        cliProjectName: 'MyIDF-Front'
+        cliProjectKey: '$(cliProjectKey)'
+        cliProjectName: '$(cliProjectName)'
         cliSources: '.'
         extraProperties: |
           sonar.externalIssuesReportPaths=$(Build.ArtifactStagingDirectory)/gitleaks_sonar_format.json,$(Build.ArtifactStagingDirectory)/semgrep_sonar_format.json
@@ -103,7 +104,6 @@ stages:
     #   inputs:
     #     targetType: 'inline'
     #     script: |
-    #       pip install --upgrade pip
     #       pip install beautifulsoup4
     #       python3 snyk.py . $(Build.ArtifactStagingDirectory)/snyk_sonar_format.json
     #   continueOnError: true
