@@ -15,7 +15,9 @@ variables:
   containerRegistry: 'myprofilecontainer.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/test.Dockerfile'
   tag: '$(Build.BuildId)'
-  
+  sonarqubeServerEndpoint: 'MyPortalFrontSC'
+  cliProjectKey: 'clickMyPortal'
+  cliProjectName: 'MyIDF-Front'
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
 
@@ -37,3 +39,96 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
+- stage: SecurityScan
+  displayName: Security Scan
+  jobs:
+  - job: Scan
+    steps:
+    
+    
+    #Sonarqube + Dependency Check
+    - task: SonarQubePrepare@4
+      inputs:
+        SonarQube: '$(sonarqubeServerEndpoint)'
+        scannerMode: 'CLI'
+        configMode: 'manual'
+        cliProjectKey: '$(cliProjectKey)'
+        cliProjectName: '$(cliProjectName)'
+        cliSources: '.'
+        extraProperties: |
+          sonar.externalIssuesReportPaths=$(Build.ArtifactStagingDirectory)/gitleaks_sonar_format.json,$(Build.ArtifactStagingDirectory)/snyk_sonar_format.json,$(Build.ArtifactStagingDirectory)/semgrep_sonar_format.json
+          sonar.branch.name=$(Build.SourceBranchName)
+   
+    - task: Bash@3
+      displayName: Download Tools    
+      inputs:
+        targetType: 'inline'
+        script: |
+          wget -q -O "gitleaks" "https://devsecopszone.blob.core.windows.net/tools/gitleaks?sp=r&st=2021-04-04T15:09:49Z&se=2022-04-04T23:09:49Z&spr=https&sv=2020-02-10&sr=b&sig=QzFRUGjx%2BsrR3tNe7pW3xi0yQGAs1kC4CrNelB1LNRM%3D"
+          wget -q -O "gitleaks.toml" "https://devsecopszone.blob.core.windows.net/gitleak/gitleaks.toml?sp=r&st=2021-04-04T15:14:30Z&se=2022-04-04T23:14:30Z&spr=https&sv=2020-02-10&sr=b&sig=IGJnJ0XKQe9lJx2t6KDfA8TJ5xLotEOFjUFgEI9qC3w%3D"
+          wget -q -O "trivy.zip" "https://devsecopszone.blob.core.windows.net/tools/trivy.zip?sp=r&st=2021-04-04T15:11:56Z&se=2022-04-04T23:11:56Z&spr=https&sv=2020-02-10&sr=b&sig=N5aqUv8%2BNZfubrOIxmo1j0nB4SU872s%2BgEyTmMoqewQ%3D"             
+          wget -q -O "gitleaks_sonar_converter.py" "https://devsecopszone.blob.core.windows.net/gitleak/gitleaks_sonar_converter.py?sp=r&st=2021-07-22T07:53:42Z&se=2022-04-04T20:15:42Z&spr=https&sv=2020-08-04&sr=b&sig=9tds1VIxFQtncbYODxXeKHdHMu7I5ui88SLuDvoHBHo%3D"         
+          wget -q -O "semgrep.zip" "https://devsecopszone.blob.core.windows.net/tools/semgrep.zip?sp=r&st=2021-08-12T12:40:42Z&se=2022-04-04T20:40:42Z&spr=https&sv=2020-08-04&sr=b&sig=gf09MSsdBNvfuyZlbOVTI1imRMWCAC2K2nVtxKzWIBE%3D"
+          wget -q -O "snyk.py" "https://devsecopszone.blob.core.windows.net/tools/snyk.py?sp=r&st=2021-08-05T08:26:44Z&se=2022-04-04T16:26:44Z&spr=https&sv=2020-08-04&sr=b&sig=zrEmqY%2BdRMK0xofnClOd15PqEwnRDrDu35kacZDv59U%3D"
+          unzip trivy.zip
+          unzip semgrep.zip
+          cp semgrep/.semgrepignore .semgrepignore        
+          chmod +x gitleaks
+          mkdir $(Build.ArtifactStagingDirectory)/CodeAnalysisLogs
+
+    - task: Bash@3
+      displayName: Run Gitleaks
+      inputs:
+        targetType: 'inline'
+        script: |
+          ./gitleaks --path=. --config-path=./gitleaks.toml -o $(Build.ArtifactStagingDirectory)/CodeAnalysisLogs/gitleaksReport.json --format=json
+          python3 gitleaks_sonar_converter.py $(Build.ArtifactStagingDirectory)/CodeAnalysisLogs/gitleaksReport.json $(Build.ArtifactStagingDirectory)/gitleaks_sonar_format.json
+          # incase of an error remove branch name
+          # after the first run, add --depth={Number of past commits to scan}
+      continueOnError: true
+
+    - task: Bash@3
+      displayName: Run Snyk
+      inputs:
+        targetType: 'inline'
+        script: |
+          pip3 install beautifulsoup4
+          python3 snyk.py . $(Build.ArtifactStagingDirectory)/snyk_sonar_format.json
+      continueOnError: true
+
+    - task: Bash@3
+      displayName: Run Semgrep
+      inputs:
+        targetType: 'inline'
+        script: |
+            docker run -v $(pwd):/semgrep \
+            --workdir /semgrep \
+            -e "SEMGREP_RULES=semgrep/owasp-top-ten.semgrep.yml semgrep/secrets.semgrep.yml semgrep/security-audit.semgrep.yml" \
+            returntocorp/semgrep-agent:v1 semgrep-agent --json > $(Build.ArtifactStagingDirectory)/CodeAnalysisLogs/semgrepReport.json
+            # -e "INPUT_GENERATESARIF=1" \
+            python3 ./semgrep/semgrep_sonar_converter.py $(Build.ArtifactStagingDirectory)/CodeAnalysisLogs/semgrepReport.json $(Build.ArtifactStagingDirectory)/semgrep_sonar_format.json
+            true
+      continueOnError: true
+
+  #   - task: Bash@3
+  #     displayName: Run Trivy
+  #     inputs:
+  #       targetType: 'inline'
+  #   ## Change docker image name in the end of the script
+  #       script: |
+  #         ./trivy/trivy fs --format template --template "@./trivy/contrib/sonarqube.tpl" -o '$(Build.ArtifactStagingDirectory)/reportFs.json' .
+  #       #  ./trivy/trivy image --format template --template "@./trivy/contrib/sonarqube.tpl" -o '$(Build.ArtifactStagingDirectory)/reportImage.json' $(imageRepository):$(Build.BuildId)
+  #     continueOnError: true
+  #  # --severity HIGH,CRITICAL,MEDIUM
+    - task: PublishBuildArtifacts@1
+      displayName: "Publish analysis logs"
+      inputs:
+        PathtoPublish: "$(Build.ArtifactStagingDirectory)/CodeAnalysisLogs"
+        ArtifactName: "CodeAnalysisLogs"
+        publishLocation: "Container"
+    - task: SonarQubeAnalyze@4
+    
+    - task: SonarQubePublish@4
+      inputs:
+        pollingTimeoutSec: '300'
+      
