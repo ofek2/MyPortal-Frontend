@@ -86,6 +86,12 @@ clip-path: circle(63.3% at 51% 3%); */
 .faq-back-answer-text {
     color: white;
 }
+
+.faq-back-answer-text a, .faq-back-question-text a,
+.faq-back-answer-text a:visited, .faq-back-question-text a:visited{
+    color: rgb(0, 183, 255);;
+}
+
 .faq-front-text {
     font-size: 1.1rem;
 }

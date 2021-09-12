@@ -10,17 +10,19 @@ interface FAQProps {
 function FAQItem(props: FAQProps) {
     const {faq} = props;
 
-    const questionText = <>
-        {faq.question.text.split("\n").map((i, key) => {
-            return <div key={key}>{i}</div>;
-        })}
-    </>
+    // const questionText = <>
+    //     {faq.question.text.split("\n").map((i, key) => {
+    //         return <div key={key}>{i}</div>;
+    //     })}
+    // </>
 
-    const answerText = <>
-        {faq.answer.text.split("\n").map((i, key) => {
-            return <div key={key}>{i}</div>;
-        })}
-    </>
+    // const answerText = <>
+    //     {faq.answer.text.split("\n").map((i, key) => {
+    //         return <div key={key}>{i}</div>;
+    //     })}
+    // </>
+    const questionText = faq.question.text;
+    const answerText = faq.answer.text;
 
     return (
         <div className="faq-container">
@@ -39,7 +41,7 @@ function FAQItem(props: FAQProps) {
                             <Typography className="faq-back-question faq-back-question-text">{questionText}</Typography>
                         {/* </Grid> */}
                         {/* <Grid container justify="center" alignItems="center" item xs={12} className=""> */}
-                            <Typography className="faq-back-answer faq-back-answer-text">{answerText}</Typography>
+                            <Typography component="div" className="faq-back-answer faq-back-answer-text">{answerText}</Typography>
                         {/* </Grid> */}
                     </Grid>
                 </div>
