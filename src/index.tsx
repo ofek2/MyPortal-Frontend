@@ -34,7 +34,6 @@ const theme = createMuiTheme({
   }
 });
 
-
 // Creating jss
 const jss = create({
    plugins: [...jssPreset().plugins, rtl()],

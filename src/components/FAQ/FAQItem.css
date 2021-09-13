@@ -1,0 +1,112 @@
+.faq-container {
+    
+    background: white;
+    perspective: 1000px; /* Remove this if you don't want the 3D effect */
+    margin: 35px;
+}
+
+/* This container is needed to position the front and back side */
+.faq-inner {
+    position: relative;
+    border-radius: 50%;
+    /* border: 2px solid black; */
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    
+    padding: 5px;
+    width: 16rem;
+    height: 16rem;
+    transition: transform 1.2s;
+    transform-style: preserve-3d;
+}
+
+/* Do an horizontal flip when you move the mouse over the flip box container */
+.faq-container:hover .faq-inner {
+    /* transform: rotateY(180deg) scale(1.5); */
+    transform: rotateY(180deg) scale(1.5);
+    transition: transform 0.8s;
+}
+
+/* Position the front and back side */
+.faq-front, .faq-back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    -webkit-backface-visibility: hidden; /* Safari */
+    backface-visibility: hidden;
+}
+
+/* Style the front side (fallback if image is missing) */
+.faq-front {
+    /* background-color: rgb(255, 225, 93); */
+    border-radius: inherit;
+    /* padding: 21px; */
+
+    /* background: rgb(255,222,0);
+    background: linear-gradient(180deg, rgba(255,222,0,1) 0%, rgba(255,222,0,1) 50%, rgba(255,255,255,1) 50%, rgba(255,255,255,1) 100%); */
+    background-image: url("../../assets/images/faq-front-background.png");
+    background-size: 370px;
+    background-repeat: no-repeat;
+    background-position: top;
+    /* -webkit-clip-path: circle(63.3% at 51% 3%);
+clip-path: circle(63.3% at 51% 3%); */
+}
+
+/* Style the back side */
+.faq-back {
+    /* color: white; */
+    border-radius: inherit;
+    padding: 40px 35px;
+
+    transform: rotateY(180deg);
+    background-color: rgb(48, 48, 48);
+
+}
+
+.faq-front-icon img{
+    /* background-color: rgb(255, 225, 93); */
+    width: 5rem;
+    padding-top: 10px;
+}
+
+.faq-front-question {
+    padding: 0 25px;
+}
+
+.faq-back-question-text,
+.faq-back-question-title {
+    color: yellow;
+}
+.faq-back-question-text {
+    margin-bottom: 10px;
+}
+
+.faq-back-answer-text,
+.faq-back-answer-title {
+    color: white;
+}
+
+.faq-back-answer-text a, .faq-back-question-text a,
+.faq-back-answer-text a:visited, .faq-back-question-text a:visited{
+    color: rgb(0, 183, 255);;
+}
+
+.faq-front-text {
+    /* font-size: 1.1rem; */
+}
+.faq-back-text,
+.faq-back-answer-text,
+.faq-back-question-text {
+    font-size: 0.8rem;
+}
+
+.faq-back-answer-title,
+.faq-back-question-title {
+    font-size: 1rem;
+}
