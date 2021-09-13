@@ -31,9 +31,8 @@ const theme = createMuiTheme({
     text: {
       primary: "#333"
     }
-  },
+  }
 });
-
 
 // Creating jss
 const jss = create({

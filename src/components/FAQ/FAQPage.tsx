@@ -11,10 +11,10 @@ function FAQPage() {
         <MyPaper>
             <Typography variant="h3">נתקלת בבעיה? <b>ננסה לעזור לך</b> </Typography>
             <Container maxWidth="lg">
-                <Grid container spacing={8} justify="center" style={{marginTop: "20px", marginBottom: "20px"}}>
+                <Grid container spacing={4} justify="center" style={{marginTop: "20px", marginBottom: "20px"}}>
                 {
                     faqs.map(faq => 
-                        <Grid container item alignItems="center" justify="center" xs={12} sm={6} md={4}><FAQItem faq={faq}/></Grid>
+                        <Grid container item alignItems="center" justify="center" xs={12} md={6} lg={4}><FAQItem faq={faq}/></Grid>
                     )
                 }
                 </Grid>
