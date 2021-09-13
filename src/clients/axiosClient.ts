@@ -2,7 +2,7 @@ import axios from 'axios';
 import { validateChecksum } from '../model/data/Checksum';
 import config from "../model/data/Configuration";
 
-const axiosInstance = axios.create({
+export const axiosInstance = axios.create({
 	// baseURL: config.authService.baseURL,
 	baseURL: '/api',
 	withCredentials: true
@@ -18,6 +18,9 @@ axiosInstance.interceptors.response.use((response) => {
 	return Promise.reject(err);
 });
 
+export const faqAxiosInstance = axios.create({
+	baseURL: config.faqFunctionUrl
+});
 
 // axiosInstance.interceptors.request.use((options) => {
 // 	options = jwtOptions(options);
@@ -38,5 +41,3 @@ axiosInstance.interceptors.response.use((response) => {
 
 // 	return options;
 // }
-
-export default axiosInstance;

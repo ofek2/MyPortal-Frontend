@@ -13,8 +13,8 @@
     box-shadow: 0 0 10px rgba(0,0,0,0.3);
     
     padding: 5px;
-    width: 16rem;
-    height: 16rem;
+    width: 13.5rem;
+    height: 13.5rem;
     transition: transform 1.2s;
     transform-style: preserve-3d;
 }
@@ -51,6 +51,7 @@
     /* background: rgb(255,222,0);
     background: linear-gradient(180deg, rgba(255,222,0,1) 0%, rgba(255,222,0,1) 50%, rgba(255,255,255,1) 50%, rgba(255,255,255,1) 100%); */
     background-image: url("../../assets/images/faq-front-background.png");
+    /* background-size: clamp(290px, 27.5vw, 370px); */
     background-size: 370px;
     background-repeat: no-repeat;
     background-position: top;
@@ -103,7 +104,7 @@ clip-path: circle(63.3% at 51% 3%); */
 .faq-back-text,
 .faq-back-answer-text,
 .faq-back-question-text {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
 }
 
 .faq-back-answer-title,
