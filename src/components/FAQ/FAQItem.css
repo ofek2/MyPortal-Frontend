@@ -72,8 +72,13 @@ clip-path: circle(63.3% at 51% 3%); */
 
 .faq-front-icon img{
     /* background-color: rgb(255, 225, 93); */
-    width: 5rem;
+    /* width: 5rem; */
+    max-height: 80%;
     padding-top: 10px;
+}
+
+.faq-front-icon .faq-icon {
+    font-size: 4.5rem;
 }
 
 .faq-front-question {
