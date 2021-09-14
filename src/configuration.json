@@ -23,7 +23,8 @@
 		],
 		"clickDomain": "idf.il",
 		"isInMaintenance": 0,
-		"captchaSiteKey": "6Lf_RzQbAAAAAJjNjBJCoLAb7ep2JPHQNJsxqGiW"
+		"captchaSiteKey": "6Lf_RzQbAAAAAJjNjBJCoLAb7ep2JPHQNJsxqGiW",
+		"faqFunctionUrl": "https://myportalfaq.azurewebsites.net/api/getAllFaqs?code=O3eJf/9gCG7PxUNY8UKCRaVBHjM67dKZHsECP7FXhr5idJXHmq9jxw=="
 	},
 	"test": {
 		"msalConfig": {

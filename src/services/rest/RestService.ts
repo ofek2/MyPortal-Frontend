@@ -1,4 +1,4 @@
-import axiosInstance from "../../clients/axiosClient";
+import {axiosInstance, faqAxiosInstance} from "../../clients/axiosClient";
 
 class RestService {
 	static async checkUser(idNumber: string, captchaToken: string) {
@@ -18,6 +18,11 @@ class RestService {
 
 	static async sendFinishSMS() {
 		const res = await axiosInstance.get(`/users/me/finish`);
+		return res.data;
+	}
+
+	static async getFaqs() {
+		const res = await faqAxiosInstance.get(`/`);
 		return res.data;
 	}
 }

@@ -1,6 +1,11 @@
 import React from 'react';
-import idf2 from '../../assets/images/idf2.png';
+import warning from '../../assets/images/warning.png';
+import astrixs from '../../assets/images/astrixs.png';
+import lock from '../../assets/images/lock.png';
+import shtrudel from '../../assets/images/shtrudel.png';
 import blockedUser from '../../assets/images/blocked-user.png';
+import EditIcon from '@material-ui/icons/Edit';
+import LockIcon from '@material-ui/icons/Lock';
 
 export interface FAQ {
     question: {
@@ -15,7 +20,7 @@ export interface FAQ {
 const faqs: FAQ[] = [
     {
         question: {
-            icon: idf2,
+            icon: astrixs,
             text: `לא קיבלת קוד בן 6 ספרות בשלב שתיים?`
         },
         answer: {
@@ -37,7 +42,7 @@ const faqs: FAQ[] = [
     },
     {
         question: {
-            icon: idf2,
+            icon: warning,
             text: `קיבלתי שגיאה: "ייתכן ששם משתמש זה שגוי" `
         },
         answer: {
@@ -47,7 +52,7 @@ const faqs: FAQ[] = [
     },
     {
         question: {
-            icon: blockedUser,
+            icon: <LockIcon className="faq-icon"/>,
             text: `לאחר שהזנתי את שם המשתמש והסיסמה קיבלתי הודעה: "החשבון או הסיסמה שלך שגויים".`
         },
         answer: {
@@ -60,7 +65,7 @@ const faqs: FAQ[] = [
     },
     {
         question: {
-            icon: blockedUser,
+            icon: shtrudel,
             text: `
                 התחברתי לחשבון Microsoft שלי וקיבלתי הודעה: "מצטערים, איננו מצליחים להכניס אותך". 
             `
@@ -71,7 +76,7 @@ const faqs: FAQ[] = [
     },
     {
         question: {
-            icon: blockedUser,
+            icon: <EditIcon className="faq-icon"/>,
             text: `אני לא יודע מה פרטי המשתמש שלי כדי להתחבר, איך אפשר לאפס?`
         },
         answer: {
