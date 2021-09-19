@@ -97,7 +97,7 @@ function ChatBott() {
 				id: 5,
 				question: `איך אפשר לקבל תמיכה נוספת?`,
 				answer: `אני כאן כדי לסייע לכם!<br>
-				לקבלת עזרה, יש למלא את הטופס בקישור הבא: <a  target="_blank" href="https://go.idf.il/Support">https://go.idf.il/Support</a>`
+				לקבלת עזרה, יש למלא את הטופס בקישור הבא: <a style="overflow-wrap: break-word;" target="_blank" href="https://forms.office.com/Pages/ResponsePage.aspx?id=UgiCePpVC0WQjUXA2RHna2yakDZhryRNgOKw_RiocBtUME9LWlVITFBTMEJDMVlSSzVZRFUwWk5FUi4u">https://forms.office.com/Pages/ResponsePage.aspx?id=UgiCePpVC0WQjUXA2RHna2yakDZhryRNgOKw_RiocBtUME9LWlVITFBTMEJDMVlSSzVZRFUwWk5FUi4u</a>`
 			},
 		];
 		const options = {
