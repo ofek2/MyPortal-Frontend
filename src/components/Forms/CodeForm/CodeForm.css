@@ -1,0 +1,17 @@
+.login-send-icon {
+    transform: rotate(180deg);
+	color: #757575;
+	font-size: 1.2em !important;
+}
+
+.hourglass {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    object-position: 5% 0;
+}
+
+.MuiIconButton-root:hover {
+	background-color: transparent !important;
+}
+

@@ -50,8 +50,12 @@ function InitialPasswordForm(props: IFormProps) {
 		setError({msg: ''})
 		setIsResettingPassword(true);
 
+		// if its the first time we enter this form, it means we want to create/update the user to be with the password we generated in the previous step
+		// if this action happend from a click on "reset password" it means we want to generate a new password for the user and send it again
+		const generateNewPassword = !isLoadingFirstTime;
+
 		try {
-			const {succeeded, upn} = await RestService.resetUserPassword();
+			const {succeeded, upn} = await RestService.resetUserPassword(generateNewPassword);
 			setCurrentUserUpn(upn);
 			setIsResettingPassword(false);
 
@@ -65,9 +69,8 @@ function InitialPasswordForm(props: IFormProps) {
 	}
 
 	const instructions = [
-		{image: info1, text: 'תחילה, יש להקליד את הסיסמה שקיבלת הרגע'},
-		{image: info2, text: 'ואז, יש להקליד את קוד האימות הנוסף שיתקבל'},
-		{image: info3, text: 'ולבסוף, יש לבחור סיסמה קבועה למשתמש'}
+		{image: info1, text: 'במסך הבא, יש להקיש בשנית את הקוד שהתקבל ב-SMS'},
+		{image: info3, text: 'לאחר מכן, יש לבחור סיסמה למשתמש'}
 	]
 
 	// Rendering
@@ -134,8 +137,8 @@ function InitialPasswordForm(props: IFormProps) {
 						)}
 					</Hidden>
 					<Grid container item xs={12} justify="center" alignItems="center">
-						<Button variant="contained" onClick={onContinueClick} disableElevation={true} color="primary" className="idf-button" >קיבלתי את ה-SMS, אפשר להמשיך</Button>
-						<LoadingButton isLoading={isResettingPassword} variant="contained" onClick={onSendAgainClick} disableElevation={true} className="idf-button-secondary" style={{ backgroundColor: "#333" }}>שלחו לי שוב</LoadingButton>
+						<Button variant="contained" onClick={onContinueClick} disableElevation={true} color="primary" className="idf-button" >יאללה, אפשר להמשיך</Button>
+						{/* <LoadingButton isLoading={isResettingPassword} variant="contained" onClick={onSendAgainClick} disableElevation={true} className="idf-button-secondary" style={{ backgroundColor: "#333" }}>שלחו לי שוב</LoadingButton> */}
 					</Grid>
 					<Grid container direction="column" justify="center" alignItems="center" style={{ margin: "10px 0px" }}>
 						<Grid item xs={12}>

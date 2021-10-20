@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import './OtpForm.css';
+import './CodeForm.css';
 import { Typography, InputAdornment, Grid, IconButton, CircularProgress, Container } from '@material-ui/core';
 import { ClkInput } from '../../ClkInput/ClkInput';
 import Send from '@material-ui/icons/Send';
@@ -10,16 +10,17 @@ import { ERRORS } from '../../../model/data/Constants';
 import hourglassGif from '../../../assets/images/Hourglass.gif'
 import _ from 'lodash';
 import { useTimer } from '../../../hooks/timerHook';
+import CensorPhone from '../../CensorPhone/CensorPhone';
 
 
-function OtpForm(props: IFormProps) {
+function CodeForm(props: IFormProps) {
 	const waitingTime = 30;
 	const debounceDelay = 2000;
 	// State & props
 	const { onResolve, payload } = props;
 	const [error, setError] = useState<any>({ msg: '', severity: 'error' });
 	const [isLoading, setIsLoading] = useState(false);
-	const [otpInput, setOtpInput] = useState('');
+	const [codeInput, setCodeInput] = useState('');
 
 	const openChatBot = () => {
 		let chatBot: HTMLElement | null = document.querySelector('#chat_bot_logo');
@@ -33,64 +34,32 @@ function OtpForm(props: IFormProps) {
 			setTimeout(() => {
 				let chatBtns: NodeListOf<HTMLElement> | null = document.querySelectorAll('#active_chat button');
 				if (chatBtns) {
-					let noOtpReceivedBtn: HTMLElement | null = chatBtns[1];
-					noOtpReceivedBtn?.click();
+					let noCodeReceivedBtn: HTMLElement | null = chatBtns[1];
+					noCodeReceivedBtn?.click();
 				}
 			}, 500);
 			
 		}
 	}
 	const [time, setTime, timerOn, setTimerOn] = useTimer(waitingTime, openChatBot);
-	// const [timerOn, setTimerOn] = useState(true);
-	// const [time, setTime] = useState(waitingTime);
-	// let intervalId;
+	
+	// Methods
 
-	// useEffect(() => {
-	// 	if (timerOn) {
-	// 		intervalId = setInterval(() => {
-	// 			setTime(time => time - 1);
-	// 		}, 1000);
-	// 	} else {
-	// 		clearInterval(intervalId);
-	// 	}
-		
-
-	// 	return () => clearInterval(intervalId);
-	// }, [timerOn])
-
-	// useEffect(() => {
-	// 	if (time <= 0) {
-	// 		setTimerOn(false);
-	// 		openChatBot();
-	// 	}
-	// }, [time])
-
-	// useEffect(()=> {
-	// 	if (otpInput != "") {
-	// 		debouncedSubmit();
-	// 	}
-	// }, [otpInput])
-	// Methodes
-	const isFormValid = (number: string) => {
-		const isLengthValid = number.length === 6 && isValidInput(number);
-
-		return isLengthValid;
-	}
 
 	const isValidInput = (id: string) => {
-		const isInputNumber = /^\d*$/.test(id);
+		const isValidInput = id.length == 8;
 
-		return isInputNumber;
+		return isValidInput;
 	}
 
-	const isOtpMatch = async () => {
+	const isCodeMatch = async () => {
 		const { id } = payload;
 
 		setError({ msg: '', severity: 'error' });
 		setIsLoading(true);
 
 		try {
-			const { isValid, isRegistered, mobilePhone, upn } = await RestService.validateOtp(id, otpInput);
+			const { isValid, isRegistered, mobilePhone, upn } = await RestService.validateCode(id, codeInput);
 
 			setIsLoading(false);
 
@@ -101,7 +70,7 @@ function OtpForm(props: IFormProps) {
 						severity: 'info'
 					});
 				} else {
-					onResolve({ ...payload, mobilePhone, otp: otpInput });
+					onResolve({ ...payload, mobilePhone, code: codeInput });
 				}
 				
 			} else {
@@ -127,16 +96,16 @@ function OtpForm(props: IFormProps) {
 		const inputVal = value.target.value;
 
 		if (isValidInput(inputVal)) {
-			setOtpInput(inputVal);
+			setCodeInput(inputVal);
 		}
 	}
 
 	const submit = async () => {
 		if (!isLoading) {
-			if (isFormValid(otpInput)) {
+			if (isValidInput(codeInput)) {
 				setIsLoading(true);
 				setTimerOn(false);
-				await isOtpMatch();
+				await isCodeMatch();
 			}
 			else {
 				setError({
@@ -154,7 +123,7 @@ function OtpForm(props: IFormProps) {
 
 	const debouncedSubmit = useCallback(
 		_.debounce(submit, debounceDelay),
-		[otpInput], // will be created only once initially
+		[codeInput], // will be created only once initially
 	);
 	
 
@@ -164,13 +133,13 @@ function OtpForm(props: IFormProps) {
 	return (
 		<Container maxWidth="sm">
 			<React.Fragment>
-				<Typography className="bold">במידה ומס' הטלפון הנייד שלך קיים במערכות צה"ל, ישלח אלייך מסרון עם קוד.</Typography>
-
+				<Typography className="bold">נשלח אלייך קוד לטלפון:</Typography>
+				<CensorPhone phone={payload.mobilePhone} stringToReplace="X" />
 				<Grid container direction="column" justify="center" alignItems="center" style={{ margin: "10px 0px" }}>
 					<Typography>נא להזין את הקוד שנשלח:​</Typography>
 					<Grid item md={6}>
 						<form noValidate onSubmit={onSubmit}>
-							<ClkInput onChange={onChange}  value={otpInput} endAdornment={
+							<ClkInput onChange={onChange}  value={codeInput} endAdornment={
 								<InputAdornment position="end" onClick={onSubmit}>
 									{
 										isLoading ?
@@ -207,4 +176,4 @@ function OtpForm(props: IFormProps) {
 	);
 }
 
-export default OtpForm;
+export default CodeForm;
