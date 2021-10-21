@@ -1,26 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import './InitialPasswordForm.css';
-// import '../InfoForm/InfoForm.css';
+import './AfterCodeReceivedForm.css';
 import { Typography, Button, Grid, CircularProgress, Hidden, Container } from '@material-ui/core';
 import IFormProps from '../IForm';
 import MsService from '../../../services/microsoft/MsService';
 import {  ERRORS } from '../../../model/data/Constants';
 import RestService from '../../../services/rest/RestService';
 import { Alert } from '@material-ui/lab';
-import LoadingButton from '../../Buttons/LoadingButton';
 import info1 from '../../../assets/images/info1.png';
-import info2 from '../../../assets/images/info2.png';
 import info3 from '../../../assets/images/info3.png';
 import arrow from '../../../assets/images/arrow.png';
 import Carousel from 'react-elastic-carousel'
 
 
-function InitialPasswordForm(props: IFormProps) {
+function AfterCodeReceivedForm(props: IFormProps) {
 	// State & props
 	const { onResolve, payload } = props;
 	const [error, setError] = useState<any>({ msg: '' });
-	const [isResettingPassword, setIsResettingPassword] = useState(false);
-	const [isLoadingFirstTime, setIsLoadingFirstTime] = useState(true);
+	const [isCreatingUser, setIsCreatingUser] = useState(true);
 	const [currentUserUpn, setCurrentUserUpn] = useState('');
 	
 	useEffect(() => {
@@ -28,8 +24,8 @@ function InitialPasswordForm(props: IFormProps) {
 	}, [])
 
 	const onInit = async () => {
-		await onSendAgainClick();
-		setIsLoadingFirstTime(false);
+		await createUser();
+		setIsCreatingUser(false);
 	}
 	// Handlers
 	const onContinueClick = async () => {
@@ -46,25 +42,14 @@ function InitialPasswordForm(props: IFormProps) {
 		}
 	}
 	
-	const onSendAgainClick = async () => {
-		setError({msg: ''})
-		setIsResettingPassword(true);
-
-		// if its the first time we enter this form, it means we want to create/update the user to be with the password we generated in the previous step
-		// if this action happend from a click on "reset password" it means we want to generate a new password for the user and send it again
-		const generateNewPassword = !isLoadingFirstTime;
+	const createUser = async () => {
+		setError({msg: ''});
 
 		try {
-			const {succeeded, upn} = await RestService.resetUserPassword(generateNewPassword);
+			const {upn} = await RestService.resetUserPassword(false);	// resetUserPassword false means we want to use the password the user received in his phone for creating the user/ resseting the password
 			setCurrentUserUpn(upn);
-			setIsResettingPassword(false);
-
-			if (!succeeded) {
-				setError({msg: ERRORS.passwordResetsExceededLimit});
-			}
 		} catch (err) {
-			setError({ msg: ERRORS.smsError });
-			setIsResettingPassword(false);
+			setError({ msg: ERRORS.general });
 		}
 	}
 
@@ -77,7 +62,7 @@ function InitialPasswordForm(props: IFormProps) {
 	return (
 		<React.Fragment>
 		{
-			isLoadingFirstTime ? 
+			isCreatingUser ? 
 			<Grid container item xs={12} justify="center" alignItems="center" spacing={2}>
 				<Grid item xs={12}>
 					<CircularProgress size={48}/>
@@ -100,9 +85,7 @@ function InitialPasswordForm(props: IFormProps) {
 							<React.Fragment key={index}>
 								<Grid item md={3} xs={12} direction="column" container justify="center" alignItems="center">
 									<div className={"info-image-circle"}><img src={instruction.image} className={"info-image"}/></div>
-									{/* <Hidden mdUp> */}
-										<Typography align="center" className="info-text">{instruction.text}</Typography>
-									{/* </Hidden> */}
+									<Typography align="center" className="info-text">{instruction.text}</Typography>
 								</Grid>
 								{index < instructions.length - 1 && 
 								<Grid item md={1} xs={12} style={{alignSelf:"center"}}>
@@ -125,20 +108,9 @@ function InitialPasswordForm(props: IFormProps) {
 							
 					</Hidden>
 
-					{/* <Hidden smDown>
-						{instructions.map((instruction, index) =>
-							<React.Fragment key={index}>
-								<Grid container item md={3}  justify="center" alignItems="flex-start">
-									<Typography align="center" className="info-text">{instruction.text}</Typography>
-								</Grid>
-								{index < instructions.length - 1 &&
-								<Grid item md={1} style={{alignSelf:"center"}}></Grid>}
-							</React.Fragment>
-						)}
-					</Hidden> */}
+				
 					<Grid container item xs={12} justify="center" alignItems="center">
 						<Button variant="contained" onClick={onContinueClick} disableElevation={true} color="primary" className="idf-button" >יאללה, אפשר להמשיך</Button>
-						{/* <LoadingButton isLoading={isResettingPassword} variant="contained" onClick={onSendAgainClick} disableElevation={true} className="idf-button-secondary" style={{ backgroundColor: "#333" }}>שלחו לי שוב</LoadingButton> */}
 					</Grid>
 					<Grid container direction="column" justify="center" alignItems="center" style={{ margin: "10px 0px" }}>
 						<Grid item xs={12}>
@@ -158,4 +130,4 @@ function InitialPasswordForm(props: IFormProps) {
 	);
 }
 
-export default InitialPasswordForm;
+export default AfterCodeReceivedForm;

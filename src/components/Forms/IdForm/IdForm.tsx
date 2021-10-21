@@ -43,11 +43,11 @@ function IdForm(props: IFormProps) {
 		setIsLoading(true);
 
 		try {
-			await RestService.checkUser(idInput, captchaRef?.current?.getValue());
+			const data = await RestService.checkUser(idInput, captchaRef?.current?.getValue());
 
 			setIsLoading(false);
 
-			onResolve({id: idInput});
+			onResolve({id: idInput, mobilePhone: data.mobilePhone});
 		} catch (err) {
 			setIsLoading(false);
 

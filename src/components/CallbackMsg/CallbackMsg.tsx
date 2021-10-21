@@ -23,19 +23,20 @@ function CallbackMsg(props: ICallbackMsgProps) {
 	// Rendering
 	return (
 		<>
-			<Container maxWidth="md">
-			<Grid container justify="center" >
-				<Grid style={{ padding: "10px" }} item xs={12}>
-					<Typography variant="h5" className="bold">מעולה, המשתמש נוצר בהצלחה!</Typography>
-					<Typography className="bold">שם המשתמש האישי שלך:</Typography>
-					<Typography dir="ltr" className="english-font" style={{ color: "#2196f3" }}>{account}</Typography>
-					<Typography style={{marginTop: 10}}>שלחנו אותו גם ב-SMS, שיהיה למקרה הצורך :)</Typography>
-					<Typography className="bold" style={{marginTop: 30}}>למעבר לדף הבית הדיגיטלי של צה"ל:</Typography>
-					<a href={"https://home.idf.il"}>
-						<img src={tzahal} style={{marginTop: 10, cursor: "pointer", width: "150px"}}/>
-					</a>
+			<Container maxWidth="sm">
+				<Grid container justify="center" >
+					<Grid style={{ padding: "10px" }} item xs={12}>
+						<Typography variant="h5" className="bold">מעולה, המשתמש נוצר בהצלחה!</Typography>
+						<Typography className="bold">שם המשתמש האישי שלך:</Typography>
+						<Typography dir="ltr" className="english-font" style={{ color: "#2196f3" }}>{account}</Typography>
+						<Typography style={{marginTop: 10}}>שלחנו אותו גם ב-SMS, שיהיה למקרה הצורך :)</Typography>
+						<Typography variant="body2" style={{marginTop: 10}}>חשוב לציין כי בעת ההתחברות לאפליקציות, לאחר הזנת הסיסמה ישלח קוד אימות נוסף ב-SMS אותו תצטרכו להזין כשתתבקשו.</Typography>
+						<Typography className="bold" style={{marginTop: 30}}>למעבר לדף הבית הדיגיטלי של צה"ל:</Typography>
+						<a href={"https://home.idf.il"}>
+							<img src={tzahal} style={{marginTop: 10, cursor: "pointer", width: "150px"}}/>
+						</a>
+					</Grid>
 				</Grid>
-			</Grid>
 			</Container>
 		</>
 	);

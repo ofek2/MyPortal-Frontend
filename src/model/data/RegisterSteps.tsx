@@ -8,6 +8,7 @@ import IdForm from '../../components/Forms/IdForm/IdForm';
 import OtpForm from '../../components/Forms/OtpForm/OtpForm';
 import InitialPasswordForm from '../../components/Forms/InitialPasswordForm/InitialPasswordForm';
 import CodeForm from '../../components/Forms/CodeForm/CodeForm';
+import AfterCodeReceivedForm from '../../components/Forms/AfterCodeReceivedForm/AfterCodeReceivedForm';
 
 interface IRegisterStep {
 	title: string,
@@ -31,7 +32,7 @@ const registerSteps: IRegisterStep[] = [
 	{
 		title: "קבלת סיסמה",
 		icon: <Lock />,
-		component: <InitialPasswordForm/>
+		component: <AfterCodeReceivedForm/>
 	},
 	{
 		title: "השלמת הרישום",

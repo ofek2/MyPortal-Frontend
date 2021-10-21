@@ -95,9 +95,9 @@ function CodeForm(props: IFormProps) {
 	const onChange = (value: any) => {
 		const inputVal = value.target.value;
 
-		if (isValidInput(inputVal)) {
+		// if (isValidInput(inputVal)) {
 			setCodeInput(inputVal);
-		}
+		// }
 	}
 
 	const submit = async () => {
