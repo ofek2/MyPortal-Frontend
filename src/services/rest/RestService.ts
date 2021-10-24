@@ -11,6 +11,11 @@ class RestService {
 		return res.data;
 	}
 
+	static async registerUser() {
+		const res = await axiosInstance.put(`/users/me/register`);
+		return res.data;
+	}
+
 	static async validateCode(idNumber, code) {
 		const res = await axiosInstance.post(`/users/${idNumber}/validateCode`, { code });
 		return res.data;

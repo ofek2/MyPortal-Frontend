@@ -15,3 +15,11 @@
 	background-color: transparent !important;
 }
 
+.input-password input[type="password"] {
+  letter-spacing: 3px;
+}
+
+
+.input-password ::placeholder {
+    letter-spacing: .5px;
+}

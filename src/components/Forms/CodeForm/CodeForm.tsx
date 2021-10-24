@@ -11,6 +11,7 @@ import hourglassGif from '../../../assets/images/Hourglass.gif'
 import _ from 'lodash';
 import { useTimer } from '../../../hooks/timerHook';
 import CensorPhone from '../../CensorPhone/CensorPhone';
+import { Visibility, VisibilityOff } from '@material-ui/icons';
 
 
 function CodeForm(props: IFormProps) {
@@ -20,6 +21,7 @@ function CodeForm(props: IFormProps) {
 	const { onResolve, payload } = props;
 	const [error, setError] = useState<any>({ msg: '', severity: 'error' });
 	const [isLoading, setIsLoading] = useState(false);
+	const [showPassword, setShowPassword] = useState(false);
 	const [codeInput, setCodeInput] = useState('');
 
 	const openChatBot = () => {
@@ -100,6 +102,10 @@ function CodeForm(props: IFormProps) {
 		// }
 	}
 
+	const handleClickShowPassword = (event) => {
+		setShowPassword(!showPassword);
+	} 
+
 	const submit = async () => {
 		if (!isLoading) {
 			if (isValidInput(codeInput)) {
@@ -139,7 +145,7 @@ function CodeForm(props: IFormProps) {
 					<Typography>נא להזין את הקוד שנשלח:​</Typography>
 					<Grid item md={6}>
 						<form noValidate onSubmit={onSubmit}>
-							<ClkInput onChange={onChange}  value={codeInput} endAdornment={
+							<ClkInput type={showPassword ? "text" : "password"} onChange={onChange} value={codeInput} className="clk-input input-password" endAdornment={
 								<InputAdornment position="end" onClick={onSubmit}>
 									{
 										isLoading ?
@@ -150,7 +156,17 @@ function CodeForm(props: IFormProps) {
 											</IconButton>
 									}
 								</InputAdornment>
-							} placeholder={"הכנס קוד"} autoFocus={false} fullWidth />
+							} startAdornment={
+								<InputAdornment position="start">
+									<IconButton
+									aria-label="toggle password visibility"
+									onClick={handleClickShowPassword}
+									edge="end"
+									>
+									{showPassword ? <VisibilityOff /> : <Visibility />}
+									</IconButton>
+						  		</InputAdornment>
+						} placeholder={"הכנס קוד"} autoFocus={false} fullWidth />
 						</form>
 					</Grid>
 					{timerOn && 
