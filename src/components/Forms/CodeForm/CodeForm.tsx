@@ -159,6 +159,7 @@ function CodeForm(props: IFormProps) {
 							} startAdornment={
 								<InputAdornment position="start">
 									<IconButton
+									style={{paddingRight:0}}
 									aria-label="toggle password visibility"
 									onClick={handleClickShowPassword}
 									edge="end"
