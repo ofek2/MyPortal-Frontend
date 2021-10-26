@@ -21,15 +21,31 @@ function IdForm(props: IFormProps) {
 
 	// Methodes
 	const isFormValid = (id: string) => {
-		const isLengthValid = id.length === 9 && isValidIdInput(id);
+		const isValidId = isValidIsraeliID(id);
+		console.log(isValidId);
 		const isCaptchaChecked = captchaRef?.current?.getValue();
-		return isLengthValid && isCaptchaChecked;
+		return isValidId && isCaptchaChecked;
 	}
 
 	const isCaptchaChecked = () => {
 		const isCaptchaChecked = captchaRef?.current?.getValue();
 
 		return isCaptchaChecked;
+	}
+
+	const isValidIsraeliID = (id: string) => {
+		id = String(id).trim();
+		if (id.length > 9 || id.length < 5 || +id === 0) return false;
+	
+		// Pad string with zeros up to 9 digits
+		id = id.length < 9 ? ("00000000" + id).slice(-9) : id;
+
+		return Array
+			.from(id, Number)
+				.reduce((counter, digit, i) => {
+				const step = digit * ((i % 2) + 1);
+						return counter + (step > 9 ? step - 9 : step);
+					}) % 10 === 0;
 	}
 
 	const isValidIdInput = (id: string) => {

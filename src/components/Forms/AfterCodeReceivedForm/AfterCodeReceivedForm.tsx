@@ -46,7 +46,6 @@ function AfterCodeReceivedForm(props: IFormProps) {
 		setError({msg: ''});
 
 		try {
-			// const {upn} = await RestService.resetUserPassword(false);	// resetUserPassword false means we want to use the password the user received in his phone for creating the user/ resseting the password
 			const {upn} = await RestService.registerUser();	
 			setCurrentUserUpn(upn);
 		} catch (err) {

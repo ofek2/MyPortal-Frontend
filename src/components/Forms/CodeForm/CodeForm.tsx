@@ -97,9 +97,12 @@ function CodeForm(props: IFormProps) {
 	const onChange = (value: any) => {
 		const inputVal = value.target.value;
 
-		// if (isValidInput(inputVal)) {
-			setCodeInput(inputVal);
-		// }
+		// stop the timer to prevent the chat bot to pop up in case the user starts to enter the validation code
+		if (timerOn) {
+			setTimerOn(false);
+		}
+
+		setCodeInput(inputVal);
 	}
 
 	const handleClickShowPassword = (event) => {

@@ -5,8 +5,6 @@ import Lock from '@material-ui/icons/Lock';
 import Create from '@material-ui/icons/Create';
 import CheckCircle from '@material-ui/icons/CheckCircle'; 
 import IdForm from '../../components/Forms/IdForm/IdForm';
-import OtpForm from '../../components/Forms/OtpForm/OtpForm';
-import InitialPasswordForm from '../../components/Forms/InitialPasswordForm/InitialPasswordForm';
 import CodeForm from '../../components/Forms/CodeForm/CodeForm';
 import AfterCodeReceivedForm from '../../components/Forms/AfterCodeReceivedForm/AfterCodeReceivedForm';
 
@@ -30,7 +28,7 @@ const registerSteps: IRegisterStep[] = [
 		isResettable: true
 	},
 	{
-		title: "קבלת סיסמה",
+		title: "התחברות ראשונית",
 		icon: <Lock />,
 		component: <AfterCodeReceivedForm/>
 	},
