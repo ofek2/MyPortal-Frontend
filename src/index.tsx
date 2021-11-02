@@ -21,7 +21,7 @@ const theme = createMuiTheme({
     body1: {
       lineHeight: 1.3
     },
-    fontFamily: 'NarkisBlock',
+    fontFamily: ['NarkisBlock', 'Helvetica', 'sans-serif'].join(','),
     fontSize: 18
   },
   palette: {
