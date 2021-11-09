@@ -22,7 +22,6 @@ function IdForm(props: IFormProps) {
 	// Methodes
 	const isFormValid = (id: string) => {
 		const isValidId = isValidIsraeliID(id);
-		console.log(isValidId);
 		const isCaptchaChecked = captchaRef?.current?.getValue();
 		return isValidId && isCaptchaChecked;
 	}
