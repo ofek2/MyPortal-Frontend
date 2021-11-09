@@ -1,7 +1,7 @@
 
 import config from "../../model/data/Configuration";
 import { GRAPH_REQUEST, LOGIN_REQUEST, CLICK_API_REQUEST } from "../../model/data/Constants";
-import { PublicClientApplication } from '@azure/msal-browser';
+import { BrowserAuthError, PublicClientApplication } from '@azure/msal-browser';
 
 let msalObj = new PublicClientApplication(config.msalConfig);
 
@@ -51,7 +51,13 @@ export default {
 		try {
 			await msalObj.loginRedirect(request);
 		} catch (err) {
-			throw err;
+			if (err instanceof BrowserAuthError) {
+				// cleaning session in order to initiate another interactive login window
+				sessionStorage.clear();
+				await msalObj.loginRedirect(request);
+			} else {
+				throw err;
+			}
 		}
 
 		return false; // when we use login pop up we need to redirect the user after successful login
