@@ -10,9 +10,9 @@ resources:
 
 variables:
   # Container registry service connection established during pipeline creation
-  dockerRegistryServiceConnection: '615829c9-3fda-4c2d-9f7a-aaa62cf6c080'
+  dockerRegistryServiceConnection: 'MyIDF-DRS-DEV'
   imageRepository: 'front'
-  containerRegistry: 'myprofilecontainer.azurecr.io'
+  containerRegistry: 'MyIDFACRDEV.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/test.Dockerfile'
   tag: '$(Build.BuildId)'
   sonarqubeServerEndpoint: 'MyPortalFrontSC'
