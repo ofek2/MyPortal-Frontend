@@ -64,8 +64,8 @@ function IdForm(props: IFormProps) {
 
 			onResolve({id: idInput, mobilePhone: data.mobilePhone});
 		} catch (err) {
-			setIsLoading(false);
 			console.log(err)
+			setIsLoading(false);
 			setError({
 				msg: ERRORS.general,
 				severity: 'error'
