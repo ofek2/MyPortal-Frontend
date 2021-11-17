@@ -61,6 +61,7 @@ function IdForm(props: IFormProps) {
 			const data = await RestService.checkUser(idInput, captchaRef?.current?.getValue());
 
 			setIsLoading(false);
+			console.log("passed check user")
 
 			onResolve({id: idInput, mobilePhone: data.mobilePhone});
 		} catch (err) {

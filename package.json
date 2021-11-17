@@ -33,7 +33,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
-    "build": "GENERATE_SOURCEMAP=false react-scripts build",
+    "build": "react-scripts build",
     "build:dev": "react-scripts build",
     "dev": "react-scripts build & npm run start:prod",
     "test": "react-scripts test",
