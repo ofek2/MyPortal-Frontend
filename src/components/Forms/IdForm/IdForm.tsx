@@ -21,7 +21,6 @@ function IdForm(props: IFormProps) {
 	// Methodes
 	const isFormValid = (id: string) => {
 		const isValidId = isValidIsraeliID(id);
-		console.log(isValidId);
 		const isCaptchaChecked = captchaRef?.current?.getValue();
 		return isValidId && isCaptchaChecked;
 	}
@@ -65,7 +64,6 @@ function IdForm(props: IFormProps) {
 			onResolve({id: idInput, mobilePhone: data.mobilePhone});
 		} catch (err) {
 			setIsLoading(false);
-
 			setError({
 				msg: ERRORS.general,
 				severity: 'error'
