@@ -9,7 +9,6 @@ import { Alert } from '@material-ui/lab';
 import { ERRORS, MY_IDF } from '../../../model/data/Constants';
 import ReCAPTCHA from "react-google-recaptcha";
 import config from "../../../model/data/Configuration";
-import MsService from '../../../services/microsoft/MsService';
 
 function IdForm(props: IFormProps) {
 	// State & props

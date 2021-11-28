@@ -24,7 +24,6 @@ body, html {
 
 body {
   margin: 0;
-  font-family: ArimoRegular !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -75,7 +74,7 @@ code {
 }
 
 .english-font {
-  font-family: Arimo !important;
+  font-family: Arimo, 'sans-serif' !important;
 }
 
 .bold {
