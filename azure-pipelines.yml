@@ -15,9 +15,9 @@ variables:
   containerRegistry: 'MyIDFACRDEV.azurecr.io'
   dockerfilePath: '$(Build.SourcesDirectory)/test.Dockerfile'
   tag: '$(Build.BuildId)'
-  sonarqubeServerEndpoint: 'MyPortalFrontSC'
-  cliProjectKey: 'clickMyPortal'
-  cliProjectName: 'MyIDF-Front'
+  sonarqubeServerEndpoint: 'MyIDF-DEV-FE'
+  cliProjectKey: 'MyIDF-DEV-FE'
+  cliProjectName: 'MyIDF-DEV-FE'
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
 
