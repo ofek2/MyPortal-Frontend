@@ -13,12 +13,12 @@ function CallbackMsg(props: ICallbackMsgProps) {
 	const { account } = props;
 
 
-	const redirectToUrl = (url) => {
-		if (url) {
-			window.open(url, '_blank');
-		}
+	// const redirectToUrl = (url) => {
+	// 	if (url) {
+	// 		window.open(url, '_blank');
+	// 	}
 			
-	}
+	// }
 	
 	// Rendering
 	return (
@@ -33,7 +33,7 @@ function CallbackMsg(props: ICallbackMsgProps) {
 						<Typography style={{marginTop: 10, fontSize: "1.17rem"}}>חשוב לציין כי בעת ההתחברות לאפליקציות, לאחר הזנת הסיסמה ישלח קוד אימות נוסף ב-SMS אותו תצטרכו להזין כשתתבקשו.</Typography>
 						<Typography className="bold" style={{marginTop: 30}}>למעבר לדף הבית הדיגיטלי של צה"ל:</Typography>
 						<a href={"https://home.idf.il"}>
-							<img src={tzahal} style={{marginTop: 10, cursor: "pointer", width: "150px"}}/>
+							<img src={tzahal} alt="home" style={{marginTop: 10, cursor: "pointer", width: "150px"}}/>
 						</a>
 					</Grid>
 				</Grid>

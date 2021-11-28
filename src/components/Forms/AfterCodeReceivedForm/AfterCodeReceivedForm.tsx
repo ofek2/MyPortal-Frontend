@@ -14,7 +14,6 @@ import Carousel from 'react-elastic-carousel'
 
 function AfterCodeReceivedForm(props: IFormProps) {
 	// State & props
-	const { onResolve, payload } = props;
 	const [error, setError] = useState<any>({ msg: '' });
 	const [isCreatingUser, setIsCreatingUser] = useState(true);
 	const [currentUserUpn, setCurrentUserUpn] = useState('');
@@ -84,12 +83,12 @@ function AfterCodeReceivedForm(props: IFormProps) {
 						{instructions.map((instruction, index) => 
 							<React.Fragment key={index}>
 								<Grid item md={3} xs={12} direction="column" container justify="center" alignItems="center">
-									<div className={"info-image-circle"}><img src={instruction.image} className={"info-image"}/></div>
+									<div className={"info-image-circle"}><img src={instruction.image} alt="image" className={"info-image"}/></div>
 									<Typography align="center" className="info-text">{instruction.text}</Typography>
 								</Grid>
 								{index < instructions.length - 1 && 
 								<Grid item md={1} xs={12} style={{alignSelf:"center"}}>
-									<img src={arrow} className={"info-arrow"}/>
+									<img src={arrow} alt="info" className={"info-arrow"}/>
 								</Grid>}	
 							</React.Fragment>
 						)}

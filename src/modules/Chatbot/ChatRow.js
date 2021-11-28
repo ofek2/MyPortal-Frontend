@@ -107,10 +107,10 @@ function createImageWithStyle(dataURI, style) {
 	return styledImage;
 }
 
-function removeElementChildren(elementId) {
-	var node = document.getElementById(elementId);
-	node.querySelectorAll('*').forEach(n => n.remove());
-}
+// function removeElementChildren(elementId) {
+// 	var node = document.getElementById(elementId);
+// 	node.querySelectorAll('*').forEach(n => n.remove());
+// }
 
 // function scrollDown(containerId) {
 // 	var container = document.querySelector('#' + containerId);
@@ -118,9 +118,9 @@ function removeElementChildren(elementId) {
 // 	container.scrollTop = container.scrollHeight;
 // }
 
-function scrollDown(containerId, innerElementId) {
-    const container = document.querySelector('#' + containerId);
-    const innerElement = document.querySelector('.' + innerElementId);
-    //container.maxScrollTop = container.scrollHeight - container.offsetHeight;
-    container.scrollTop = innerElement.scrollHeight;
-}
+// function scrollDown(containerId, innerElementId) {
+//     const container = document.querySelector('#' + containerId);
+//     const innerElement = document.querySelector('.' + innerElementId);
+//     //container.maxScrollTop = container.scrollHeight - container.offsetHeight;
+//     container.scrollTop = innerElement.scrollHeight;
+// }
