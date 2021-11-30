@@ -51,8 +51,8 @@ function InfoForm(props: IFormProps) {
 			 <Typography>שירותי הדיגיטל של צה"ל שומרים על רמת אבטחה גבוהה</Typography>
 			 <Typography>ולכן, ההזדהות החכמה של MY IDF כוללת אימות דו-שלבי באמצעות הודעת SMS.</Typography>
 			 <Typography className="bold" style={{marginTop: 10}}>לסיום תהליך הרישום, נצטרך לאמת את זהותך עוד פעם אחת:</Typography>
-			 <Grid container justify="center" alignItems="flex-start" style={{marginTop: 20}} >
-			 	<Grid item md={3} xs={12} direction="column" container justify="center" alignItems="center">
+			 <Grid container justifyContent="center" alignItems="flex-start" style={{marginTop: 20}} >
+			 	<Grid item md={3} xs={12} direction="column" container justifyContent="center" alignItems="center">
 					<div className={"info-image-circle"}><img src={info1} className={"info-image"}/>
 				 	</div>
 					<Hidden mdUp>
@@ -62,7 +62,7 @@ function InfoForm(props: IFormProps) {
 
 				<Grid item md={1} xs={12} style={{alignSelf:"center"}}><img src={arrow} className={"info-arrow"}/></Grid>
 
-				<Grid item md={3} xs={12} direction="column" container justify="center" alignItems="center">
+				<Grid item md={3} xs={12} direction="column" container justifyContent="center" alignItems="center">
 					<div className={"info-image-circle"}><img src={info2} className={"info-image"}/></div>
 					
 					<Hidden mdUp>
@@ -72,7 +72,7 @@ function InfoForm(props: IFormProps) {
 
 				<Grid item md={1} xs={12} style={{alignSelf:"center"}}><img src={arrow} className={"info-arrow"}/></Grid>
 
-				<Grid item md={3} xs={12} direction="column" container justify="center" alignItems="center">
+				<Grid item md={3} xs={12} direction="column" container justifyContent="center" alignItems="center">
 					<div className={"info-image-circle"}><img src={info3} className={"info-image"}/></div>
 					<Hidden mdUp>
 						<Typography align="center">לבסוף, יש לבחור סיסמה קבועה למשתמש עפ"י ההנחיות</Typography>
@@ -81,23 +81,23 @@ function InfoForm(props: IFormProps) {
 
 
 			 	<Hidden smDown>
-					<Grid container item md={3}  justify="center" alignItems="flex-start">
+					<Grid container item md={3}  justifyContent="center" alignItems="flex-start">
 						<Typography align="center">בחלון הבא, יש להדביק את הסיסמה הזמנית שקיבלת ב-SMS</Typography>
 					</Grid>
 
 					<Grid item md={1} style={{alignSelf:"center"}}></Grid>
 
-					<Grid container item md={3} justify="center" alignItems="flex-start">
+					<Grid container item md={3} justifyContent="center" alignItems="flex-start">
 						<Typography align="center">לאחר מכן, יש להקליד את קוד האימות הנוסף שיתקבל בהודעת SMS</Typography>
 					</Grid>
 
 					<Grid item md={1} style={{alignSelf:"center"}}></Grid>
 
-					<Grid container item md={3} justify="center" alignItems="flex-start">
+					<Grid container item md={3} justifyContent="center" alignItems="flex-start">
 						<Typography align="center">לבסוף, יש לבחור סיסמה קבועה למשתמש עפ"י ההנחיות</Typography>
 					</Grid>
 				</Hidden>
-				<Grid container direction="column" justify="center" alignItems="center" style={{ margin: "10px 0px" }}>
+				<Grid container direction="column" justifyContent="center" alignItems="center" style={{ margin: "10px 0px" }}>
 					<Grid item xs={12}>
 						{
 							error && error.msg !== '' ?

@@ -26,16 +26,16 @@ function FAQItem(props: FAQProps) {
         <div className="faq-container">
            <div className="faq-inner">
                 <div className="faq-front">
-                    <Grid container style={{height: "100%"}} justify="center" alignItems="flex-start">
-                        <Grid container justify="center" alignItems="center" item xs={12} style={{height: "40%"}} className="faq-front-icon">
+                    <Grid container style={{height: "100%"}} justifyContent="center" alignItems="flex-start">
+                        <Grid container justifyContent="center" alignItems="center" item xs={12} style={{height: "40%"}} className="faq-front-icon">
                             {typeof faq.question.icon == "string" ? <img src={faq.question.icon}/> : faq.question.icon}</Grid>
-                        <Grid container justify="center" alignItems="center" item xs={12} className="faq-front-question">
+                        <Grid container justifyContent="center" alignItems="center" item xs={12} className="faq-front-question">
                             <Typography variant="body2" className="faq-front-text">{faq.question.text}</Typography>
                         </Grid>
                     </Grid>
                 </div>
                 <div className="faq-back">
-                    <Grid container direction="column" justify="center" alignItems="center">
+                    <Grid container direction="column" justifyContent="center" alignItems="center">
                         {/* <Typography className="faq-back-question faq-back-question-title">הבעיה:</Typography> */}
                         <Typography className="faq-back-question faq-back-question-text">{faq.question.text}</Typography>
                         {/* <Typography className="faq-back-answer faq-back-answer-title">הפתרון:</Typography> */}

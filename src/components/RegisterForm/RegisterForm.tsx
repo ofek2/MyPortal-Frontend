@@ -40,7 +40,7 @@ function RegisterForm() {
 			
 			}
 			
-			<Grid container style={{ padding: "10px" }} justify="center" alignItems="center" direction="column">
+			<Grid container style={{ padding: "10px" }} justifyContent="center" alignItems="center" direction="column">
 				{
 					React.cloneElement(steps[currentStep].component, { onResolve: handleNextStep, onReset: handleReset, payload: currentPayload })
 				}
@@ -48,7 +48,7 @@ function RegisterForm() {
 
 			
 
-			<Grid container item justify="center" alignItems="center" md={12} >
+			<Grid container item justifyContent="center" alignItems="center" md={12} >
 				<Grid item xs={3} sm={8} md={6}>
 					{/* Mobile steps */}
 					<Hidden smUp>

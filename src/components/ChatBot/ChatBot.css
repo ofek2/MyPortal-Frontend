@@ -28,7 +28,7 @@
   transition: 0.25s;
   cursor: pointer;
   z-index: 1001;
-  font-family: 'Arimo','sans-serif';
+  font-family: Arimo,sans-serif;
   font-size: 16px;
   color: #333;
   border: 3px solid white;
@@ -53,7 +53,7 @@
   cursor: default;
   direction: rtl;
   z-index: 1002;
-  font-family: 'Arimo','sans-serif';
+  font-family: Arimo,sans-serif;
   font-size: 15px;
   color: #333;
 }
@@ -97,7 +97,7 @@ button.three-d {
   min-height: 60px;
   line-height: 20px;
   vertical-align: middle;
-  font-family: 'Arimo','sans-serif';
+  font-family: Arimo,sans-serif;
   font-weight: normal;
   font-size: 15px;
   text-decoration: none;

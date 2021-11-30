@@ -166,7 +166,7 @@ function OtpForm(props: IFormProps) {
 			<React.Fragment>
 				<Typography className="bold">במידה ומס' הטלפון הנייד שלך קיים במערכות צה"ל, ישלח אלייך מסרון עם קוד.</Typography>
 
-				<Grid container direction="column" justify="center" alignItems="center" style={{ margin: "10px 0px" }}>
+				<Grid container direction="column" justifyContent="center" alignItems="center" style={{ margin: "10px 0px" }}>
 					<Typography>נא להזין את הקוד שנשלח:​</Typography>
 					<Grid item md={6}>
 						<form noValidate onSubmit={onSubmit}>
@@ -185,7 +185,7 @@ function OtpForm(props: IFormProps) {
 						</form>
 					</Grid>
 					{timerOn && 
-					<Grid container item xs={12} justify="center">
+					<Grid container item xs={12} justifyContent="center">
 						<Typography style={{display: "flex"}}><img src={hourglassGif} className="hourglass"/>
 ההודעה תתקבל במכשירך ב-{waitingTime} השניות הקרובות..</Typography>
 					</Grid>

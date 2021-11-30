@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import { ThemeProvider, createMuiTheme, StylesProvider, jssPreset } from '@material-ui/core';
+import { ThemeProvider, createTheme, StylesProvider, jssPreset } from '@material-ui/core';
 import { create } from 'jss';
 import './assets/fonts/NarkisBlock-Condensed_MFW_medium.ttf';
 import './assets/fonts/Arimo-Bold.ttf';
@@ -15,7 +15,7 @@ const styleNode = document.createComment('jss-insertion-point');
 document.head.insertBefore(styleNode, document.head.firstChild);
 
 // Creating app theme
-const theme = createMuiTheme({
+const theme = createTheme({
   direction: 'rtl',
   typography: {
     body1: {

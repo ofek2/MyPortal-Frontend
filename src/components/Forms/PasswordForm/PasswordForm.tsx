@@ -66,10 +66,10 @@ function PasswordForm(props: IFormProps) {
 				<Typography variant="h6" className="important-text">יש לשמור סיסמה זו להמשך תהליך הרישום!​</Typography>
 				<Typography variant="h6">הסיסמה תעלם מהמסך בעוד {timer} שניות​​</Typography>
 			</Grid>
-			<Grid container item xs={12} justify="center" alignItems="center">
+			<Grid container item xs={12} justifyContent="center" alignItems="center">
 				<Button variant="contained" onClick={onContinueClick} disableElevation={true} color="primary" className="idf-button" style={{ margin: "10px 0px" }}>המשך</Button>
 			</Grid>
-			<Grid container direction="column" justify="center" alignItems="center" style={{ margin: "10px 0px" }}>
+			<Grid container direction="column" justifyContent="center" alignItems="center" style={{ margin: "10px 0px" }}>
 				<Grid item xs={12}>
 					{
 						error && error.msg !== '' ?

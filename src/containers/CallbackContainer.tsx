@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Grid, Container, Typography, CircularProgress } from '@material-ui/core';
 import CallbackMsg from '../components/CallbackMsg/CallbackMsg';
 import MsService from '../services/microsoft/MsService';
-import { withRouter } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { MyPaper } from '../components/Common/MyPaper';
 import RestService from '../services/rest/RestService';
 
@@ -10,6 +10,7 @@ function CallbackContainer(props) {
 	// State & props
 	const [account, setAccount] = useState('');
 	const [isLoading, setIsLoading] = useState(false);
+	let navigate = useNavigate();
 
 	// Side effects
 	useEffect(() => {
@@ -18,7 +19,7 @@ function CallbackContainer(props) {
 
 	// Methodes
 	const onInit = async () => {
-		const { history } = props;
+		// const { history } = props;
 
 		setIsLoading(true);
 
@@ -34,14 +35,19 @@ function CallbackContainer(props) {
 					setAccount(currentAccount.username);
 					await sendFinishSMS();
 				} else {
-					history.push('/');
+					navigate('/');
+					// history.push('/');
 				}
 			} catch (err) {
-				history.push('/error');
+				navigate('/error');
+
+				// history.push('/error');
 			}
 		} catch (err) {
 			setIsLoading(false);
-			history.push('/');
+			navigate('/');
+
+			// history.push('/');
 		}
 	}
 
@@ -61,7 +67,7 @@ function CallbackContainer(props) {
 
 	const loadingColor = "rgba(256,256,256,0.8)";
 	
-	const loadingComp = <Grid container item xs={12} justify="center" direction="column">
+	const loadingComp = <Grid container item xs={12} justifyContent="center" direction="column">
 		<Grid item xs={12}>
 			<CircularProgress style={{color: loadingColor}}/>
 		</Grid>
@@ -81,4 +87,4 @@ function CallbackContainer(props) {
 	);
 }
 
-export default withRouter(CallbackContainer);
+export default CallbackContainer;

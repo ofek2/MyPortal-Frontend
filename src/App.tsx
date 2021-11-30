@@ -1,9 +1,9 @@
 import React from 'react';
 import {
   BrowserRouter as Router,
-  Switch,
   Route,
-  Redirect
+  Navigate,
+  Routes
 } from "react-router-dom";
 import './App.css';
 import RegisterContainer from './containers/RegisterContainer';
@@ -19,13 +19,13 @@ function App() {
       <div className="App-Bg"></div>
       <div className="App-content">
         <Router>
-          <Switch>
-            <Route exact path="/" component={RegisterContainer} />
-            <Route exact path="/FAQ" component={FAQContainer} />
-            <Route exact path="/error" component={ErrorContainer} />
-            <Route exact path="/auth/callback" component={CallbackContainer} />
-            <Redirect to="/" />
-          </Switch>
+          <Routes>
+            <Route path="/" element={<RegisterContainer/>} />
+            <Route path="/FAQ" element={<FAQContainer/>} />
+            <Route path="/error" element={<ErrorContainer/>} />
+            <Route path="/auth/callback" element={<CallbackContainer/>} />
+            <Route path='/*' element={<Navigate to="/" />}/>
+          </Routes>
         </Router>
         <ChatBott/>
       </div>
