@@ -16,19 +16,19 @@ function IdForm(props: IFormProps) {
 	const [error, setError] = useState<any>({ msg: '', severity: 'error' });
 	const [isLoading, setIsLoading] = useState(false);
 	const [idInput, setIdInput] = useState('');
-	const captchaRef = useRef<ReCAPTCHA>(null);
+	const [captchToken, setCaptchToken] = useState('');
 
 	// Methodes
 	const isFormValid = (id: string) => {
-		const isValidId = isValidIsraeliID(id);
-		const isCaptchaChecked = captchaRef?.current?.getValue();
-		return isValidId && isCaptchaChecked;
+		return isValidIsraeliID(id) && isCaptchaChecked();
+	}
+
+	const handleVerify = (token) => {
+		setCaptchToken(token);
 	}
 
 	const isCaptchaChecked = () => {
-		const isCaptchaChecked = captchaRef?.current?.getValue();
-
-		return isCaptchaChecked;
+		return captchToken != null;
 	}
 
 	const isValidIsraeliID = (id: string) => {
@@ -57,7 +57,9 @@ function IdForm(props: IFormProps) {
 		setIsLoading(true);
 
 		try {
-			const data = await RestService.checkUser(idInput, captchaRef?.current?.getValue());
+			// const captchaValue = captchaRef?.current?.getValue();
+			const captchaValue = captchToken;
+			const data = await RestService.checkUser(idInput, captchaValue);
 
 			setIsLoading(false);
 
@@ -106,7 +108,7 @@ function IdForm(props: IFormProps) {
 	
 	// Rendering
 	return (
-		<>
+	<>
 		<Container maxWidth="sm">
 			<Typography variant="h3" style={{ fontWeight: "bold", marginBottom: 10 }}>ברוכים הבאים</Typography>
 			
@@ -114,7 +116,7 @@ function IdForm(props: IFormProps) {
 			<Typography>כאן ניתן ליצור באופן עצמאי ובקלות, משתמש {MY_IDF}.</Typography>
 			<Typography style={{marginTop: 20}}>להתחלת תהליך הרישום ולצורך אימות מול מערכת כח האדם,</Typography>
 			<Typography>יש להזין מספר תעודת זהות מלא באורך 9 ספרות:</Typography>
-			<Grid container direction="column" justify="center" alignItems="center" style={{ margin: "10px 0px" }}>
+			<Grid container direction="column" justifyContent="center" alignItems="center" style={{ margin: "10px 0px" }}>
 				<Grid item md={6}>
 					<form noValidate onSubmit={onClick}>
 						<ClkInput onChange={onChange} value={idInput} endAdornment={
@@ -142,7 +144,7 @@ function IdForm(props: IFormProps) {
 				</Grid>
 			</Grid>
 		</Container>
-		<ReCAPTCHA hl="iw" ref={captchaRef} style={{marginTop: 10}} sitekey={config.captchaSiteKey}/>
+		<ReCAPTCHA hl="iw" style={{marginTop: 10}} sitekey={config.captchaSiteKey} onChange={handleVerify}/>
 	</>
 	);
 }

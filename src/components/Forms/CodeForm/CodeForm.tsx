@@ -144,7 +144,7 @@ function CodeForm(props: IFormProps) {
 			<React.Fragment>
 				<Typography className="bold">נשלח אלייך קוד לטלפון:</Typography>
 				<CensorPhone phone={payload.mobilePhone} stringToReplace="X" />
-				<Grid container direction="column" justify="center" alignItems="center" style={{ margin: "10px 0px" }}>
+				<Grid container direction="column" justifyContent="center" alignItems="center" style={{ margin: "10px 0px" }}>
 					<Typography>נא להזין את הקוד שנשלח:​</Typography>
 					<Grid item md={6}>
 						<form noValidate onSubmit={onSubmit}>
@@ -174,7 +174,7 @@ function CodeForm(props: IFormProps) {
 						</form>
 					</Grid>
 					{timerOn && 
-					<Grid container item xs={12} justify="center">
+					<Grid container item xs={12} justifyContent="center">
 						<Typography style={{display: "flex"}}><img src={hourglassGif} className="hourglass"/>
 ההודעה תתקבל במכשירך ב-{waitingTime} השניות הקרובות..</Typography>
 					</Grid>

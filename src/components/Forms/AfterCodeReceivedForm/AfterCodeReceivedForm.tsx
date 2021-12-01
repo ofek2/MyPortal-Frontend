@@ -62,7 +62,7 @@ function AfterCodeReceivedForm(props: IFormProps) {
 		<React.Fragment>
 		{
 			isCreatingUser ? 
-			<Grid container item xs={12} justify="center" alignItems="center" spacing={2}>
+			<Grid container item xs={12} justifyContent="center" alignItems="center" spacing={2}>
 				<Grid item xs={12}>
 					<CircularProgress size={48}/>
 				</Grid>
@@ -78,11 +78,11 @@ function AfterCodeReceivedForm(props: IFormProps) {
 					<Typography className="bold">שירותי הדיגיטל של צה"ל שומרים על רמת אבטחה גבוהה.</Typography>
 					<Typography style={{marginBottom: "10px"}}>לכן, לסיום תהליך הרישום, נצטרך לאמת את זהותך עוד פעם אחת באמצעות סיסמה זמנית שקיבלת זה עתה ב-SMS.</Typography>
 				</Container>
-				<Grid container justify="center" alignItems="flex-start" style={{marginTop: 20}} >
+				<Grid container justifyContent="center" alignItems="flex-start" style={{marginTop: 20}} >
 					<Hidden smDown>
 						{instructions.map((instruction, index) => 
 							<React.Fragment key={index}>
-								<Grid item md={3} xs={12} direction="column" container justify="center" alignItems="center">
+								<Grid item md={3} xs={12} direction="column" container justifyContent="center" alignItems="center">
 									<div className={"info-image-circle"}><img src={instruction.image} alt="image" className={"info-image"}/></div>
 									<Typography align="center" className="info-text">{instruction.text}</Typography>
 								</Grid>
@@ -97,7 +97,7 @@ function AfterCodeReceivedForm(props: IFormProps) {
 						<Carousel isRTL={true} >
 							{instructions.map((instruction, index) =>
 								<Container key={index}> 
-									<Grid direction="column" container justify="center" alignItems="center">
+									<Grid direction="column" container justifyContent="center" alignItems="center">
 										<div className={"info-image-circle"}><img src={instruction.image} className={"info-image"}/></div>
 										<Typography align="center" className="info-text">{instruction.text}</Typography>
 									</Grid>
@@ -108,10 +108,10 @@ function AfterCodeReceivedForm(props: IFormProps) {
 					</Hidden>
 
 				
-					<Grid container item xs={12} justify="center" alignItems="center">
+					<Grid container item xs={12} justifyContent="center" alignItems="center">
 						<Button variant="contained" onClick={onContinueClick} disableElevation={true} color="primary" className="idf-button" >יאללה, אפשר להמשיך</Button>
 					</Grid>
-					<Grid container direction="column" justify="center" alignItems="center" style={{ margin: "10px 0px" }}>
+					<Grid container direction="column" justifyContent="center" alignItems="center" style={{ margin: "10px 0px" }}>
 						<Grid item xs={12}>
 							{
 								error && error.msg !== '' ?

@@ -24,7 +24,7 @@ function CallbackMsg(props: ICallbackMsgProps) {
 	return (
 		<>
 			<Container maxWidth="sm">
-				<Grid container justify="center" >
+				<Grid container justifyContent="center" >
 					<Grid style={{ padding: "10px" }} item xs={12}>
 						<Typography variant="h5" className="bold">מעולה, המשתמש נוצר בהצלחה!</Typography>
 						<Typography className="bold">שם המשתמש האישי שלך:</Typography>

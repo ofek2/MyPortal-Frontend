@@ -66,7 +66,7 @@ function PhoneForm(props: IFormProps) {
 		<React.Fragment>
 		{
 			isLoadingFirstTime ? 
-			<Grid container item xs={12} justify="center" alignItems="center" spacing={2}>
+			<Grid container item xs={12} justifyContent="center" alignItems="center" spacing={2}>
 				<Grid item xs={12}>
 					<CircularProgress size={48}/>
 				</Grid>
@@ -80,11 +80,11 @@ function PhoneForm(props: IFormProps) {
 			<React.Fragment>
 				<Typography>נשלחה אליך סיסמה חד-פעמית לכניסה, למספר הבא:</Typography>
 				<CensorPhone phone={payload.mobilePhone} stringToReplace="X" />
-				<Grid container item xs={12} justify="center" alignItems="center">
+				<Grid container item xs={12} justifyContent="center" alignItems="center">
 					<Button variant="contained" onClick={onContinueClick} disableElevation={true} color="primary" className="idf-button" style={{ margin: "10px 0px", marginLeft: "20px" }}>קיבלתי, אפשר להמשיך</Button>
 					<LoadingButton isLoading={isResettingPassword} variant="contained" onClick={onSendAgainClick} disableElevation={true} className="idf-button-secondary" style={{ margin: "10px 0px", backgroundColor: "#333" }}>שלחו לי שוב</LoadingButton>
 				</Grid>
-				<Grid container direction="column" justify="center" alignItems="center" style={{ margin: "10px 0px" }}>
+				<Grid container direction="column" justifyContent="center" alignItems="center" style={{ margin: "10px 0px" }}>
 					<Grid item xs={12}>
 						{
 							error && error.msg !== '' ?
