@@ -130,12 +130,12 @@ stages:
   # #       #  ./trivy/trivy image --format template --template "@./trivy/contrib/sonarqube.tpl" -o '$(Build.ArtifactStagingDirectory)/reportImage.json' $(imageRepository):$(Build.BuildId)
   # #     continueOnError: true
   # #  # --severity HIGH,CRITICAL,MEDIUM
-    # - task: PublishBuildArtifacts@1
-    #   displayName: "Publish analysis logs"
-    #   inputs:
-    #     PathtoPublish: "$(Build.ArtifactStagingDirectory)/CodeAnalysisLogs"
-    #     ArtifactName: "CodeAnalysisLogs"
-    #     publishLocation: "Container"
+    - task: PublishBuildArtifacts@1
+      displayName: "Publish analysis logs"
+      inputs:
+        PathtoPublish: "$(Build.ArtifactStagingDirectory)/CodeAnalysisLogs"
+        ArtifactName: "CodeAnalysisLogs"
+        publishLocation: "Container"
     - task: SonarQubeAnalyze@4
     
     - task: SonarQubePublish@4
