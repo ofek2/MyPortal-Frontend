@@ -1,7 +1,4 @@
 export class TypingIndicator {
-
-    constructor() {}
-
     buildIndicator() {
         const indicatorContainer = document.createElement("DIV");
         indicatorContainer.setAttribute("class", "ticontainer");

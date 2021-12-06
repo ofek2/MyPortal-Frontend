@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import Chatbot from '../../modules/Chatbot/index';
-import { assistance, client, xIcon, defaultGIF } from './assets';
+import { assistance, client, xIcon } from './assets';
 import './ChatBot.css';
 import chatImage from '../../assets/images/ChatbotPerson.png';
 import { Typography, Box } from '@material-ui/core';
@@ -97,7 +97,7 @@ function ChatBott() {
 				id: 5,
 				question: `איך אפשר לקבל תמיכה נוספת?`,
 				answer: `אני כאן כדי לסייע לכם!<br>
-				לקבלת עזרה, יש למלא את הטופס בקישור הבא: <a style="overflow-wrap: break-word;" target="_blank" href="https://forms.office.com/Pages/ResponsePage.aspx?id=UgiCePpVC0WQjUXA2RHna2yakDZhryRNgOKw_RiocBtUME9LWlVITFBTMEJDMVlSSzVZRFUwWk5FUi4u">https://forms.office.com/Pages/ResponsePage.aspx?id=UgiCePpVC0WQjUXA2RHna2yakDZhryRNgOKw_RiocBtUME9LWlVITFBTMEJDMVlSSzVZRFUwWk5FUi4u</a>`
+				לקבלת עזרה, יש למלא את הטופס בקישור הבא: <a style="overflow-wrap: break-word;" target="_blank" href="https://go.idf.il/Support">https://go.idf.il/Support</a>`
 			},
 		];
 		const options = {

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useState } from 'react';
 import './IdForm.css';
 import { Typography, InputAdornment, Grid, IconButton, CircularProgress, Container } from '@material-ui/core';
 import { ClkInput } from '../../ClkInput/ClkInput';
