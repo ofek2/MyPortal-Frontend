@@ -19,7 +19,7 @@ variables:
   cliProjectKey: 'MyIDF-DEV-FE'
   cliProjectName: 'MyIDF-DEV-FE'
   # Agent VM image name
-  vmImageName: 'ubuntu-latest'
+  vmImageName: 'ubuntu-20.04'
 
 stages:
 - stage: Build
