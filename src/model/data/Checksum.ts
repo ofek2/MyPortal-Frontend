@@ -18,6 +18,6 @@ export function createChecksum(data, secret) {
 export function validateChecksum(data, secret, expectedChecksum) {
     const checksum = createChecksum(data, secret);
 
-    return checksum == expectedChecksum;
+    return checksum === expectedChecksum;
 }
 

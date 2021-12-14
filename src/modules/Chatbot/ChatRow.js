@@ -1,4 +1,5 @@
 import { TypingIndicator } from "./typingIndicator/TypingIndicator";
+import sanitize from "sanitize-html";
 
 export class ChatRow {
     constructor(isClient, message, icon, isBotTyping) {
@@ -74,7 +75,8 @@ export class ChatRow {
 
         const messageText = document.createElement("p");
         // var textNode = document.createTextNode(this.message);
-        messageText.innerHTML = this.message;
+        const sanitizedMessage = sanitize(this.message);
+        messageText.innerHTML = sanitizedMessage;
         messagePopupDiv.appendChild(messageText);
         return messagePopupDiv;
     }
