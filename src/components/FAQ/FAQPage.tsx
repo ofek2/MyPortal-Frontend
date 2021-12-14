@@ -1,14 +1,10 @@
 import { Container, Grid, Typography } from '@material-ui/core';
-import React, { useEffect } from 'react';
 import { MyPaper } from '../Common/MyPaper';
 import faqs from '../../model/data/FAQs';
 import FAQItem from './FAQItem';
 
 function FAQPage() {
 
-    useEffect(() => {
-        
-    }, [])
     return (
         <MyPaper>
             <Typography variant="h3">נתקלת בבעיה? <b>ננסה לעזור לך</b> </Typography>

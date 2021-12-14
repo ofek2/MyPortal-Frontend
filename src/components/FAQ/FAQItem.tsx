@@ -1,6 +1,5 @@
 import { Grid, Typography } from '@material-ui/core';
-import React from 'react';
-import faqs, {FAQ} from '../../model/data/FAQs';
+import {FAQ} from '../../model/data/FAQs';
 import './FAQItem.css';
 
 interface FAQProps {
@@ -28,7 +27,7 @@ function FAQItem(props: FAQProps) {
                 <div className="faq-front">
                     <Grid container style={{height: "100%"}} justifyContent="center" alignItems="flex-start">
                         <Grid container justifyContent="center" alignItems="center" item xs={12} style={{height: "40%"}} className="faq-front-icon">
-                            {typeof faq.question.icon == "string" ? <img src={faq.question.icon}/> : faq.question.icon}</Grid>
+                            {typeof faq.question.icon == "string" ? <img src={faq.question.icon} alt={"question-icon"}/> : faq.question.icon}</Grid>
                         <Grid container justifyContent="center" alignItems="center" item xs={12} className="faq-front-question">
                             <Typography variant="body2" className="faq-front-text">{faq.question.text}</Typography>
                         </Grid>

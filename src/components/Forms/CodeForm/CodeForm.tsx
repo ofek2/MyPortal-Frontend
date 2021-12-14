@@ -1,17 +1,17 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import './CodeForm.css';
 import { Typography, InputAdornment, Grid, IconButton, CircularProgress, Container } from '@material-ui/core';
 import { ClkInput } from '../../ClkInput/ClkInput';
 import Send from '@material-ui/icons/Send';
 import IFormProps from '../IForm';
 import RestService from '../../../services/rest/RestService';
-import { Alert } from '@material-ui/lab';
 import { ERRORS } from '../../../model/data/Constants';
 import hourglassGif from '../../../assets/images/Hourglass.gif'
 import _ from 'lodash';
 import { useTimer } from '../../../hooks/timerHook';
 import CensorPhone from '../../CensorPhone/CensorPhone';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
+import { MessageAlert } from '../../Common/MessageAlert';
 
 
 function CodeForm(props: IFormProps) {
@@ -27,21 +27,25 @@ function CodeForm(props: IFormProps) {
 	const openChatBot = () => {
 		let chatBot: HTMLElement | null = document.querySelector('#chat_bot_logo');
 
-		if (chatBot) {
-			let activeChat = document.querySelector('#active_chat');
-			if (activeChat) {
-				chatBot.click();	// close active chat
-			}
-			chatBot.click();
-			setTimeout(() => {
-				let chatBtns: NodeListOf<HTMLElement> | null = document.querySelectorAll('#active_chat button');
-				if (chatBtns) {
-					let noCodeReceivedBtn: HTMLElement | null = chatBtns[1];
-					noCodeReceivedBtn?.click();
-				}
-			}, 500);
-			
+		// if not chat bot element wasn't found for some reason dont do anything
+		if (!chatBot) return;
+
+		let activeChat = document.querySelector('#active_chat');
+
+		if (activeChat) {
+			chatBot.click();	// close active chat
 		}
+
+		chatBot.click();
+		setTimeout(() => {
+			let chatBtns: NodeListOf<HTMLElement> | null = document.querySelectorAll('#active_chat button');
+			if (chatBtns) {
+				let noCodeReceivedBtn: HTMLElement | null = chatBtns[1];
+				noCodeReceivedBtn?.click();
+			}
+		}, 500);
+			
+		
 	}
 	const [time, setTime, timerOn, setTimerOn] = useTimer(waitingTime, openChatBot);
 	
@@ -65,21 +69,18 @@ function CodeForm(props: IFormProps) {
 
 			setIsLoading(false);
 
-			if (isValid) {
-				if (isRegistered) {
-					setError({
-						msg: ERRORS.userAlreadyRegistered(upn),
-						severity: 'info'
-					});
-				} else {
-					onResolve({ ...payload, mobilePhone, code: codeInput });
-				}
-				
-			} else {
+			if (!isValid) {
 				setError({
 					msg: ERRORS.invalidCode,
 					severity: 'error'
 				});
+			} else if (isRegistered) {
+				setError({
+					msg: ERRORS.userAlreadyRegistered(upn),
+					severity: 'info'
+				});
+			} else {
+				onResolve({ ...payload, mobilePhone, code: codeInput });
 			}
 		} catch (err) {
 			setIsLoading(false);
@@ -110,34 +111,26 @@ function CodeForm(props: IFormProps) {
 	} 
 
 	const submit = async () => {
-		if (!isLoading) {
-			if (isValidInput(codeInput)) {
-				setIsLoading(true);
-				setTimerOn(false);
-				await isCodeMatch();
-			}
-			else {
-				setError({
-					msg: ERRORS.invalidCode,
-					severity: 'error'
-				});
-			}
+		if (isLoading) return;
+		
+		if (isValidInput(codeInput)) {
+			setIsLoading(true);
+			setTimerOn(false);
+			await isCodeMatch();
+		} else {
+			setError({
+				msg: ERRORS.invalidCode,
+				severity: 'error'
+			});
 		}
+		
 	}
-	const onSubmit = async (event) => {
+	const handleSubmit = async (event) => {
 		event.preventDefault();
 
 		await submit();
 	}
 
-	const debouncedSubmit = useCallback(
-		_.debounce(submit, debounceDelay),
-		[codeInput], // will be created only once initially
-	);
-	
-
-	const {id} = payload;
-	
 	// Rendering
 	return (
 		<Container maxWidth="sm">
@@ -147,9 +140,9 @@ function CodeForm(props: IFormProps) {
 				<Grid container direction="column" justifyContent="center" alignItems="center" style={{ margin: "10px 0px" }}>
 					<Typography>נא להזין את הקוד שנשלח:​</Typography>
 					<Grid item md={6}>
-						<form noValidate onSubmit={onSubmit}>
+						<form noValidate onSubmit={handleSubmit}>
 							<ClkInput type={showPassword ? "text" : "password"} onChange={onChange} value={codeInput} className="clk-input input-password" endAdornment={
-								<InputAdornment position="end" onClick={onSubmit}>
+								<InputAdornment position="end" onClick={handleSubmit}>
 									{
 										isLoading ?
 											<CircularProgress color="primary" size={23} thickness={7} style={{ marginLeft: "10px", cursor: "default" }} />
@@ -183,15 +176,7 @@ function CodeForm(props: IFormProps) {
 				</Grid>
 			</React.Fragment>
 			
-			<Grid item xs={12}>
-				{
-					error && error.msg !== '' ?
-						<Alert severity={error.severity} className="info-container">
-							{error.msg}
-						</Alert> :
-						<React.Fragment />
-				}
-			</Grid>
+			<MessageAlert alert={error}/>
 		</Container>
 	);
 }

@@ -1,8 +1,4 @@
 import { Button } from "./Button";
-// import ChatBot from "..";
-// import { ChatRow } from "../ChatRow";
-
-
 
 export class ButtonRow {
     constructor(faqs, eventHandlerFunction){
@@ -32,17 +28,17 @@ export class ButtonRow {
 }   
 
 // Useful method to create dynamically images with styling
-function createImageWithStyle(dataURI, style) {
-    const styledImage = document.createElement("IMG");
-    styledImage.setAttribute("src", dataURI);
-    for (let prop of Object.keys(style)) {
-        styledImage.style[prop.toString()] = style[prop.toString()];
-    }
-    return styledImage;
-}
+// function createImageWithStyle(dataURI, style) {
+//     const styledImage = document.createElement("IMG");
+//     styledImage.setAttribute("src", dataURI);
+//     for (let prop of Object.keys(style)) {
+//         styledImage.style[prop.toString()] = style[prop.toString()];
+//     }
+//     return styledImage;
+// }
 
-function removeElementChildren(elementId) {
-    var node = document.getElementById(elementId);
-    node.querySelectorAll('*').forEach(n => n.remove());
-}
+// function removeElementChildren(elementId) {
+//     var node = document.getElementById(elementId);
+//     node.querySelectorAll('*').forEach(n => n.remove());
+// }
 

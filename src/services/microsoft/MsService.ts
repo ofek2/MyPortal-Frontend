@@ -23,7 +23,7 @@ async function handleRedirect() {
 	}
 
 }
-export default {
+const MsService = {
 	handleRedirect,
 	getAccessToken: async () => {
 		try {
@@ -70,3 +70,5 @@ export default {
 		msalObj.logout();
 	}
 };
+
+export default MsService;

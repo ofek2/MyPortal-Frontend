@@ -1,7 +1,5 @@
-import React from 'react';
 import warning from '../../assets/images/warning.png';
 import astrixs from '../../assets/images/astrixs.png';
-import lock from '../../assets/images/lock.png';
 import shtrudel from '../../assets/images/shtrudel.png';
 import blockedUser from '../../assets/images/blocked-user.png';
 import EditIcon from '@material-ui/icons/Edit';
