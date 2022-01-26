@@ -4,8 +4,7 @@
 			"auth": {
 				"clientId": "2bea0ea4-60b9-400d-b544-94c5bccb1019",
 				"authority": "https://login.microsoftonline.com/78820852-55fa-450b-908d-45c0d911e76b",
-				"redirectUri": "http://localhost:3000/auth/callback",
-				"postLogoutRedirectUri": "http://localhost:3000",
+				"redirectUri": "auth/callback",
 				"navigateToLoginRequestUrl": false
 			},
 			"cache": {
@@ -25,21 +24,5 @@
 		"isInMaintenance": 0,
 		"captchaSiteKey": "6Lf_RzQbAAAAAJjNjBJCoLAb7ep2JPHQNJsxqGiW",
 		"faqFunctionUrl": "https://myportalfaq.azurewebsites.net/api/getAllFaqs?code=O3eJf/9gCG7PxUNY8UKCRaVBHjM67dKZHsECP7FXhr5idJXHmq9jxw=="
-	},
-	"test": {
-		"msalConfig": {
-			"auth": {
-				"redirectUri": "https://myidf-fe-dev.azurewebsites.net/auth/callback",
-				"postLogoutRedirectUri": "https://myidf-fe-dev.azurewebsites.net/"
-			}
-		}
-	},
-	"production": {
-		"msalConfig": {
-			"auth": {
-				"redirectUri": "https://my.idf.il/auth/callback",
-				"postLogoutRedirectUri": "https://my.idf.il"
-			}
-		}
 	}
 }
