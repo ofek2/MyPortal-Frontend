@@ -29,7 +29,7 @@
 	"test": {
 		"msalConfig": {
 			"auth": {
-				"redirectUri": "https://myidf-fe-dev.azurewebsites.net//auth/callback",
+				"redirectUri": "https://myidf-fe-dev.azurewebsites.net/auth/callback",
 				"postLogoutRedirectUri": "https://myidf-fe-dev.azurewebsites.net/"
 			}
 		}
