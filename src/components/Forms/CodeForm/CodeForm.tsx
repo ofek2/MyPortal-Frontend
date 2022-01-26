@@ -53,7 +53,7 @@ function CodeForm(props: IFormProps) {
 
 
 	const isValidInput = (id: string) => {
-		const isValidInput = id.length == 8;
+		const isValidInput = id.length === 8;
 
 		return isValidInput;
 	}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import './AfterCodeReceivedForm.css';
 import { Typography, Button, Grid, CircularProgress, Hidden, Container } from '@material-ui/core';
 import IFormProps from '../IForm';
@@ -27,7 +27,7 @@ function AfterCodeReceivedForm(props: IFormProps) {
 		setIsCreatingUser(false);
 	}
 	// Handlers
-	const onContinueClick = async () => {
+	const onContinueClick = useCallback(async () => {
 		
 		if (currentUserUpn) {
 			try {
@@ -39,7 +39,7 @@ function AfterCodeReceivedForm(props: IFormProps) {
 		} else {
 			setError({ msg: ERRORS.general });
 		}
-	}
+	}, [currentUserUpn])
 	
 	const createUser = async () => {
 		setError({msg: ''});
@@ -48,6 +48,7 @@ function AfterCodeReceivedForm(props: IFormProps) {
 			const {upn} = await RestService.registerUser();	
 			setCurrentUserUpn(upn);
 		} catch (err) {
+			console.log(err)
 			setError({ msg: ERRORS.general });
 		}
 	}
@@ -83,7 +84,7 @@ function AfterCodeReceivedForm(props: IFormProps) {
 						{instructions.map((instruction, index) => 
 							<React.Fragment key={index}>
 								<Grid item md={3} xs={12} direction="column" container justifyContent="center" alignItems="center">
-									<div className={"info-image-circle"}><img src={instruction.image} alt="image" className={"info-image"}/></div>
+									<div className={"info-image-circle"}><img src={instruction.image} alt="instruction" className={"info-image"}/></div>
 									<Typography align="center" className="info-text">{instruction.text}</Typography>
 								</Grid>
 								{index < instructions.length - 1 && 
@@ -98,7 +99,7 @@ function AfterCodeReceivedForm(props: IFormProps) {
 							{instructions.map((instruction, index) =>
 								<Container key={index}> 
 									<Grid direction="column" container justifyContent="center" alignItems="center">
-										<div className={"info-image-circle"}><img src={instruction.image} className={"info-image"}/></div>
+										<div className={"info-image-circle"}><img src={instruction.image} alt="instruction" className={"info-image"}/></div>
 										<Typography align="center" className="info-text">{instruction.text}</Typography>
 									</Grid>
 								</Container>
