@@ -29,8 +29,8 @@
 	"test": {
 		"msalConfig": {
 			"auth": {
-				"redirectUri": "https://devfe.azurewebsites.net/auth/callback",
-				"postLogoutRedirectUri": "https://devfe.azurewebsites.net"
+				"redirectUri": "https://myidf-fe-dev.azurewebsites.net//auth/callback",
+				"postLogoutRedirectUri": "https://myidf-fe-dev.azurewebsites.net/"
 			}
 		}
 	},
