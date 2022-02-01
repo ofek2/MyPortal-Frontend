@@ -8,7 +8,7 @@
 				"navigateToLoginRequestUrl": false
 			},
 			"cache": {
-				"cacheLocation": "localStorage",
+				"cacheLocation": "sessionStorage",
 				"storeAuthStateInCookie": false
 			}
 		},
