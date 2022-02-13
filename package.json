@@ -42,7 +42,7 @@
     "start:prod": "node server.js",
     "build:test": "REACT_APP_ENVIRONMENT=test npm run build",
     "build:prod": "REACT_APP_ENVIRONMENT=production npm run build",
-    "preinstall": "npx npm-force-resolutions"
+    "preinstall": "npm install --package-lock-only --ignore-scripts && npx npm-force-resolutions"
   },
   "resolutions": {
     "ansi-regex": "^5.0.1",
