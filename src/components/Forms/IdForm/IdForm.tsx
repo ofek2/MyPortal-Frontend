@@ -28,7 +28,7 @@ function IdForm(props: IFormProps) {
 	}
 
 	const isCaptchaChecked = () => {
-		return captchToken != null;
+		return captchToken !== "" && captchToken !== null;
 	}
 
 	const isValidIsraeliID = (id: string) => {

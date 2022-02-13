@@ -9,7 +9,7 @@ app.use(express.static(__dirname));
 app.use(express.static(path.resolve(__dirname, 'build')));
 
 const backendUrl =  process.env.BACKEND_URL || "http://localhost:5000";
-
+console.log(backendUrl)
 app.get('/*', function (req, res) {
     res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
 });

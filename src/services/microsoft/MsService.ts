@@ -3,7 +3,10 @@ import config from "../../model/data/Configuration";
 import { GRAPH_REQUEST, LOGIN_REQUEST, CLICK_API_REQUEST } from "../../model/data/Constants";
 import { BrowserAuthError, PublicClientApplication } from '@azure/msal-browser';
 
-let msalObj = new PublicClientApplication(config.msalConfig);
+let msalConf = config.msalConfig;
+msalConf.auth.redirectUri = window.location.href + config.msalConfig.auth.redirectUri;
+msalConf.auth.postLogoutRedirectUri = window.location.href;
+let msalObj = new PublicClientApplication(msalConf);
 
 async function handleRedirect() {
 	const tokenResponse = await msalObj.handleRedirectPromise();
@@ -54,6 +57,7 @@ const MsService = {
 			if (err instanceof BrowserAuthError) {
 				// cleaning session in order to initiate another interactive login window
 				sessionStorage.clear();
+				localStorage.clear();
 				await msalObj.loginRedirect(request);
 			} else {
 				throw err;
@@ -64,7 +68,7 @@ const MsService = {
 	},
 	getAccount: () => {
 		const accounts = msalObj.getAllAccounts();
-		return accounts && accounts.length > 0 ? accounts[0] : null;
+		return accounts && accounts.length > 0 ? accounts[accounts.length - 1] : null;	// return the most recent connected user
 	},
 	logout: () => {
 		msalObj.logout();
