@@ -13,7 +13,7 @@ variables:
   dockerRegistryServiceConnection: '072f41ce-3c56-464d-ba98-96ea03aeb98a'
   imageRepository: 'myportalclient'
   containerRegistry: 'myidfprodacr.azurecr.io'
-  dockerfilePath: '$(Build.SourcesDirectory)/Dockerfile'
+  dockerfilePath: '$(Build.SourcesDirectory)/prod.Dockerfile'
   tag: '$(Build.BuildId)'
 
   # Agent VM image name
