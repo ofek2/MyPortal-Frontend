@@ -33,10 +33,10 @@ function IdForm(props: IFormProps) {
 
 	const isValidIsraeliID = (id: string) => {
 		id = String(id).trim();
-		if (id.length > 9 || id.length < 5 || +id === 0) return false;
+		if (id.length !== 9 || +id === 0) return false;
 	
 		// Pad string with zeros up to 9 digits
-		id = id.length < 9 ? ("00000000" + id).slice(-9) : id;
+		// id = id.length < 9 ? ("00000000" + id).slice(-9) : id;
 
 		return Array
 			.from(id, Number)
