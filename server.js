@@ -11,6 +11,11 @@ app.use(express.static(path.resolve(__dirname, 'build')));
 const backendUrl =  process.env.BACKEND_URL || "http://localhost:5000";
 
 app.get('/*', function (req, res) {
+    // Cache control - forcing no cache
+    // res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate');
+    // res.setHeader('Pragma', 'no-cache');
+    // res.setHeader('Expires', '0');
+
     res.sendFile(path.resolve(__dirname, 'build', 'index.html'));
 });
 

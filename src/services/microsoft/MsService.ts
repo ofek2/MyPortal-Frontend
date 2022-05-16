@@ -3,7 +3,10 @@ import config from "../../model/data/Configuration";
 import { GRAPH_REQUEST, LOGIN_REQUEST, CLICK_API_REQUEST } from "../../model/data/Constants";
 import { BrowserAuthError, PublicClientApplication } from '@azure/msal-browser';
 
-let msalObj = new PublicClientApplication(config.msalConfig);
+let msalConf = config.msalConfig;
+msalConf.auth.redirectUri = window.location.href + config.msalConfig.auth.redirectUri;
+msalConf.auth.postLogoutRedirectUri = window.location.href;
+let msalObj = new PublicClientApplication(msalConf);
 
 async function handleRedirect() {
 	const tokenResponse = await msalObj.handleRedirectPromise();

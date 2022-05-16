@@ -61,6 +61,7 @@ stages:
   - job: Scan
     steps:
     
+    
     #Sonarqube + Dependency Check
     - task: SonarQubePrepare@4
       inputs:
@@ -73,13 +74,12 @@ stages:
         extraProperties: |
           sonar.externalIssuesReportPaths=$(Build.ArtifactStagingDirectory)/gitleaks_sonar_format.json,$(Build.ArtifactStagingDirectory)/snyk_sonar_format.json,$(Build.ArtifactStagingDirectory)/semgrep_sonar_format.json
           sonar.branch.name=$(Build.SourceBranchName)
-
+   
     - task: Bash@3
       displayName: Download Tools    
       inputs:
         targetType: 'inline'
         script: mkdir $(Build.ArtifactStagingDirectory)/CodeAnalysisLogs
-
     - task: CSTask@1
       inputs:
         runGitleaks: true

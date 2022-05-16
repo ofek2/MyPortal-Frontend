@@ -28,15 +28,15 @@ function IdForm(props: IFormProps) {
 	}
 
 	const isCaptchaChecked = () => {
-		return captchToken != null;
+		return captchToken !== "" && captchToken !== null;
 	}
 
 	const isValidIsraeliID = (id: string) => {
 		id = String(id).trim();
-		if (id.length > 9 || id.length < 5 || +id === 0) return false;
+		if (id.length !== 9 || +id === 0) return false;
 	
 		// Pad string with zeros up to 9 digits
-		id = id.length < 9 ? ("00000000" + id).slice(-9) : id;
+		// id = id.length < 9 ? ("00000000" + id).slice(-9) : id;
 
 		return Array
 			.from(id, Number)
@@ -66,6 +66,7 @@ function IdForm(props: IFormProps) {
 			onResolve({id: idInput, mobilePhone: data.mobilePhone});
 		} catch (err) {
 			setIsLoading(false);
+			console.log(err)
 			setError({
 				msg: ERRORS.general,
 				severity: 'error'
@@ -111,7 +112,7 @@ function IdForm(props: IFormProps) {
 	<>
 		<Container maxWidth="sm">
 			<Typography variant="h3" style={{ fontWeight: "bold", marginBottom: 10 }}>ברוכים הבאים</Typography>
-			
+
 			<Typography className="bold">שירותי הדיגיטל של צה"ל עוברים להזדהות חכמה!</Typography>
 			<Typography>כאן ניתן ליצור באופן עצמאי ובקלות, משתמש {MY_IDF}.</Typography>
 			<Typography style={{marginTop: 20}}>להתחלת תהליך הרישום ולצורך אימות מול מערכת כח האדם,</Typography>
