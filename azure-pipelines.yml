@@ -16,7 +16,6 @@ variables:
   dockerfilePath: '$(Build.SourcesDirectory)/test.Dockerfile'
   tag: '$(Build.BuildId)'
   sonarqubeServerEndpoint: 'MyIDF-DEV-FE'
-  cliProjectKey: $(cliProjectKey)
   cliProjectName: 'MyIDF-DEV-FE'
   # Agent VM image name
   vmImageName: 'ubuntu-latest'
