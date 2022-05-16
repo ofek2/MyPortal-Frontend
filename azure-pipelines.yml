@@ -38,50 +38,50 @@ stages:
         containerRegistry: $(dockerRegistryServiceConnection)
         tags: |
           $(tag)
-- stage: SecurityScan
-  displayName: Security Scan
-  jobs:
-  - job: Scan
-    steps:
+# - stage: SecurityScan
+#   displayName: Security Scan
+#   jobs:
+#   - job: Scan
+#     steps:
     
     
-    #Sonarqube + Dependency Check
-    - task: SonarQubePrepare@4
-      inputs:
-        SonarQube: '$(sonarqubeServerEndpoint)'
-        scannerMode: 'CLI'
-        configMode: 'manual'
-        cliProjectKey: '$(cliProjectKey)'
-        cliProjectName: '$(cliProjectName)'
-        cliSources: '.'
-        extraProperties: |
-          sonar.externalIssuesReportPaths=$(Build.ArtifactStagingDirectory)/gitleaks_sonar_format.json,$(Build.ArtifactStagingDirectory)/snyk_sonar_format.json,$(Build.ArtifactStagingDirectory)/semgrep_sonar_format.json
-          sonar.branch.name=$(Build.SourceBranchName)
+#     #Sonarqube + Dependency Check
+#     - task: SonarQubePrepare@4
+#       inputs:
+#         SonarQube: '$(sonarqubeServerEndpoint)'
+#         scannerMode: 'CLI'
+#         configMode: 'manual'
+#         cliProjectKey: '$(cliProjectKey)'
+#         cliProjectName: '$(cliProjectName)'
+#         cliSources: '.'
+#         extraProperties: |
+#           sonar.externalIssuesReportPaths=$(Build.ArtifactStagingDirectory)/gitleaks_sonar_format.json,$(Build.ArtifactStagingDirectory)/snyk_sonar_format.json,$(Build.ArtifactStagingDirectory)/semgrep_sonar_format.json
+#           sonar.branch.name=$(Build.SourceBranchName)
    
-    - task: Bash@3
-      displayName: Download Tools    
-      inputs:
-        targetType: 'inline'
-        script: mkdir $(Build.ArtifactStagingDirectory)/CodeAnalysisLogs
-    - task: CSTask@1
-      inputs:
-        runGitleaks: true
-        runSemgrep: true
-        runSnyk: true
-        codeLang: 'javascript'
-        rootDir: '$(Build.SourcesDirectory)'
-        artifactsDir: '$(Build.ArtifactStagingDirectory)'
-        packageDir: '$(Build.SourcesDirectory)'
+#     - task: Bash@3
+#       displayName: Download Tools    
+#       inputs:
+#         targetType: 'inline'
+#         script: mkdir $(Build.ArtifactStagingDirectory)/CodeAnalysisLogs
+#     - task: CSTask@1
+#       inputs:
+#         runGitleaks: true
+#         runSemgrep: true
+#         runSnyk: true
+#         codeLang: 'javascript'
+#         rootDir: '$(Build.SourcesDirectory)'
+#         artifactsDir: '$(Build.ArtifactStagingDirectory)'
+#         packageDir: '$(Build.SourcesDirectory)'
         
-    - task: PublishBuildArtifacts@1
-      displayName: "Publish analysis logs"
-      inputs:
-        PathtoPublish: "$(Build.ArtifactStagingDirectory)/CodeAnalysisLogs"
-        ArtifactName: "CodeAnalysisLogs"
-        publishLocation: "Container"
-    - task: SonarQubeAnalyze@4
+#     - task: PublishBuildArtifacts@1
+#       displayName: "Publish analysis logs"
+#       inputs:
+#         PathtoPublish: "$(Build.ArtifactStagingDirectory)/CodeAnalysisLogs"
+#         ArtifactName: "CodeAnalysisLogs"
+#         publishLocation: "Container"
+#     - task: SonarQubeAnalyze@4
     
-    - task: SonarQubePublish@4
-      inputs:
-        pollingTimeoutSec: '300'
+#     - task: SonarQubePublish@4
+#       inputs:
+#         pollingTimeoutSec: '300'
       
