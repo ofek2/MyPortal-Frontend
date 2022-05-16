@@ -10,6 +10,7 @@ import './assets/fonts/Arimo-Bold.ttf';
 import './assets/fonts/Arimo-Regular.ttf';
 import rtl from 'jss-rtl';
 
+
 // jss rtl workaround
 const styleNode = document.createComment('jss-insertion-point');
 document.head.insertBefore(styleNode, document.head.firstChild);

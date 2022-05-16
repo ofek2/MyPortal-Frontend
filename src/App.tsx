@@ -12,8 +12,16 @@ import CallbackContainer from './containers/CallbackContainer';
 import ErrorContainer from './containers/ErrorContainer';
 import ChatBott from './components/ChatBot/ChatBot';
 import FAQContainer from './containers/FAQContainer';
+import withClearCache from './hocs/withClearCache';
+
+
+const ClearCacheComponent = withClearCache(MainApp);
 
 function App() {
+  return <ClearCacheComponent/>;
+}
+
+function MainApp() {
   return (
     <div className="App">
       <div className="App-Bg"></div>
