@@ -1,6 +1,6 @@
 
-import config from "../../model/data/Configuration";
-import { GRAPH_REQUEST, LOGIN_REQUEST, CLICK_API_REQUEST } from "../../model/data/Constants";
+import config from "../../model/configuration/Configuration";
+import { GRAPH_REQUEST, LOGIN_REQUEST, CLICK_API_REQUEST } from "../../model/configuration/GraphRequestsConfig";
 import { BrowserAuthError, PublicClientApplication } from '@azure/msal-browser';
 
 let msalConf = config.msalConfig;
