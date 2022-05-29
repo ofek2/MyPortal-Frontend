@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid, Paper, Typography } from '@material-ui/core';
-import { SUPPORT_INFO } from '../../model/data/Constants';
+import { SUPPORT_INFO } from '../../General/General';
 
 function ErrorMsg(props) {
 	// Rendering

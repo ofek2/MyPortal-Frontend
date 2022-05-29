@@ -5,13 +5,13 @@ import { ClkInput } from '../../ClkInput/ClkInput';
 import Send from '@material-ui/icons/Send';
 import IFormProps from '../IForm';
 import RestService from '../../../services/rest/RestService';
-import { ERRORS } from '../../../model/data/Constants';
 import hourglassGif from '../../../assets/images/Hourglass.gif'
 import _ from 'lodash';
 import { useTimer } from '../../../hooks/timerHook';
 import CensorPhone from '../../CensorPhone/CensorPhone';
 import { Visibility, VisibilityOff } from '@material-ui/icons';
 import { MessageAlert } from '../../Common/MessageAlert';
+import { ERRORS } from '../../Common/Errors/ErrorMessages';
 
 
 function CodeForm(props: IFormProps) {

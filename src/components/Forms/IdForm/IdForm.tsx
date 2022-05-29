@@ -6,9 +6,10 @@ import Send from '@material-ui/icons/Send';
 import IFormProps from '../IForm';
 import RestService from '../../../services/rest/RestService';
 import { Alert } from '@material-ui/lab';
-import { ERRORS, MY_IDF } from '../../../model/data/Constants';
 import ReCAPTCHA from "react-google-recaptcha";
-import config from "../../../model/data/Configuration";
+import config from "../../../model/configuration/Configuration";
+import { ERRORS } from '../../Common/Errors/ErrorMessages';
+import { MY_IDF } from '../../Common/General/General';
 
 function IdForm(props: IFormProps) {
 	// State & props

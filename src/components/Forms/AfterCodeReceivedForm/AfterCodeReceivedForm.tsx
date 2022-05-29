@@ -3,13 +3,13 @@ import './AfterCodeReceivedForm.css';
 import { Typography, Button, Grid, CircularProgress, Hidden, Container } from '@material-ui/core';
 import IFormProps from '../IForm';
 import MsService from '../../../services/microsoft/MsService';
-import {  ERRORS } from '../../../model/data/Constants';
 import RestService from '../../../services/rest/RestService';
 import { Alert } from '@material-ui/lab';
 import info1 from '../../../assets/images/info1.png';
 import info3 from '../../../assets/images/info3.png';
 import arrow from '../../../assets/images/arrow.png';
 import Carousel from 'react-elastic-carousel'
+import { ERRORS } from '../../Common/Errors/ErrorMessages';
 
 
 function AfterCodeReceivedForm(props: IFormProps) {
