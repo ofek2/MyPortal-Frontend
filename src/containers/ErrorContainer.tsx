@@ -1,6 +1,6 @@
 import React from 'react';
 import { Grid, Container } from '@material-ui/core';
-import ErrorMsg from '../components/ErrorMsg/ErrorMsg';
+import ErrorMsg from '../components/Common/Errors/ErrorMsg/ErrorMsg';
 
 function ErrorContainer(props) {
 	// Rendering

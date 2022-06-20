@@ -10,7 +10,7 @@ import RegisterContainer from './containers/RegisterContainer';
 import CallbackContainer from './containers/CallbackContainer';
 
 import ErrorContainer from './containers/ErrorContainer';
-import ChatBott from './components/ChatBot/ChatBot';
+import ChatBot from './components/ChatBot/ChatBot';
 import FAQContainer from './containers/FAQContainer';
 import withClearCache from './hocs/withClearCache';
 
@@ -35,7 +35,7 @@ function MainApp() {
             <Route path='/*' element={<Navigate to="/" />}/>
           </Routes>
         </Router>
-        <ChatBott/>
+        <ChatBot/>
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 import { Container, Grid, Typography } from '@material-ui/core';
 import { MyPaper } from '../Common/MyPaper';
-import faqs from '../../model/data/FAQs';
+import faqs from './FAQs';
 import FAQItem from './FAQItem';
 
 function FAQPage() {

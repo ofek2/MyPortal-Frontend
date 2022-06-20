@@ -1,5 +1,5 @@
 import { Grid, Typography } from '@material-ui/core';
-import {FAQ} from '../../model/data/FAQs';
+import {FAQ} from './FAQs';
 import './FAQItem.css';
 
 interface FAQProps {
