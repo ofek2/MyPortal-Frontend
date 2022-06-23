@@ -1,28 +1,29 @@
 {
-	"development": {
-		"msalConfig": {
-			"auth": {
-				"clientId": "2bea0ea4-60b9-400d-b544-94c5bccb1019",
-				"authority": "https://login.microsoftonline.com/78820852-55fa-450b-908d-45c0d911e76b",
-				"redirectUri": "auth/callback",
-				"navigateToLoginRequestUrl": false
-			},
-			"cache": {
-				"cacheLocation": "sessionStorage",
-				"storeAuthStateInCookie": false
-			}
-		},
-		"msalScopes": [
-			"user.read",
-			"openid",
-			"profile"
-		],
-		"clickApiScopes": [
-			"api://0ed0e4b1-c2dc-4d34-b1ef-0d2d36bd7321/Users.IdentityNumber.Read"
-		],
-		"clickDomain": "idf.il",
-		"isInMaintenance": 0,
-		"captchaSiteKey": "6Lf_RzQbAAAAAJjNjBJCoLAb7ep2JPHQNJsxqGiW",
-		"faqFunctionUrl": "https://myportalfaq.azurewebsites.net/api/getAllFaqs?code=O3eJf/9gCG7PxUNY8UKCRaVBHjM67dKZHsECP7FXhr5idJXHmq9jxw=="
-	}
+  "development": {
+    "msalConfig": {
+      "auth": {
+        "clientId": "2bea0ea4-60b9-400d-b544-94c5bccb1019",
+        "authority": "https://login.microsoftonline.com/78820852-55fa-450b-908d-45c0d911e76b",
+        "redirectUri": "auth/callback",
+        "navigateToLoginRequestUrl": false
+      },
+      "cache": {
+        "cacheLocation": "sessionStorage",
+        "storeAuthStateInCookie": false
+      }
+    },
+    "msalScopes": [
+      "user.read",
+      "openid",
+      "profile"
+    ],
+    "clickApiScopes": [
+      "api://0ed0e4b1-c2dc-4d34-b1ef-0d2d36bd7321/Users.IdentityNumber.Read"
+    ],
+    "clickDomain": "idf.il",
+    "isInMaintenance": 0,
+    "captchaSiteKey": "6Lf_RzQbAAAAAJjNjBJCoLAb7ep2JPHQNJsxqGiW",
+    "faqFunctionUrl": "https://myportalfaq.azurewebsites.net/api/getAllFaqs?code=O3eJf/9gCG7PxUNY8UKCRaVBHjM67dKZHsECP7FXhr5idJXHmq9jxw=="
+  },
+  "buildDate": 1655987601930
 }

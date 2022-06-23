@@ -1,13 +1,13 @@
 const fs = require("fs");
-const filePath = "./package.json";
+const filePath = "./src/configuration.json";
 
-const packageJson = JSON.parse(fs.readFileSync(filePath).toString());
-packageJson.buildDate = new Date().getTime();
+const configJson = JSON.parse(fs.readFileSync(filePath).toString());
+configJson.buildDate = new Date().getTime();
 
-fs.writeFileSync(filePath, JSON.stringify(packageJson, null, 2));
+fs.writeFileSync(filePath, JSON.stringify(configJson, null, 2));
 
 const jsonData = {
-  buildDate: packageJson.buildDate,
+  buildDate: configJson.buildDate,
 };
 
 const jsonContent = JSON.stringify(jsonData);
