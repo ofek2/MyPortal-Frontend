@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import packageJson from "../../package.json";
+import config from "../model/configuration/Configuration";
 import moment from "moment";
 
 const buildDateGreaterThan = (latestDate, currentDate) => {
@@ -22,7 +22,7 @@ function withClearCache(Component) {
         .then((response) => response.json())
         .then((meta) => {
           const latestVersionDate = meta.buildDate;
-          const currentVersionDate = packageJson.buildDate;
+          const currentVersionDate = config.buildDate;
 
           const shouldForceRefresh = buildDateGreaterThan(
             latestVersionDate,
