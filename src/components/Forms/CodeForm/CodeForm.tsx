@@ -23,6 +23,9 @@ function CodeForm(props: IFormProps) {
 	const [isLoading, setIsLoading] = useState(false);
 	const [showPassword, setShowPassword] = useState(false);
 	const [codeInput, setCodeInput] = useState('');
+	const [isRegistered, setIsRegistered] = useState(false);
+	const [isUserBlocked, setIsUserBlocked] = useState(false);
+
 
 	const openChatBot = () => {
 		let chatBot: HTMLElement | null = document.querySelector('#chat_bot_logo');
@@ -65,7 +68,7 @@ function CodeForm(props: IFormProps) {
 		setIsLoading(true);
 
 		try {
-			const { isValid, isRegistered, mobilePhone, upn } = await RestService.validateCode(id, codeInput);
+			const { isValid, isRegistered, mobilePhone, upn, isUserBlocked } = await RestService.validateCode(id, codeInput);
 
 			setIsLoading(false);
 
@@ -75,10 +78,10 @@ function CodeForm(props: IFormProps) {
 					severity: 'error'
 				});
 			} else if (isRegistered) {
-				setError({
-					msg: ERRORS.userAlreadyRegistered(upn),
-					severity: 'info'
-				});
+				setIsRegistered(true);
+				if (isUserBlocked) {
+					setIsUserBlocked(true);
+				}
 			} else {
 				onResolve({ ...payload, mobilePhone, code: codeInput });
 			}

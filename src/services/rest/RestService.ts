@@ -6,16 +6,6 @@ class RestService {
 		return res.data;
 	}
 
-	static async resetUserPassword(generateCode: boolean = true) {
-		const res = await axiosInstance.put(`/users/me/resetPassword`, {generateCode});
-		return res.data;
-	}
-
-	static async registerUser() {
-		const res = await axiosInstance.put(`/users/me/register`);
-		return res.data;
-	}
-
 	static async validateCode(idNumber, code) {
 		const res = await axiosInstance.post(`/users/${idNumber}/validateCode`, { code });
 		return res.data;
@@ -26,8 +16,18 @@ class RestService {
 		return res.data;
 	}
 
+	static async resetUserPassword(generateCode: boolean = true) {
+		const res = await axiosInstance.put(`/me/resetPassword`, {generateCode});
+		return res.data;
+	}
+
+	static async registerUser() {
+		const res = await axiosInstance.put(`/me/register`);
+		return res.data;
+	}
+
 	static async sendFinishSMS() {
-		const res = await axiosInstance.get(`/users/me/finish`);
+		const res = await axiosInstance.get(`/me/finish`);
 		return res.data;
 	}
 
