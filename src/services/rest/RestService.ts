@@ -21,6 +21,12 @@ class RestService {
 		return res.data;
 	}
 
+	static async unlockUser() {
+		const res = await axiosInstance.put(`/me/unlock`, {});
+		return res.data;
+	}
+
+
 	static async registerUser() {
 		const res = await axiosInstance.put(`/me/register`);
 		return res.data;
