@@ -197,6 +197,8 @@ function CodeForm(props: IFormProps) {
 			setShowUserUnlockedMessage(false);
 
 			await RestService.unlockUser();
+			setShowUserUnlockedMessage(true);
+
 		} catch (err) {
 			setError({
 				msg: ERRORS.general,
@@ -205,7 +207,6 @@ function CodeForm(props: IFormProps) {
 		} finally {	
 			setIsLoadingUnlockUser(false);
 			setIsUserLocked(false);
-			setShowUserUnlockedMessage(true);
 		}
 	}
 
@@ -215,6 +216,12 @@ function CodeForm(props: IFormProps) {
 			setShowResetPasswordSuccessfulMessage(false);
 
 			await RestService.resetUserPassword();
+			setShowResetPasswordSuccessfulMessage(true);
+
+			// remove success message after 10 seconds
+			setTimeout(()=> {
+				setShowResetPasswordSuccessfulMessage(true);
+			},10000)
 		} catch (err) {
 			setError({
 				msg: ERRORS.general,
@@ -222,7 +229,6 @@ function CodeForm(props: IFormProps) {
 			});
 		} finally{
 			setIsLoadingResetPassword(false);
-			setShowResetPasswordSuccessfulMessage(true);
 		}
 	}
 
