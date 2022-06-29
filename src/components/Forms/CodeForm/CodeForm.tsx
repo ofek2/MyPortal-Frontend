@@ -77,7 +77,6 @@ function CodeForm(props: IFormProps) {
 		try {
 			const { isValid, isRegistered, mobilePhone, upn, isUserLocked } = await RestService.validateCode(id, codeInput);
 
-			console.log(isRegistered,isUserLocked)
 			setIsLoading(false);
 
 			if (!isValid) {		// first check if the entered code was valid
@@ -193,12 +192,14 @@ function CodeForm(props: IFormProps) {
 
 	const handleUserUnlock = async () => {
 		try {
+			
+			setError({ msg: '', severity: 'error' });
 			setIsLoadingUnlockUser(true);
 			setShowUserUnlockedMessage(false);
 
 			await RestService.unlockUser();
 			setShowUserUnlockedMessage(true);
-
+			setIsUserLocked(false);
 		} catch (err) {
 			setError({
 				msg: ERRORS.general,
@@ -206,12 +207,12 @@ function CodeForm(props: IFormProps) {
 			});
 		} finally {	
 			setIsLoadingUnlockUser(false);
-			setIsUserLocked(false);
 		}
 	}
 
 	const handleUserResetPassword = async () => {
 		try {
+			setError({ msg: '', severity: 'error' });
 			setIsLoadingResetPassword(true);
 			setShowResetPasswordSuccessfulMessage(false);
 
@@ -235,8 +236,7 @@ function CodeForm(props: IFormProps) {
 	// Rendering
 	return (
 		<Container maxWidth="sm">
-			{renderCodeInput()}
-			{isRegistered && userPrincipalName && 
+			{isRegistered ? 
 				<MessageAlert alert={{ 
 					msg:<RegisteredUserSection userPrincipleName={userPrincipalName} isUserInitallyLocked={isUserInitiallyLocked} isUserLocked={isUserLocked}
 					isLoadingUnlock={isLoadingUnlockUser} isLoadingResetPassword={isLoadingResetPassword}
@@ -244,6 +244,8 @@ function CodeForm(props: IFormProps) {
 					onResetPassword={handleUserResetPassword} onUnlockUser={handleUserUnlock}/>,
 					severity: "info"
 				}}/>
+				:
+				renderCodeInput()
 			}
 
 			<MessageAlert alert={error}/>

@@ -18,7 +18,7 @@ async function handleRedirect() {
 		// console.log('id_token acquired at: ' + new Date().toString());
 	} else if (tokenResponse && tokenResponse.tokenType === "Bearer") {
 		// No account object available, but access token was retrieved
-		console.log('access_token acquired at: ' + new Date().toString());
+		// console.log('access_token acquired at: ' + new Date().toString());
 	} else if (tokenResponse === null) {
 		throw new Error("tokenResponse was null, attempt sign in or enter unauthenticated state for app\"");
 	} else {
