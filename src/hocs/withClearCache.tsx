@@ -34,6 +34,9 @@ function withClearCache(Component) {
           } else {
             setIsLatestBuildDate(true);
           }
+        }).catch((err) => {
+          // in a case there is no meta.json file for some reason, just render the app normally without cache refresh
+          setIsLatestBuildDate(true);
         });
     }, []);
 

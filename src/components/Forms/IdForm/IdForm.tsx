@@ -58,7 +58,6 @@ function IdForm(props: IFormProps) {
 		setIsLoading(true);
 
 		try {
-			// const captchaValue = captchaRef?.current?.getValue();
 			const captchaValue = captchToken;
 			const data = await RestService.checkUser(idInput, captchaValue);
 
