@@ -1,6 +1,6 @@
 import axios from 'axios';
-import { validateChecksum } from '../model/data/Checksum';
-import config from "../model/data/Configuration";
+import { validateChecksum } from './Checksum';
+import config from "../model/configuration/Configuration";
 
 export const axiosInstance = axios.create({
 	// baseURL: config.authService.baseURL,

@@ -6,9 +6,10 @@ import Send from '@material-ui/icons/Send';
 import IFormProps from '../IForm';
 import RestService from '../../../services/rest/RestService';
 import { Alert } from '@material-ui/lab';
-import { ERRORS, MY_IDF } from '../../../model/data/Constants';
 import ReCAPTCHA from "react-google-recaptcha";
-import config from "../../../model/data/Configuration";
+import config from "../../../model/configuration/Configuration";
+import { ERRORS } from '../../Common/Errors/ErrorMessages';
+import { MY_IDF } from '../../Common/General/General';
 
 function IdForm(props: IFormProps) {
 	// State & props
@@ -57,7 +58,6 @@ function IdForm(props: IFormProps) {
 		setIsLoading(true);
 
 		try {
-			// const captchaValue = captchaRef?.current?.getValue();
 			const captchaValue = captchToken;
 			const data = await RestService.checkUser(idInput, captchaValue);
 
@@ -112,11 +112,7 @@ function IdForm(props: IFormProps) {
 	<>
 		<Container maxWidth="sm">
 			<Typography variant="h3" style={{ fontWeight: "bold", marginBottom: 10 }}>ברוכים הבאים</Typography>
-			<Typography variant="h3" style={{ fontWeight: "bold", marginBottom: 10 }}>ברוכים הבאים</Typography>
-			<Typography variant="h3" style={{ fontWeight: "bold", marginBottom: 10 }}>ברוכים הבאים</Typography>
-			<Typography variant="h3" style={{ fontWeight: "bold", marginBottom: 10 }}>ברוכים הבאים</Typography>
-			<Typography variant="h3" style={{ fontWeight: "bold", marginBottom: 10 }}>ברוכים הבאים</Typography>
-
+			
 			<Typography className="bold">שירותי הדיגיטל של צה"ל עוברים להזדהות חכמה!</Typography>
 			<Typography>כאן ניתן ליצור באופן עצמאי ובקלות, משתמש {MY_IDF}.</Typography>
 			<Typography style={{marginTop: 20}}>להתחלת תהליך הרישום ולצורך אימות מול מערכת כח האדם,</Typography>
