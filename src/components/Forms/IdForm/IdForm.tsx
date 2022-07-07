@@ -10,6 +10,8 @@ import ReCAPTCHA from "react-google-recaptcha";
 import config from "../../../model/configuration/Configuration";
 import { ERRORS } from '../../Common/Errors/ErrorMessages';
 import { MY_IDF } from '../../Common/General/General';
+import { hideChatBot, unhideChatBot } from '../../ChatBot/ChatBot';
+import { useWindowSize } from '../../../hooks/useWindowSize';
 
 function IdForm(props: IFormProps) {
 	// State & props
@@ -18,6 +20,7 @@ function IdForm(props: IFormProps) {
 	const [isLoading, setIsLoading] = useState(false);
 	const [idInput, setIdInput] = useState('');
 	const [captchToken, setCaptchToken] = useState('');
+
 
 	// Methodes
 	const isFormValid = (id: string) => {
@@ -106,6 +109,12 @@ function IdForm(props: IFormProps) {
 			await checkIsUserExist();
 		}
 	}
+
+	// const handleInputFocus = () => {
+	// 	if (size.width < 900) {
+	// 		hideChatBot();
+	// 	}
+	// }
 	
 	// Rendering
 	return (
