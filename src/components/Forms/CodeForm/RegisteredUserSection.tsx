@@ -53,11 +53,9 @@ function RegisteredUserSection(props: RegisteredUserSectionProps) {
 		<Typography className="bold" style={{marginTop: "10px"}}>שם המשתמש האישי שלך הינו:</Typography>
 		<Typography className="english-font" dir="ltr">{props.userPrincipleName}</Typography>
 
-		<Typography style={{marginTop: "10px"}}>לא זוכר את הסיסמה? ניתן לאפס אותה <a href="https://passwordreset.microsoftonline.com/">כאן</a></Typography>
-		{	// TODO: !!!!! Add this when release lock and password reset is approved !!!!!
-		/* {props.isUserInitallyLocked && <BlockedUserSection />}
-		
-		{!props.isUserLocked && <ResetPasswordSection />} */}
+		{props.isUserInitallyLocked && <BlockedUserSection />}
+	
+		{!props.isUserLocked && <ResetPasswordSection />}
 	</div>
 	)
 }
