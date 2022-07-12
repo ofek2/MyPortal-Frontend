@@ -42,7 +42,7 @@ function RegisteredUserSection(props: RegisteredUserSectionProps) {
 		<Typography style={{marginTop: '15px'}} className="bold">שכחת את הסיסמה?</Typography>
 		<LoadingButton variant="contained" size="small" color="primary" onClick={props.onResetPassword} isLoading={!!props.isLoadingResetPassword} className="idf-button">לחץ\י כאן לאיפוס הסיסמה</LoadingButton>
 		{/* {props.isLoadingResetPassword && <Hourglass />} */}
-		{props.showResetPasswordSuccessfulMessage && <Typography variant="body2" style={{color: "green"}}>קישור לאיפוס הסיסמא נשלח למכשירך בהצלחה!</Typography>}
+		{props.showResetPasswordSuccessfulMessage && <Typography variant="body2" style={{color: "green"}}>קישור לאיפוס הסיסמה נשלח למכשירך בהצלחה!</Typography>}
 	</>;
 	
 
